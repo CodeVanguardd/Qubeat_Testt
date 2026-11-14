@@ -1,0 +1,16 @@
+{
+  "name": "QuBeat",
+  "short_name": "QuBeat",
+  "description": "An AI-Assisted Gamified Programming Learning System",
+  "start_url": "/index.html",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#070a1a",
+  "theme_color": "#ff62d6",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
