@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>QuBeat | Paced Rhythm Game</title>
     <link rel="icon" type="image/png" href="logo.png">
+    <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#ff62d6">
     <link rel="stylesheet" href="QuebeatMain.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -728,5 +730,11 @@
             playThenGo('creditsBtn', 'creditsSfx');
         });
     </script>
+
+    <script>
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("/sw.js");
+  }
+</script>
 </body>
 </html>
