@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CSS — The Complete Master Guide</title>
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800;900&family=Rajdhani:wght@600;700&family=Sora:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#07030d;
+  --panel:#120a1f;
+  --panel2:#1a0f2e;
+  --line:#3a1f5c;
+  --ink:#f3e9ff;
+  --muted:#b39cd0;
+  --pink:#ff2fb0;
+  --pink2:#ff7ad9;
+  --blue:#00e5ff;
+  --blue2:#7df9ff;
+  --danger:#ff5c7a;
+  --good:#39ffb0;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; color:var(--ink);
+  font-family:'Sora',ui-sans-serif,system-ui,-apple-system,Arial,sans-serif;
+  line-height:1.65;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(255,47,176,0.16), transparent 45%),
+    radial-gradient(circle at 85% 10%, rgba(0,229,255,0.16), transparent 40%),
+    radial-gradient(circle at 50% 90%, rgba(255,47,176,0.12), transparent 50%),
+    linear-gradient(0deg, transparent 24%, rgba(0,229,255,0.05) 25%, rgba(0,229,255,0.05) 26%, transparent 27%, transparent 74%, rgba(255,47,176,0.05) 75%, rgba(255,47,176,0.05) 76%, transparent 77%),
+    var(--bg);
+  background-size:auto, auto, auto, 60px 60px, auto;
+  position:relative;
+  overflow-x:hidden;
+}
+body::before{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+  background:linear-gradient(90deg, transparent 49%, rgba(0,229,255,0.4) 50%, transparent 51%);
+  opacity:0; mix-blend-mode:screen;
+  animation:strike 7s infinite;
+}
+body::after{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+  background:linear-gradient(180deg, transparent 60%, rgba(255,47,176,0.35) 61%, transparent 63%);
+  opacity:0; mix-blend-mode:screen;
+  animation:strike2 11s infinite;
+}
+@keyframes strike{
+  0%,93%,100%{opacity:0} 93.2%{opacity:.9} 93.4%{opacity:0} 93.6%{opacity:.5} 93.9%{opacity:0}
+}
+@keyframes strike2{
+  0%,88%,100%{opacity:0} 88.2%{opacity:.7} 88.5%{opacity:0} 88.8%{opacity:.4} 89.1%{opacity:0}
+}
+a{color:var(--blue)}
+.layout{display:grid; grid-template-columns:280px 1fr; min-height:100vh; position:relative; z-index:1;}
+nav.side{
+  position:sticky; top:0; height:100vh; overflow-y:auto;
+  background:rgba(18,10,31,0.85); backdrop-filter:blur(6px);
+  border-right:1px solid var(--line); padding:20px 14px;
+}
+nav.side h2{
+  font-size:12.5px; text-transform:uppercase; letter-spacing:.2em; font-family:'Rajdhani',sans-serif;
+  color:var(--blue2); margin:18px 6px 8px; font-weight:700;
+}
+nav.side h2:first-child{margin-top:0}
+nav.side a{
+  display:block; padding:6px 8px; border-radius:8px;
+  color:var(--muted); text-decoration:none; font-size:13.5px;
+}
+nav.side a:hover{background:var(--panel2); color:var(--pink2); text-shadow:0 0 8px var(--pink)}
+.brand{padding:6px 8px 18px; border-bottom:1px solid var(--line); margin-bottom:6px;}
+.brand .logo{font-family:'Orbitron',sans-serif; letter-spacing:0;
+  display:inline-flex; align-items:center; justify-content:center;
+  width:40px; height:40px; font-weight:900; font-size:16px;
+  border-radius:10px; color:#07030d;
+  background:linear-gradient(135deg,var(--pink),var(--blue));
+  box-shadow:0 0 18px rgba(255,47,176,.5), 0 0 30px rgba(0,229,255,.25);
+}
+.brand h1{font-size:18px; margin:10px 0 2px; font-family:'Orbitron',sans-serif; background:linear-gradient(90deg,var(--pink2),var(--blue2)); -webkit-background-clip:text; background-clip:text; color:transparent;}
+.brand p{font-size:12px; color:var(--muted); margin:0}
+main{padding:48px 56px; max-width:980px; position:relative; z-index:1;}
+.hero{
+  border:1px solid var(--line);
+  background:linear-gradient(135deg, rgba(255,47,176,0.08), rgba(0,229,255,0.08)), var(--panel);
+  border-radius:22px; padding:38px; margin-bottom:44px; position:relative; overflow:hidden;
+  box-shadow:0 0 40px rgba(255,47,176,.08), inset 0 0 60px rgba(0,229,255,.04);
+}
+.hero .kicker{color:var(--blue2); font-family:'Rajdhani',sans-serif; font-weight:700; letter-spacing:.22em; font-size:13px; text-transform:uppercase;}
+.hero h1{font-size:42px; margin:10px 0; font-family:'Orbitron',sans-serif; letter-spacing:.02em; background:linear-gradient(90deg,var(--pink2),var(--blue2)); -webkit-background-clip:text; background-clip:text; color:transparent; text-shadow:0 0 20px rgba(255,47,176,.45), 0 0 40px rgba(5,230,255,.2);}
+.hero p{color:var(--muted); max-width:640px; font-size:15.5px;}
+section{margin-bottom:56px; scroll-margin-top:24px;}
+section h2{
+  font-size:24px; display:flex; align-items:center; gap:12px; margin-bottom:6px;
+  font-family:'Rajdhani',sans-serif; font-weight:700; letter-spacing:.01em;
+  padding-bottom:10px; border-bottom:1px solid var(--line); color:var(--ink);
+}
+section h2 .num{
+  color:#07030d; background:linear-gradient(135deg,var(--pink),var(--blue)); font-size:13px; font-weight:800;
+  width:30px; height:30px; border-radius:8px; display:flex; align-items:center; justify-content:center;
+  flex:none; box-shadow:0 0 12px rgba(255,47,176,.4);
+}
+section h3{font-size:15px; color:var(--blue2); font-family:'Rajdhani',sans-serif; font-weight:600; margin:22px 0 8px; text-transform:uppercase; letter-spacing:.06em;}
+p{color:#d8c9f0; font-size:15px;}
+ul,ol{color:#d8c9f0; font-size:15px; padding-left:20px;}
+li{margin-bottom:6px;}
+.card{background:rgba(18,10,31,0.7); border:1px solid var(--line); border-radius:14px; padding:20px; margin:14px 0;}
+.grid2{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+.grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
+@media (max-width:900px){.grid2,.grid3{grid-template-columns:1fr} .layout{grid-template-columns:1fr} nav.side{position:relative; height:auto;}}
+table{width:100%; border-collapse:collapse; font-size:14px; margin:12px 0;}
+th,td{border:1px solid var(--line); padding:8px 10px; text-align:left; color:#d8c9f0;}
+th{background:var(--panel2); color:var(--pink2); font-family:'Rajdhani',sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:.04em; font-size:13px;}
+pre{
+  background:#0a0512; border:1px solid var(--line); border-radius:12px;
+  padding:16px 18px; overflow-x:auto; font-size:13.5px; margin:10px 0;
+  box-shadow:inset 0 0 20px rgba(0,229,255,.05);
+}
+code{font-family:'JetBrains Mono','Fira Code',Consolas,'Courier New',monospace;}
+.kw{color:var(--pink2)}.str{color:var(--good)}.com{color:#7a6a99;font-style:italic}.fn{color:var(--blue2)}.num2{color:#ffb86c}
+.expl{border-left:3px solid var(--pink); padding:6px 0 6px 14px; margin:8px 0; color:var(--muted); font-size:13.5px;}
+.expl li{margin-bottom:4px;}
+.pill-row{display:flex; gap:8px; flex-wrap:wrap; margin:10px 0;}
+.pill{background:var(--panel2); border:1px solid var(--line); border-radius:8px; padding:6px 12px; font-size:13px; color:#d8c9f0; font-family:'Rajdhani',sans-serif; font-weight:600; letter-spacing:.02em;}
+.good{color:var(--good)}.bad{color:var(--danger)}
+.qa{background:rgba(18,10,31,0.7); border:1px solid var(--line); border-radius:12px; padding:14px 18px; margin:10px 0;}
+.qa .q{color:var(--pink2); font-family:'Rajdhani',sans-serif; font-weight:700; font-size:15.5px; letter-spacing:.01em;}
+.qa .a{color:#d8c9f0; font-size:14px; margin-top:6px;}
+
+/* ===== Back button — select another language ===== */
+.back-wrap{ margin-bottom:22px; }
+.back-btn{
+  background-color:#852564;
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: inline-block;
+  text-align: center;
+  font-weight: bold;
+  padding: 0.7em 2em;
+  border: 3px solid #FF0072;
+  border-radius: 2px;
+  position: relative;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.1);
+  color: #07EBDA;
+  text-decoration: none;
+  transition: 0.3s ease all;
+  z-index: 1;
+  cursor:pointer;
+  font-family:inherit;
+}
+.back-btn:before {
+  transition: 0.5s all ease;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  right: 50%;
+  bottom: 0;
+  opacity: 0;
+  content: '';
+  background-color: #FF0072;
+  z-index: -1;
+}
+.back-btn:hover, .back-btn:focus {
+  color: #07EBDA;
+}
+.back-btn:hover:before, .back-btn:focus:before {
+  transition: 0.5s all ease;
+  left: 0;
+  right: 0;
+  opacity: 1;
+}
+.back-btn:active {
+  transform: scale(0.9);
+}
+
+</style>
+</head>
+<body>
+<div class="layout">
+<nav class="side">
+<div class="brand">
+<span class="logo">CSS</span>
+<h1>CSS</h1>
+<p>Complete Master Guide</p>
+</div>
+<h2>Foundations</h2>
+<a href="#intro">1. Introduction</a>
+<a href="#history">2. History</a>
+<a href="#versions">3. Versions</a>
+<a href="#filestructure">4. File Structure</a>
+<a href="#syntax">5. Syntax</a>
+<a href="#keywords">6. Keywords</a>
+<a href="#datatypes">7. Data Types</a>
+<a href="#variables">8. Variables</a>
+<a href="#operators">9. Operators</a>
+<a href="#controlflow">10. Control Flow</a>
+<h2>Core Language</h2>
+<a href="#functions">11. Functions</a>
+<a href="#classes">12. Classes</a>
+<a href="#objects">13. Objects</a>
+<a href="#oop">14. OOP Concepts</a>
+<a href="#modules">15. Modules</a>
+<a href="#libraries">16. Libraries</a>
+<a href="#apis">17. APIs</a>
+<a href="#errors">18. Error Handling</a>
+<a href="#memory">19. Memory Management</a>
+<a href="#performance">20. Performance</a>
+<h2>Craft</h2>
+<a href="#bestpractices">21. Best Practices</a>
+<a href="#security">22. Security</a>
+<a href="#accessibility">23. Accessibility</a>
+<a href="#codestyle">24. Code Style</a>
+<a href="#patterns">25. Design Patterns</a>
+<a href="#projectstructure">26. Project Structure</a>
+<a href="#mistakes">27. Common Mistakes</a>
+<h2>Practice & Career</h2>
+<a href="#interview">28. Interview Questions</a>
+<a href="#problems">29. Practice Problems</a>
+<a href="#realprojects">30. Real Projects</a>
+<a href="#cheatsheet">31. Cheat Sheet</a>
+<a href="#faq">32. FAQ</a>
+<a href="#proscons">33. Pros and Cons</a>
+<a href="#comparison">34. Comparison</a>
+<a href="#latest">35. Latest Features</a>
+<a href="#future">36. Future</a>
+</nav>
+<main>
+  <div class="back-wrap">
+    <button class="back-btn" onclick="window.location.href='QubeatLanguage.html'">select another language</button>
+  </div>
+<div class="hero">
+    <div class="kicker">Master Guide · 36 Sections</div>
+    <h1>CSS</h1>
+    <p>Cascading Style Sheets — the language that gives the web its look. From selectors and the box model to Grid, custom properties, and modern layout, this guide covers CSS end to end.</p>
+  </div>
+
+<section id="intro"><h2><span class="num">1</span> Introduction</h2>
+<p>CSS (Cascading Style Sheets) is the language that controls how HTML content looks — colors, spacing, layout, typography, and animation. It separates presentation from structure, letting one HTML page be restyled endlessly without touching its markup.</p>
+<p>CSS works by applying rules to selected elements. Rules "cascade" — multiple rules can target the same element, and specificity plus source order decide which wins.</p>
+<div class="grid3">
+  <div class="card"><strong style="color:var(--pink2)">Type</strong><br/>Declarative stylesheet language</div>
+  <div class="card"><strong style="color:var(--pink2)">Runs on</strong><br/>Every web browser</div>
+  <div class="card"><strong style="color:var(--pink2)">Paradigm</strong><br/>Rule-based, cascading, declarative</div>
+</div>
+<pre><code><span class="fn">h1</span> {
+  <span class="kw">color</span>: <span class="str">deeppink</span>;
+  <span class="kw">font-size</span>: <span class="num2">32px</span>;
+}</code></pre>
+<div class="expl"><li><code>h1</code> is the selector — it targets all &lt;h1&gt; elements.</li><li><code>color</code> and <code>font-size</code> are properties set inside the declaration block.</li></div>
+</section>
+
+<section id="history"><h2><span class="num">2</span> History</h2>
+<p>CSS was proposed by <strong>Håkon Wium Lie</strong> in 1994 and became a W3C recommendation in December 1996 (CSS1), designed to separate content (HTML) from presentation.</p>
+<table><tr><th>Year</th><th>Milestone</th></tr>
+<tr><td>1996</td><td>CSS1 released</td></tr>
+<tr><td>1998</td><td>CSS2 — positioning, z-index, media types</td></tr>
+<tr><td>2011+</td><td>CSS3 split into independent modules (Flexbox, Grid, Animations)</td></tr>
+<tr><td>2017</td><td>CSS Grid widely supported</td></tr>
+<tr><td>2023+</td><td>Container queries, nesting, nesting, :has()</td></tr></table>
+</section>
+
+<section id="versions"><h2><span class="num">3</span> Versions</h2>
+<table><tr><th>Level</th><th>Key Additions</th></tr>
+<tr><td>CSS1</td><td>Fonts, colors, basic box model</td></tr>
+<tr><td>CSS2/2.1</td><td>Positioning, z-index, media types</td></tr>
+<tr><td>CSS3 (modular)</td><td>Flexbox, Grid, transitions, animations, gradients</td></tr>
+<tr><td>Modern CSS</td><td>Custom properties, container queries, nesting, :has()</td></tr></table>
+</section>
+
+<section id="filestructure"><h2><span class="num">4</span> File Structure</h2>
+<p>CSS files use the <code>.css</code> extension and are linked from HTML via <code>&lt;link&gt;</code>.</p>
+<pre><code>&lt;<span class="kw">link</span> <span class="fn">rel</span>=<span class="str">"stylesheet"</span> <span class="fn">href</span>=<span class="str">"style.css"</span> /&gt;</code></pre>
+<pre><code><span class="com">/* style.css — typical structure */</span>
+<span class="fn">:root</span> { --primary: <span class="str">deeppink</span>; }   <span class="com">/* 1. variables */</span>
+<span class="fn">body</span> { margin: <span class="num2">0</span>; }               <span class="com">/* 2. resets */</span>
+<span class="fn">.card</span> { padding: <span class="num2">16px</span>; }         <span class="com">/* 3. components */</span></code></pre>
+</section>
+
+<section id="syntax"><h2><span class="num">5</span> Syntax</h2>
+<div class="grid2">
+<div class="card"><h3>Example 1 — Rule anatomy</h3><pre><code><span class="fn">selector</span> {
+  property: value; <span class="com">/* declaration */</span>
+}</code></pre></div>
+<div class="card"><h3>Example 2 — Multiple selectors</h3><pre><code><span class="fn">h1, h2, h3</span> {
+  <span class="kw">font-family</span>: <span class="str">sans-serif</span>;
+}</code></pre></div>
+</div>
+</section>
+
+<section id="keywords"><h2><span class="num">6</span> Keywords</h2>
+<p>Common at-rules and value keywords:</p>
+<div class="pill-row">
+<span class="pill">@media</span><span class="pill">@import</span><span class="pill">@keyframes</span><span class="pill">@font-face</span><span class="pill">@supports</span>
+<span class="pill">inherit</span><span class="pill">initial</span><span class="pill">unset</span><span class="pill">auto</span><span class="pill">none</span>
+<span class="pill">!important</span>
+</div>
+</section>
+
+<section id="datatypes"><h2><span class="num">7</span> Data Types</h2>
+<table><tr><th>Type</th><th>Example</th></tr>
+<tr><td>Length</td><td><code>16px</code>, <code>2rem</code>, <code>50%</code></td></tr>
+<tr><td>Color</td><td><code>#ff2fb0</code>, <code>rgb(255 0 0)</code></td></tr>
+<tr><td>String</td><td><code>"Arial"</code></td></tr>
+<tr><td>Number</td><td><code>1.5</code></td></tr>
+<tr><td>URL</td><td><code>url(bg.png)</code></td></tr>
+<tr><td>Time</td><td><code>0.3s</code></td></tr></table>
+</section>
+
+<section id="variables"><h2><span class="num">8</span> Variables</h2>
+<div class="grid2">
+<div class="card"><h3>Example 1 — Custom properties</h3><pre><code><span class="fn">:root</span> { --gap: <span class="num2">12px</span>; }
+<span class="fn">.row</span> { gap: <span class="kw">var</span>(--gap); }</code></pre></div>
+<div class="card"><h3>Example 2 — Fallback value</h3><pre><code><span class="fn">.box</span> { color: <span class="kw">var</span>(--brand, <span class="str">black</span>); }</code></pre></div>
+</div>
+</section>
+
+<section id="operators"><h2><span class="num">9</span> Operators</h2>
+<table><tr><th>Function/Operator</th><th>Use</th></tr>
+<tr><td><code>calc()</code></td><td>Math between units: <code>calc(100% - 20px)</code></td></tr>
+<tr><td><code>min() / max()</code></td><td>Pick smaller/larger value</td></tr>
+<tr><td><code>clamp()</code></td><td>Responsive value between min and max</td></tr>
+<tr><td>Combinators</td><td><code>&gt; + ~</code> select relative elements</td></tr></table>
+</section>
+
+<section id="controlflow"><h2><span class="num">10</span> Control Flow</h2>
+<p>CSS has no loops, but conditional logic exists through media/feature queries and, increasingly, <code>:has()</code>.</p>
+<div class="grid2">
+<div class="card"><h3>Example 1 — Media query</h3><pre><code><span class="fn">@media</span> (max-width: <span class="num2">600px</span>) {
+  <span class="fn">.nav</span> { display: <span class="str">none</span>; }
+}</code></pre></div>
+<div class="card"><h3>Example 2 — :has() parent selector</h3><pre><code><span class="fn">.card:has(img)</span> { border: <span class="num2">1px</span> solid <span class="str">pink</span>; }</code></pre></div>
+</div>
+</section>
+
+<section id="functions"><h2><span class="num">11</span> Functions</h2>
+<div class="grid2">
+<div class="card"><h3>Example 1 — calc()</h3><pre><code><span class="fn">.box</span> { width: <span class="kw">calc</span>(<span class="num2">100%</span> - <span class="num2">40px</span>); }</code></pre></div>
+<div class="card"><h3>Example 2 — clamp()</h3><pre><code><span class="fn">h1</span> { font-size: <span class="kw">clamp</span>(<span class="num2">1.5rem</span>, <span class="num2">4vw</span>, <span class="num2">3rem</span>); }</code></pre></div>
+</div>
+</section>
+
+<section id="classes"><h2><span class="num">12</span> Classes</h2>
+<pre><code><span class="fn">.btn</span> {                     <span class="com">/* class selector */</span>
+  padding: <span class="num2">10px</span> <span class="num2">18px</span>;
+  border-radius: <span class="num2">8px</span>;
+}
+<span class="fn">.btn.primary</span> {             <span class="com">/* compound class */</span>
+  background: <span class="str">deeppink</span>;
+}</code></pre>
+<div class="expl"><li>A class starting with <code>.</code> can be reused across many elements.</li><li>Combining classes (<code>.btn.primary</code>) targets elements with both.</li></div>
+</section>
+
+<section id="objects"><h2><span class="num">13</span> Objects</h2>
+<p>CSS doesn't have "objects" the way JS does, but the <strong>box model</strong> is its closest structural concept — every element is a box with content, padding, border, and margin.</p>
+<pre><code><span class="fn">.box</span> {
+  padding: <span class="num2">16px</span>;
+  border: <span class="num2">2px</span> solid <span class="str">#3a1f5c</span>;
+  margin: <span class="num2">8px</span>;
+  box-sizing: <span class="str">border-box</span>;
+}</code></pre>
+</section>
+
+<section id="oop"><h2><span class="num">14</span> OOP Concepts</h2>
+<p>CSS isn't object-oriented, but methodologies borrow OOP thinking:</p>
+<div class="grid2">
+<div class="card"><strong style="color:var(--pink2)">BEM</strong><p>Block__Element--Modifier naming for reusable, encapsulated components.</p></div>
+<div class="card"><strong style="color:var(--pink2)">Utility-first</strong><p>Small single-purpose classes composed together (see Tailwind).</p></div>
+</div>
+<pre><code><span class="fn">.card__title--highlighted</span> { color: <span class="str">deeppink</span>; }</code></pre>
+</section>
+
+<section id="modules"><h2><span class="num">15</span> Modules</h2>
+<pre><code><span class="fn">@import</span> <span class="str">"reset.css"</span>;
+<span class="fn">@import</span> <span class="str">"typography.css"</span>;</code></pre>
+<p>Modern build tools (Vite, Webpack) also let you <code>import</code> CSS files directly into JS components.</p>
+</section>
+
+<section id="libraries"><h2><span class="num">16</span> Libraries</h2>
+<div class="pill-row">
+<span class="pill">Tailwind CSS — utility-first</span><span class="pill">Bootstrap — components</span>
+<span class="pill">Sass/SCSS — preprocessor</span><span class="pill">PostCSS — transforms</span>
+</div>
+</section>
+
+<section id="apis"><h2><span class="num">17</span> APIs</h2>
+<p>CSS integrates with browser APIs like the CSSOM, letting JavaScript read and modify styles.</p>
+<pre><code>el.<span class="fn">style</span>.<span class="fn">setProperty</span>(<span class="str">'--gap'</span>, <span class="str">'20px'</span>);
+<span class="kw">getComputedStyle</span>(el).color;</code></pre>
+</section>
+
+<section id="errors"><h2><span class="num">18</span> Error Handling</h2>
+<p>CSS never throws errors — invalid declarations are simply ignored, and the browser falls back to defaults or the next matching rule.</p>
+<pre><code><span class="fn">.box</span> { colour: <span class="str">red</span>; }  <span class="com">/* typo — silently ignored */</span></code></pre>
+<p>Use browser DevTools to spot crossed-out (invalid) rules.</p>
+</section>
+
+<section id="memory"><h2><span class="num">19</span> Memory Management</h2>
+<p>CSS itself doesn't manage memory, but inefficient selectors and excessive repaint/reflow triggers (like animating <code>width</code> instead of <code>transform</code>) increase browser rendering cost.</p>
+<pre><code><span class="com">/* Expensive — triggers layout */</span>
+<span class="fn">.box</span> { transition: <span class="str">width</span> <span class="num2">0.3s</span>; }
+<span class="com">/* Cheaper — GPU-accelerated */</span>
+<span class="fn">.box</span> { transition: <span class="str">transform</span> <span class="num2">0.3s</span>; }</code></pre>
+</section>
+
+<section id="performance"><h2><span class="num">20</span> Performance</h2>
+<ul>
+<li>Prefer <code>transform</code>/<code>opacity</code> for animations (GPU-accelerated).</li>
+<li>Avoid deeply nested or overly specific selectors.</li>
+<li>Minify and split CSS by route/component for faster loads.</li>
+</ul>
+</section>
+
+<section id="bestpractices"><h2><span class="num">21</span> Best Practices</h2>
+<ul>
+<li>Use a consistent naming convention (BEM, utility-first, etc).</li>
+<li>Avoid <code>!important</code> — fix specificity instead.</li>
+<li>Use custom properties for design tokens (colors, spacing).</li>
+<li>Mobile-first media queries.</li>
+</ul>
+</section>
+
+<section id="security"><h2><span class="num">22</span> Security</h2>
+<ul>
+<li>Untrusted CSS can still be used for UI redress/clickjacking — sanitize user-supplied styles.</li>
+<li><code>content: attr()</code> in pseudo-elements can leak data if misused with attribute selectors.</li>
+<li>Avoid loading stylesheets from untrusted third-party origins.</li>
+</ul>
+</section>
+
+<section id="accessibility"><h2><span class="num">23</span> Accessibility</h2>
+<ul>
+<li>Maintain sufficient color contrast (WCAG AA: 4.5:1 for text).</li>
+<li>Respect <code>prefers-reduced-motion</code> for animations.</li>
+<li>Don't rely on color alone to convey meaning.</li>
+</ul>
+<pre><code><span class="fn">@media</span> (prefers-reduced-motion: reduce) {
+  <span class="fn">*</span> { animation: <span class="str">none</span> !important; }
+}</code></pre>
+</section>
+
+<section id="codestyle"><h2><span class="num">24</span> Code Style</h2>
+<ul>
+<li>One property per line, consistent indentation.</li>
+<li>Group related properties (position, box model, typography, visual).</li>
+<li>Use lowercase hex colors and shorthand where clear.</li>
+</ul>
+</section>
+
+<section id="patterns"><h2><span class="num">25</span> Design Patterns</h2>
+<div class="grid2">
+<div class="card"><h3>BEM</h3><pre><code><span class="fn">.card__header--active</span> { }</code></pre></div>
+<div class="card"><h3>Utility classes</h3><pre><code><span class="fn">.mt-4</span> { margin-top: <span class="num2">1rem</span>; }
+<span class="fn">.text-center</span> { text-align: <span class="str">center</span>; }</code></pre></div>
+</div>
+</section>
+
+<section id="projectstructure"><h2><span class="num">26</span> Project Structure</h2>
+<pre><code>styles/
+├── base/
+│   ├── reset.css
+│   └── typography.css
+├── components/
+│   ├── button.css
+│   └── card.css
+├── utilities.css
+└── main.css</code></pre>
+</section>
+
+<section id="mistakes"><h2><span class="num">27</span> Common Mistakes</h2>
+<ul>
+<li>Overusing <code>!important</code> instead of fixing specificity.</li>
+<li>Forgetting <code>box-sizing: border-box</code>, causing layout surprises.</li>
+<li>Using pixel values everywhere instead of relative units (rem/%).</li>
+<li>Not testing responsive breakpoints.</li>
+</ul>
+</section>
+
+<section id="interview"><h2><span class="num">28</span> Interview Questions</h2>
+<div class="qa"><div class="q">Q: What is the CSS box model?</div><div class="a">A: Every element is a box made of content, padding, border, and margin — in that order, from inside out.</div></div>
+<div class="qa"><div class="q">Q: Difference between Flexbox and Grid?</div><div class="a">A: Flexbox is one-dimensional (row or column); Grid is two-dimensional (rows and columns together).</div></div>
+<div class="qa"><div class="q">Q: How does specificity work?</div><div class="a">A: Inline styles &gt; IDs &gt; classes/attributes/pseudo-classes &gt; elements. Higher specificity wins regardless of source order.</div></div>
+</section>
+
+<section id="problems"><h2><span class="num">29</span> Practice Problems</h2>
+<ol>
+<li>Center a div both horizontally and vertically.</li>
+<li>Build a responsive 3-column grid that collapses to 1 column on mobile.</li>
+<li>Create a pure-CSS accordion using <code>:checked</code>.</li>
+<li>Recreate a card hover-lift effect with <code>transform</code>.</li>
+</ol>
+</section>
+
+<section id="realprojects"><h2><span class="num">30</span> Real Projects</h2>
+<div class="grid3">
+<div class="card">Landing page with animations</div>
+<div class="card">Responsive dashboard layout</div>
+<div class="card">Design system / component library</div>
+</div>
+</section>
+
+<section id="cheatsheet"><h2><span class="num">31</span> Cheat Sheet</h2>
+<pre><code>Layout: display flex grid position
+Box: margin padding border box-sizing
+Text: font-size font-weight line-height text-align
+Effects: transition transform animation box-shadow</code></pre>
+</section>
+
+<section id="faq"><h2><span class="num">32</span> FAQ</h2>
+<div class="qa"><div class="q">Is CSS a programming language?</div><div class="a">No — it's a declarative styling language with no general computation, though it has logic-like features (media queries, calc).</div></div>
+<div class="qa"><div class="q">Flexbox or Grid — which should I learn first?</div><div class="a">Flexbox for simpler one-directional layouts; Grid once you need full 2D control.</div></div>
+</section>
+
+<section id="proscons"><h2><span class="num">33</span> Pros and Cons</h2>
+<div class="grid2">
+<div class="card"><strong class="good">Pros</strong><ul><li>Universally supported</li><li>Separates content from style</li><li>Powerful modern layout tools</li></ul></div>
+<div class="card"><strong class="bad">Cons</strong><ul><li>Specificity/cascade can be confusing</li><li>No real logic or loops</li><li>Cross-browser quirks still exist</li></ul></div>
+</div>
+</section>
+
+<section id="comparison"><h2><span class="num">34</span> Comparison with Other Languages</h2>
+<table><tr><th>Feature</th><th>CSS</th><th>Tailwind</th><th>Sass</th></tr>
+<tr><td>Type</td><td>Native styling</td><td>Utility framework (on top of CSS)</td><td>Preprocessor</td></tr>
+<tr><td>Logic</td><td>Minimal</td><td>None (JS config only)</td><td>Variables, mixins, loops</td></tr></table>
+</section>
+
+<section id="latest"><h2><span class="num">35</span> Latest Features</h2>
+<ul>
+<li>Native CSS nesting (no preprocessor needed)</li>
+<li>Container queries — style based on parent size, not just viewport</li>
+<li><code>:has()</code> — the long-awaited "parent selector"</li>
+</ul>
+</section>
+
+<section id="future"><h2><span class="num">36</span> Future of the Language</h2>
+<p>CSS keeps absorbing what preprocessors used to provide — nesting, variables, and now container queries and scoping — while browser vendors push new layout primitives. It remains the backbone of visual design on the web.</p>
+</section>
+</main>
+</div>
+</body>
+</html>

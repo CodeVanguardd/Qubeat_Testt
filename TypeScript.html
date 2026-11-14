@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>TypeScript — The Complete Master Guide</title>
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800;900&family=Rajdhani:wght@600;700&family=Sora:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#07030d;
+  --panel:#120a1f;
+  --panel2:#1a0f2e;
+  --line:#3a1f5c;
+  --ink:#f3e9ff;
+  --muted:#b39cd0;
+  --pink:#ff2fb0;
+  --pink2:#ff7ad9;
+  --blue:#00e5ff;
+  --blue2:#7df9ff;
+  --danger:#ff5c7a;
+  --good:#39ffb0;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; color:var(--ink);
+  font-family:'Sora',ui-sans-serif,system-ui,-apple-system,Arial,sans-serif;
+  line-height:1.65;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(255,47,176,0.16), transparent 45%),
+    radial-gradient(circle at 85% 10%, rgba(0,229,255,0.16), transparent 40%),
+    radial-gradient(circle at 50% 90%, rgba(255,47,176,0.12), transparent 50%),
+    linear-gradient(0deg, transparent 24%, rgba(0,229,255,0.05) 25%, rgba(0,229,255,0.05) 26%, transparent 27%, transparent 74%, rgba(255,47,176,0.05) 75%, rgba(255,47,176,0.05) 76%, transparent 77%),
+    var(--bg);
+  background-size:auto, auto, auto, 60px 60px, auto;
+  position:relative;
+  overflow-x:hidden;
+}
+body::before{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+  background:linear-gradient(90deg, transparent 49%, rgba(0,229,255,0.4) 50%, transparent 51%);
+  opacity:0; mix-blend-mode:screen;
+  animation:strike 7s infinite;
+}
+body::after{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+  background:linear-gradient(180deg, transparent 60%, rgba(255,47,176,0.35) 61%, transparent 63%);
+  opacity:0; mix-blend-mode:screen;
+  animation:strike2 11s infinite;
+}
+@keyframes strike{
+  0%,93%,100%{opacity:0} 93.2%{opacity:.9} 93.4%{opacity:0} 93.6%{opacity:.5} 93.9%{opacity:0}
+}
+@keyframes strike2{
+  0%,88%,100%{opacity:0} 88.2%{opacity:.7} 88.5%{opacity:0} 88.8%{opacity:.4} 89.1%{opacity:0}
+}
+a{color:var(--blue)}
+.layout{display:grid; grid-template-columns:280px 1fr; min-height:100vh; position:relative; z-index:1;}
+nav.side{
+  position:sticky; top:0; height:100vh; overflow-y:auto;
+  background:rgba(18,10,31,0.85); backdrop-filter:blur(6px);
+  border-right:1px solid var(--line); padding:20px 14px;
+}
+nav.side h2{
+  font-size:12.5px; text-transform:uppercase; letter-spacing:.2em; font-family:'Rajdhani',sans-serif;
+  color:var(--blue2); margin:18px 6px 8px; font-weight:700;
+}
+nav.side h2:first-child{margin-top:0}
+nav.side a{
+  display:block; padding:6px 8px; border-radius:8px;
+  color:var(--muted); text-decoration:none; font-size:13.5px;
+}
+nav.side a:hover{background:var(--panel2); color:var(--pink2); text-shadow:0 0 8px var(--pink)}
+.brand{padding:6px 8px 18px; border-bottom:1px solid var(--line); margin-bottom:6px;}
+.brand .logo{font-family:'Orbitron',sans-serif; letter-spacing:0;
+  display:inline-flex; align-items:center; justify-content:center;
+  width:40px; height:40px; font-weight:900; font-size:16px;
+  border-radius:10px; color:#07030d;
+  background:linear-gradient(135deg,var(--pink),var(--blue));
+  box-shadow:0 0 18px rgba(255,47,176,.5), 0 0 30px rgba(0,229,255,.25);
+}
+.brand h1{font-size:18px; margin:10px 0 2px; font-family:'Orbitron',sans-serif; background:linear-gradient(90deg,var(--pink2),var(--blue2)); -webkit-background-clip:text; background-clip:text; color:transparent;}
+.brand p{font-size:12px; color:var(--muted); margin:0}
+main{padding:48px 56px; max-width:980px; position:relative; z-index:1;}
+.hero{
+  border:1px solid var(--line);
+  background:linear-gradient(135deg, rgba(255,47,176,0.08), rgba(0,229,255,0.08)), var(--panel);
+  border-radius:22px; padding:38px; margin-bottom:44px; position:relative; overflow:hidden;
+  box-shadow:0 0 40px rgba(255,47,176,.08), inset 0 0 60px rgba(0,229,255,.04);
+}
+.hero .kicker{color:var(--blue2); font-family:'Rajdhani',sans-serif; font-weight:700; letter-spacing:.22em; font-size:13px; text-transform:uppercase;}
+.hero h1{font-size:42px; margin:10px 0; font-family:'Orbitron',sans-serif; letter-spacing:.02em; background:linear-gradient(90deg,var(--pink2),var(--blue2)); -webkit-background-clip:text; background-clip:text; color:transparent; text-shadow:0 0 20px rgba(255,47,176,.45), 0 0 40px rgba(5,230,255,.2);}
+.hero p{color:var(--muted); max-width:640px; font-size:15.5px;}
+section{margin-bottom:56px; scroll-margin-top:24px;}
+section h2{
+  font-size:24px; display:flex; align-items:center; gap:12px; margin-bottom:6px;
+  font-family:'Rajdhani',sans-serif; font-weight:700; letter-spacing:.01em;
+  padding-bottom:10px; border-bottom:1px solid var(--line); color:var(--ink);
+}
+section h2 .num{
+  color:#07030d; background:linear-gradient(135deg,var(--pink),var(--blue)); font-size:13px; font-weight:800;
+  width:30px; height:30px; border-radius:8px; display:flex; align-items:center; justify-content:center;
+  flex:none; box-shadow:0 0 12px rgba(255,47,176,.4);
+}
+section h3{font-size:15px; color:var(--blue2); font-family:'Rajdhani',sans-serif; font-weight:600; margin:22px 0 8px; text-transform:uppercase; letter-spacing:.06em;}
+p{color:#d8c9f0; font-size:15px;}
+ul,ol{color:#d8c9f0; font-size:15px; padding-left:20px;}
+li{margin-bottom:6px;}
+.card{background:rgba(18,10,31,0.7); border:1px solid var(--line); border-radius:14px; padding:20px; margin:14px 0;}
+.grid2{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+.grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
+@media (max-width:900px){.grid2,.grid3{grid-template-columns:1fr} .layout{grid-template-columns:1fr} nav.side{position:relative; height:auto;}}
+table{width:100%; border-collapse:collapse; font-size:14px; margin:12px 0;}
+th,td{border:1px solid var(--line); padding:8px 10px; text-align:left; color:#d8c9f0;}
+th{background:var(--panel2); color:var(--pink2); font-family:'Rajdhani',sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:.04em; font-size:13px;}
+pre{
+  background:#0a0512; border:1px solid var(--line); border-radius:12px;
+  padding:16px 18px; overflow-x:auto; font-size:13.5px; margin:10px 0;
+  box-shadow:inset 0 0 20px rgba(0,229,255,.05);
+}
+code{font-family:'JetBrains Mono','Fira Code',Consolas,'Courier New',monospace;}
+.kw{color:var(--pink2)}.str{color:var(--good)}.com{color:#7a6a99;font-style:italic}.fn{color:var(--blue2)}.num2{color:#ffb86c}
+.expl{border-left:3px solid var(--pink); padding:6px 0 6px 14px; margin:8px 0; color:var(--muted); font-size:13.5px;}
+.expl li{margin-bottom:4px;}
+.pill-row{display:flex; gap:8px; flex-wrap:wrap; margin:10px 0;}
+.pill{background:var(--panel2); border:1px solid var(--line); border-radius:8px; padding:6px 12px; font-size:13px; color:#d8c9f0; font-family:'Rajdhani',sans-serif; font-weight:600; letter-spacing:.02em;}
+.good{color:var(--good)}.bad{color:var(--danger)}
+.qa{background:rgba(18,10,31,0.7); border:1px solid var(--line); border-radius:12px; padding:14px 18px; margin:10px 0;}
+.qa .q{color:var(--pink2); font-family:'Rajdhani',sans-serif; font-weight:700; font-size:15.5px; letter-spacing:.01em;}
+.qa .a{color:#d8c9f0; font-size:14px; margin-top:6px;}
+
+/* ===== Back button — select another language ===== */
+.back-wrap{ margin-bottom:22px; }
+.back-btn{
+  background-color:#852564;
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: inline-block;
+  text-align: center;
+  font-weight: bold;
+  padding: 0.7em 2em;
+  border: 3px solid #FF0072;
+  border-radius: 2px;
+  position: relative;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.1);
+  color: #07EBDA;
+  text-decoration: none;
+  transition: 0.3s ease all;
+  z-index: 1;
+  cursor:pointer;
+  font-family:inherit;
+}
+.back-btn:before {
+  transition: 0.5s all ease;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  right: 50%;
+  bottom: 0;
+  opacity: 0;
+  content: '';
+  background-color: #FF0072;
+  z-index: -1;
+}
+.back-btn:hover, .back-btn:focus {
+  color: #07EBDA;
+}
+.back-btn:hover:before, .back-btn:focus:before {
+  transition: 0.5s all ease;
+  left: 0;
+  right: 0;
+  opacity: 1;
+}
+.back-btn:active {
+  transform: scale(0.9);
+}
+
+</style>
+</head>
+<body>
+<div class="layout">
+<nav class="side">
+<div class="brand">
+<span class="logo">TS</span>
+<h1>TypeScript</h1>
+<p>Complete Master Guide</p>
+</div>
+<h2>Foundations</h2>
+<a href="#intro">1. Introduction</a>
+<a href="#history">2. History</a>
+<a href="#versions">3. Versions</a>
+<a href="#filestructure">4. File Structure</a>
+<a href="#syntax">5. Syntax</a>
+<a href="#keywords">6. Keywords</a>
+<a href="#datatypes">7. Data Types</a>
+<a href="#variables">8. Variables</a>
+<a href="#operators">9. Operators</a>
+<a href="#controlflow">10. Control Flow</a>
+<h2>Core Language</h2>
+<a href="#functions">11. Functions</a>
+<a href="#classes">12. Classes</a>
+<a href="#objects">13. Objects</a>
+<a href="#oop">14. OOP Concepts</a>
+<a href="#modules">15. Modules</a>
+<a href="#libraries">16. Libraries</a>
+<a href="#apis">17. APIs</a>
+<a href="#errors">18. Error Handling</a>
+<a href="#memory">19. Memory Management</a>
+<a href="#performance">20. Performance</a>
+<h2>Craft</h2>
+<a href="#bestpractices">21. Best Practices</a>
+<a href="#security">22. Security</a>
+<a href="#accessibility">23. Accessibility</a>
+<a href="#codestyle">24. Code Style</a>
+<a href="#patterns">25. Design Patterns</a>
+<a href="#projectstructure">26. Project Structure</a>
+<a href="#mistakes">27. Common Mistakes</a>
+<h2>Practice & Career</h2>
+<a href="#interview">28. Interview Questions</a>
+<a href="#problems">29. Practice Problems</a>
+<a href="#realprojects">30. Real Projects</a>
+<a href="#cheatsheet">31. Cheat Sheet</a>
+<a href="#faq">32. FAQ</a>
+<a href="#proscons">33. Pros and Cons</a>
+<a href="#comparison">34. Comparison</a>
+<a href="#latest">35. Latest Features</a>
+<a href="#future">36. Future</a>
+</nav>
+<main>
+    <div class="back-wrap">
+    <button class="back-btn" onclick="window.location.href='QubeatLanguage.html'">select another language</button>
+  </div>
+<div class="hero">
+    <div class="kicker">Master Guide · 36 Sections</div>
+    <h1>TypeScript</h1>
+    <p>A strongly typed superset of JavaScript that adds compile-time safety, interfaces, and generics — built for large, maintainable codebases.</p>
+  </div>
+  <section id="intro"><h2><span class="num">1</span> Introduction</h2>
+<p>TypeScript is a strongly typed superset of JavaScript developed by Microsoft. It adds static types, interfaces, and compile-time checking on top of JavaScript, then compiles down to plain JS that runs anywhere JavaScript runs.</p>
+<p>The goal is to catch bugs before code ever runs, and to make large codebases easier to navigate, refactor, and understand through explicit types and tooling support.</p>
+<div class="grid3">
+  <div class="card"><strong style="color:var(--pink2)">Type</strong><br/>Compiled, statically typed superset of JS</div>
+  <div class="card"><strong style="color:var(--pink2)">Runs on</strong><br/>Anywhere JS runs (compiles to JS)</div>
+  <div class="card"><strong style="color:var(--pink2)">Paradigms</strong><br/>OOP, Functional, Generic programming</div>
+</div>
+<pre><code><span class="kw">function</span> <span class="fn">greet</span>(name: <span class="kw">string</span>): <span class="kw">string</span> {
+  <span class="kw">return</span> `Hello, ${name}`;
+}</code></pre>
+<div class="expl"><li><code>: string</code> annotates the parameter type.</li><li>The return type is also declared explicitly.</li></div>
+</section>
+<section id="history"><h2><span class="num">2</span> History</h2>
+<p>TypeScript was created by <strong>Anders Hejlsberg</strong> (also creator of C#) at Microsoft, first released publicly in <strong>October 2012</strong>. It was designed to bring static typing to large-scale JavaScript applications.</p>
+<table><tr><th>Year</th><th>Milestone</th></tr>
+<tr><td>2012</td><td>Public release by Microsoft</td></tr>
+<tr><td>2014</td><td>TypeScript 1.0 — rewritten compiler</td></tr>
+<tr><td>2016</td><td>2.0 — non-nullable types</td></tr>
+<tr><td>2020</td><td>Widespread adoption in React/Angular ecosystems</td></tr></table>
+</section>
+<section id="versions"><h2><span class="num">3</span> Versions</h2>
+<table><tr><th>Version</th><th>Key Additions</th></tr>
+<tr><td>2.0</td><td>Non-nullable types, control flow analysis</td></tr>
+<tr><td>3.0</td><td>Tuples in rest/spread</td></tr>
+<tr><td>4.x</td><td>Variadic tuple types, template literal types</td></tr>
+<tr><td>5.x</td><td>Decorators (standardized), const type parameters</td></tr></table>
+</section>
+<section id="filestructure"><h2><span class="num">4</span> File Structure</h2>
+<p>TypeScript files use <code>.ts</code> (or <code>.tsx</code> for JSX). A <code>tsconfig.json</code> configures the compiler.</p>
+<pre><code><span class="com">// tsconfig.json</span>
+{
+  <span class="str">"compilerOptions"</span>: { <span class="str">"target"</span>: <span class="str">"ES2020"</span>, <span class="str">"strict"</span>: <span class="kw">true</span> }
+}</code></pre>
+<pre><code><span class="com">// app.ts</span>
+<span class="kw">import</span> { greet } <span class="kw">from</span> <span class="str">'./utils'</span>;
+<span class="kw">const</span> APP: <span class="kw">string</span> = <span class="str">'Demo'</span>;
+<span class="fn">greet</span>(APP);</code></pre>
+</section>
+<section id="syntax"><h2><span class="num">5</span> Syntax</h2>
+<div class="grid2">
+<div class="card"><h3>Example 1 — Typed variable</h3><pre><code><span class="kw">let</span> age: <span class="kw">number</span> = <span class="num2">25</span>;</code></pre></div>
+<div class="card"><h3>Example 2 — Union type</h3><pre><code><span class="kw">let</span> id: <span class="kw">string</span> | <span class="kw">number</span>;
+id = <span class="str">"abc"</span>; id = <span class="num2">123</span>;</code></pre></div>
+</div>
+</section>
+<section id="keywords"><h2><span class="num">6</span> Keywords</h2>
+<div class="pill-row">
+<span class="pill">interface</span><span class="pill">type</span><span class="pill">enum</span><span class="pill">implements</span><span class="pill">extends</span>
+<span class="pill">public / private / protected</span><span class="pill">readonly</span><span class="pill">abstract</span>
+<span class="pill">as</span><span class="pill">keyof</span><span class="pill">is</span><span class="pill">infer</span><span class="pill">satisfies</span>
+</div>
+</section>
+<section id="datatypes"><h2><span class="num">7</span> Data Types</h2>
+<table><tr><th>Type</th><th>Example</th></tr>
+<tr><td>string</td><td><code>"hi"</code></td></tr>
+<tr><td>number</td><td><code>42</code></td></tr>
+<tr><td>boolean</td><td><code>true</code></td></tr>
+<tr><td>array</td><td><code>number[]</code></td></tr>
+<tr><td>tuple</td><td><code>[string, number]</code></td></tr>
+<tr><td>any / unknown</td><td>escape hatches (avoid <code>any</code>)</td></tr>
+<tr><td>enum</td><td><code>enum Color { Red, Blue }</code></td></tr></table>
+</section>
+<section id="variables"><h2><span class="num">8</span> Variables</h2>
+<div class="grid2">
+<div class="card"><h3>Example 1</h3><pre><code><span class="kw">const</span> name: <span class="kw">string</span> = <span class="str">"Ana"</span>;</code></pre></div>
+<div class="card"><h3>Example 2 — Interface</h3><pre><code><span class="kw">interface</span> User { name: <span class="kw">string</span>; age: <span class="kw">number</span>; }
+<span class="kw">const</span> u: User = { name: <span class="str">"Ana"</span>, age: <span class="num2">30</span> };</code></pre></div>
+</div>
+</section>
+<section id="operators"><h2><span class="num">9</span> Operators</h2>
+<p>TypeScript uses all standard JS operators, plus type-level operators.</p>
+<table><tr><th>Operator</th><th>Meaning</th></tr>
+<tr><td><code>as</code></td><td>Type assertion</td></tr>
+<tr><td><code>?.</code></td><td>Optional chaining</td></tr>
+<tr><td><code>??</code></td><td>Nullish coalescing</td></tr>
+<tr><td><code>keyof</code></td><td>Get keys of a type as a union</td></tr></table>
+<pre><code><span class="kw">const</span> el = <span class="fn">document</span>.<span class="fn">getElementById</span>(<span class="str">'x'</span>) <span class="kw">as</span> HTMLInputElement;</code></pre>
+</section>
+<section id="controlflow"><h2><span class="num">10</span> Control Flow</h2>
+<div class="grid2">
+<div class="card"><h3>Example 1 — Type narrowing</h3><pre><code><span class="kw">function</span> <span class="fn">print</span>(v: <span class="kw">string</span> | <span class="kw">number</span>) {
+  <span class="kw">if</span> (<span class="kw">typeof</span> v === <span class="str">"string"</span>) v.<span class="fn">toUpperCase</span>();
+}</code></pre></div>
+<div class="card"><h3>Example 2 — Loop</h3><pre><code><span class="kw">for</span> (<span class="kw">const</span> n <span class="kw">of</span> [<span class="num2">1</span>,<span class="num2">2</span>,<span class="num2">3</span>]) { <span class="kw">console</span>.<span class="fn">log</span>(n); }</code></pre></div>
+</div>
+</section>
+<section id="functions"><h2><span class="num">11</span> Functions</h2>
+<div class="grid2">
+<div class="card"><h3>Example 1 — Typed function</h3><pre><code><span class="kw">function</span> <span class="fn">add</span>(a: <span class="kw">number</span>, b: <span class="kw">number</span>): <span class="kw">number</span> {
+  <span class="kw">return</span> a + b;
+}</code></pre></div>
+<div class="card"><h3>Example 2 — Generic function</h3><pre><code><span class="kw">function</span> <span class="fn">identity</span>&lt;T&gt;(val: T): T { <span class="kw">return</span> val; }
+<span class="fn">identity</span>&lt;<span class="kw">string</span>&gt;(<span class="str">"hi"</span>);</code></pre></div>
+</div>
+</section>
+<section id="classes"><h2><span class="num">12</span> Classes</h2>
+<pre><code><span class="kw">class</span> Animal {
+  <span class="kw">protected</span> name: <span class="kw">string</span>;
+  <span class="kw">constructor</span>(name: <span class="kw">string</span>) { <span class="kw">this</span>.name = name; }
+  <span class="fn">speak</span>(): <span class="kw">string</span> { <span class="kw">return</span> `${<span class="kw">this</span>.name} makes a sound`; }
+}
+<span class="kw">class</span> Dog <span class="kw">extends</span> Animal {
+  <span class="fn">speak</span>(): <span class="kw">string</span> { <span class="kw">return</span> `${<span class="kw">this</span>.name} barks`; }
+}</code></pre>
+<div class="expl"><li><code>protected</code> restricts access to the class and subclasses.</li><li>Return types are checked at compile time.</li></div>
+</section>
+<section id="objects"><h2><span class="num">13</span> Objects</h2>
+<div class="grid2">
+<div class="card"><h3>Example 1 — Typed object</h3><pre><code><span class="kw">type</span> Car = { brand: <span class="kw">string</span>; year: <span class="kw">number</span>; };
+<span class="kw">const</span> car: Car = { brand: <span class="str">"Toyota"</span>, year: <span class="num2">2022</span> };</code></pre></div>
+<div class="card"><h3>Example 2 — Partial</h3><pre><code><span class="kw">const</span> patch: <span class="kw">Partial</span>&lt;Car&gt; = { year: <span class="num2">2024</span> };</code></pre></div>
+</div>
+</section>
+<section id="oop"><h2><span class="num">14</span> OOP Concepts</h2>
+<div class="grid2">
+<div class="card"><strong style="color:var(--pink2)">Encapsulation</strong><p><code>private</code>/<code>protected</code> modifiers enforce access control at compile time.</p></div>
+<div class="card"><strong style="color:var(--pink2)">Inheritance</strong><p><code>extends</code> plus <code>implements</code> for interfaces.</p></div>
+<div class="card"><strong style="color:var(--pink2)">Polymorphism</strong><p>Method overriding with type-checked signatures.</p></div>
+<div class="card"><strong style="color:var(--pink2)">Abstraction</strong><p><code>abstract class</code> defines a contract subclasses must fulfill.</p></div>
+</div>
+</section>
+<section id="modules"><h2><span class="num">15</span> Modules</h2>
+<div class="grid2">
+<div class="card"><h3>math.ts</h3><pre><code><span class="kw">export</span> <span class="kw">function</span> <span class="fn">square</span>(n: <span class="kw">number</span>): <span class="kw">number</span> { <span class="kw">return</span> n * n; }</code></pre></div>
+<div class="card"><h3>app.ts</h3><pre><code><span class="kw">import</span> { square } <span class="kw">from</span> <span class="str">'./math'</span>;</code></pre></div>
+</div>
+</section>
+<section id="libraries"><h2><span class="num">16</span> Libraries</h2>
+<div class="pill-row"><span class="pill">Angular</span><span class="pill">NestJS</span><span class="pill">tRPC</span><span class="pill">Zod</span><span class="pill">TypeORM</span></div>
+<pre><code><span class="kw">import</span> { z } <span class="kw">from</span> <span class="str">'zod'</span>;
+<span class="kw">const</span> Schema = z.<span class="fn">object</span>({ name: z.<span class="fn">string</span>() });</code></pre>
+</section>
+<section id="apis"><h2><span class="num">17</span> APIs</h2>
+<pre><code><span class="kw">interface</span> ApiResponse&lt;T&gt; { data: T; status: <span class="kw">number</span>; }
+<span class="kw">async</span> <span class="kw">function</span> <span class="fn">getUser</span>(): <span class="kw">Promise</span>&lt;ApiResponse&lt;User&gt;&gt; {
+  <span class="kw">const</span> res = <span class="kw">await</span> <span class="fn">fetch</span>(<span class="str">'/api/user'</span>);
+  <span class="kw">return</span> res.<span class="fn">json</span>();
+}</code></pre>
+</section>
+<section id="errors"><h2><span class="num">18</span> Error Handling</h2>
+<pre><code><span class="kw">try</span> {
+  <span class="kw">JSON</span>.<span class="fn">parse</span>(input);
+} <span class="kw">catch</span> (err: <span class="kw">unknown</span>) {
+  <span class="kw">if</span> (err <span class="kw">instanceof</span> Error) <span class="kw">console</span>.<span class="fn">error</span>(err.message);
+}</code></pre>
+<div class="expl"><li>TypeScript types caught errors as <code>unknown</code> by default — narrow before use.</li></div>
+</section>
+<section id="memory"><h2><span class="num">19</span> Memory Management</h2>
+<p>TypeScript compiles to JavaScript, so it inherits JS's automatic garbage collection — there's no separate TS memory model.</p>
+<pre><code><span class="kw">let</span> data: <span class="kw">number</span>[] | <span class="kw">null</span> = [<span class="num2">1</span>,<span class="num2">2</span>,<span class="num2">3</span>];
+data = <span class="kw">null</span>; <span class="com">// eligible for GC</span></code></pre>
+</section>
+<section id="performance"><h2><span class="num">20</span> Performance</h2>
+<ul><li>Use <code>strict</code> mode to catch bugs at compile time, not runtime.</li><li>Prefer interfaces over complex mapped types in hot paths for faster compilation.</li></ul>
+</section>
+<section id="bestpractices"><h2><span class="num">21</span> Best Practices</h2>
+<ul><li>Enable <code>strict: true</code> in tsconfig.</li><li>Avoid <code>any</code> — prefer <code>unknown</code> with narrowing.</li><li>Use <code>readonly</code> for immutable data.</li></ul>
+</section>
+<section id="security"><h2><span class="num">22</span> Security</h2>
+<ul><li>Types don't guarantee runtime safety — validate external data (API responses) with libraries like Zod.</li><li>Avoid <code>as any</code> casts that bypass type checks on user input.</li></ul>
+</section>
+<section id="accessibility"><h2><span class="num">23</span> Accessibility</h2>
+<ul><li>Type your component props to avoid missing required ARIA attributes.</li><li>Use typed event handlers for keyboard interactions.</li></ul>
+</section>
+<section id="codestyle"><h2><span class="num">24</span> Code Style</h2>
+<ul><li>PascalCase for types/interfaces/classes, camelCase for variables.</li><li>Prefer <code>type</code> for unions, <code>interface</code> for object shapes.</li></ul>
+</section>
+<section id="patterns"><h2><span class="num">25</span> Design Patterns</h2>
+<div class="grid2">
+<div class="card"><h3>Generic Repository</h3><pre><code><span class="kw">interface</span> Repo&lt;T&gt; { <span class="fn">find</span>(id: <span class="kw">string</span>): T; }</code></pre></div>
+<div class="card"><h3>Discriminated Union</h3><pre><code><span class="kw">type</span> Shape = {kind:<span class="str">"circle"</span>,r:<span class="kw">number</span>} | {kind:<span class="str">"square"</span>,s:<span class="kw">number</span>};</code></pre></div>
+</div>
+</section>
+<section id="projectstructure"><h2><span class="num">26</span> Project Structure</h2>
+<pre><code>my-app/
+├── src/
+│   ├── types/
+│   ├── services/
+│   └── index.ts
+├── tsconfig.json
+└── package.json</code></pre>
+</section>
+<section id="mistakes"><h2><span class="num">27</span> Common Mistakes</h2>
+<ul><li>Overusing <code>any</code>, defeating the purpose of TypeScript.</li><li>Forgetting to narrow <code>unknown</code> before use.</li></ul>
+</section>
+<section id="interview"><h2><span class="num">28</span> Interview Questions</h2>
+<div class="qa"><div class="q">Q: interface vs type?</div><div class="a">A: Interfaces are extendable and best for object shapes; types support unions/intersections.</div></div>
+<div class="qa"><div class="q">Q: What is structural typing?</div><div class="a">A: TS types compatibility by shape, not name — if it has the right properties, it fits.</div></div>
+</section>
+<section id="problems"><h2><span class="num">29</span> Practice Problems</h2>
+<ol><li>Write a generic <code>Stack&lt;T&gt;</code> class.</li><li>Create a discriminated union for API results.</li></ol>
+</section>
+<section id="realprojects"><h2><span class="num">30</span> Real Projects</h2>
+<div class="grid3"><div class="card">Typed REST API (NestJS)</div><div class="card">React + TS dashboard</div><div class="card">CLI tool with typed config</div></div>
+</section>
+<section id="cheatsheet"><h2><span class="num">31</span> Cheat Sheet</h2>
+<pre><code>Partial&lt;T&gt; Pick&lt;T,K&gt; Omit&lt;T,K&gt; Record&lt;K,V&gt; Readonly&lt;T&gt;</code></pre>
+</section>
+<section id="faq"><h2><span class="num">32</span> FAQ</h2>
+<div class="qa"><div class="q">Does TypeScript run directly?</div><div class="a">No — it compiles to JavaScript first.</div></div>
+</section>
+<section id="proscons"><h2><span class="num">33</span> Pros and Cons</h2>
+<div class="grid2">
+<div class="card"><strong class="good">Pros</strong><ul><li>Catches bugs at compile time</li><li>Great tooling/autocomplete</li></ul></div>
+<div class="card"><strong class="bad">Cons</strong><ul><li>Extra build step</li><li>Learning curve for advanced types</li></ul></div>
+</div>
+</section>
+<section id="comparison"><h2><span class="num">34</span> Comparison with Other Languages</h2>
+<table><tr><th>Feature</th><th>TypeScript</th><th>JavaScript</th></tr>
+<tr><td>Typing</td><td>Static</td><td>Dynamic</td></tr>
+<tr><td>Compile step</td><td>Required</td><td>None</td></tr></table>
+</section>
+<section id="latest"><h2><span class="num">35</span> Latest Features</h2>
+<ul><li>Decorators (standardized, TS 5)</li><li>const type parameters</li><li>Improved inference for satisfies</li></ul>
+</section>
+<section id="future"><h2><span class="num">36</span> Future of the Language</h2>
+<p>TypeScript keeps closing gaps with JavaScript's evolving spec while pushing type-system features (better inference, native performance via a Go-based compiler port). Its adoption across major frameworks keeps it central to modern web development.</p>
+</section>
+</main>
+</div>
+</body>
+</html>

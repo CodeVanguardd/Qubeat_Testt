@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>QuBeat — Example Main</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Saira:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="game-style.css">
+  <style>
+    
+    html,body{height:100%;margin:0;padding:0;overflow:hidden;background:linear-gradient(180deg,#040612,#071426);}
+    .example-shell{height:100%;display:flex;align-items:center;justify-content:center}
+    .game-shell{width:100%;max-width:1120px;padding:12px;box-sizing:border-box}
+  </style>
+</head>
+<body>
+  <div class="example-shell">
+    <div class="game-shell">
+       
+      <section id="gameScreen" class="panel">
+        <div class="game-grid">
+          <div class="left-panel">
+            <div class="visual-stage">
+              <div class="stage-top-row">
+                <div class="stat-box"><span>Health</span><strong id="p1">100%</strong></div>
+                <div class="stat-box"><span>Enemy</span><strong id="p2">100%</strong></div>
+                <div class="stat-box"><span>Time</span><strong id="time">0</strong></div>
+              </div>
+              <img src="gifs/Bg.gif" id="Bgmap" class="bgmap" alt="bg">
+              <img src="gifs/p1Idle.png" id="man" class="character" alt="char">
+              <div id="projectile-track"></div>
+              <p id="dialouge">Ready to play</p>
+              <p id="indicate" class="indicator"></p>
+            </div>
+            <div class="controls-row top-controls">
+              <button id="startButton" class="secondary">Start</button>
+              <button id="restartButton" class="secondary">Restart</button>
+            </div>
+          </div>
+
+          <div class="right-panel">
+            <div class="question-card">
+              <h3 id="questionPrompt">Example Question</h3>
+              <div class="answers">
+                <button class="answer-btn" data-index="0">A</button>
+                <button class="answer-btn" data-index="1">B</button>
+                <button class="answer-btn" data-index="2">C</button>
+                <button class="answer-btn" data-index="3">D</button>
+              </div>
+            </div>
+            <div class="hud-row">
+              <div class="hud-box"><span>Mode</span><strong id="modeLabel">Arcade</strong></div>
+              <div class="hud-box"><span>Phase</span><strong id="phaseLabel">Easy</strong></div>
+              <div class="hud-box"><span>Streak</span><strong id="streakLabel">0</strong></div>
+            </div>
+          </div>
+        </div>
+
+        <audio id="bgm" src="musics/your-music-file.mp3"></audio>
+        <audio id="shot" src="musics/shot.mp3"></audio>
+        <audio id="parry" src="musics/parry.mp3"></audio>
+      </section>
+    </div>
+  </div>
+
+  <script src="game-prototype.js"></script>
+</body>
+</html>

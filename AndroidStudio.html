@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Android Studio — The Complete Master Guide</title>
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800;900&family=Rajdhani:wght@600;700&family=Sora:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#07030d;
+  --panel:#120a1f;
+  --panel2:#1a0f2e;
+  --line:#3a1f5c;
+  --ink:#f3e9ff;
+  --muted:#b39cd0;
+  --pink:#ff2fb0;
+  --pink2:#ff7ad9;
+  --blue:#00e5ff;
+  --blue2:#7df9ff;
+  --danger:#ff5c7a;
+  --good:#39ffb0;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; color:var(--ink);
+  font-family:'Sora',ui-sans-serif,system-ui,-apple-system,Arial,sans-serif;
+  line-height:1.65;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(255,47,176,0.16), transparent 45%),
+    radial-gradient(circle at 85% 10%, rgba(0,229,255,0.16), transparent 40%),
+    radial-gradient(circle at 50% 90%, rgba(255,47,176,0.12), transparent 50%),
+    linear-gradient(0deg, transparent 24%, rgba(0,229,255,0.05) 25%, rgba(0,229,255,0.05) 26%, transparent 27%, transparent 74%, rgba(255,47,176,0.05) 75%, rgba(255,47,176,0.05) 76%, transparent 77%),
+    var(--bg);
+  background-size:auto, auto, auto, 60px 60px, auto;
+  position:relative;
+  overflow-x:hidden;
+}
+body::before{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+  background:linear-gradient(90deg, transparent 49%, rgba(0,229,255,0.4) 50%, transparent 51%);
+  opacity:0; mix-blend-mode:screen;
+  animation:strike 7s infinite;
+}
+body::after{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+  background:linear-gradient(180deg, transparent 60%, rgba(255,47,176,0.35) 61%, transparent 63%);
+  opacity:0; mix-blend-mode:screen;
+  animation:strike2 11s infinite;
+}
+@keyframes strike{
+  0%,93%,100%{opacity:0} 93.2%{opacity:.9} 93.4%{opacity:0} 93.6%{opacity:.5} 93.9%{opacity:0}
+}
+@keyframes strike2{
+  0%,88%,100%{opacity:0} 88.2%{opacity:.7} 88.5%{opacity:0} 88.8%{opacity:.4} 89.1%{opacity:0}
+}
+a{color:var(--blue)}
+.layout{display:grid; grid-template-columns:280px 1fr; min-height:100vh; position:relative; z-index:1;}
+nav.side{
+  position:sticky; top:0; height:100vh; overflow-y:auto;
+  background:rgba(18,10,31,0.85); backdrop-filter:blur(6px);
+  border-right:1px solid var(--line); padding:20px 14px;
+}
+nav.side h2{
+  font-size:12.5px; text-transform:uppercase; letter-spacing:.2em; font-family:'Rajdhani',sans-serif;
+  color:var(--blue2); margin:18px 6px 8px; font-weight:700;
+}
+nav.side h2:first-child{margin-top:0}
+nav.side a{
+  display:block; padding:6px 8px; border-radius:8px;
+  color:var(--muted); text-decoration:none; font-size:13.5px;
+}
+nav.side a:hover{background:var(--panel2); color:var(--pink2); text-shadow:0 0 8px var(--pink)}
+.brand{padding:6px 8px 18px; border-bottom:1px solid var(--line); margin-bottom:6px;}
+.brand .logo{font-family:'Orbitron',sans-serif; letter-spacing:0;
+  display:inline-flex; align-items:center; justify-content:center;
+  width:40px; height:40px; font-weight:900; font-size:16px;
+  border-radius:10px; color:#07030d;
+  background:linear-gradient(135deg,var(--pink),var(--blue));
+  box-shadow:0 0 18px rgba(255,47,176,.5), 0 0 30px rgba(0,229,255,.25);
+}
+.brand h1{font-size:18px; margin:10px 0 2px; font-family:'Orbitron',sans-serif; background:linear-gradient(90deg,var(--pink2),var(--blue2)); -webkit-background-clip:text; background-clip:text; color:transparent;}
+.brand p{font-size:12px; color:var(--muted); margin:0}
+main{padding:48px 56px; max-width:980px; position:relative; z-index:1;}
+.hero{
+  border:1px solid var(--line);
+  background:linear-gradient(135deg, rgba(255,47,176,0.08), rgba(0,229,255,0.08)), var(--panel);
+  border-radius:22px; padding:38px; margin-bottom:44px; position:relative; overflow:hidden;
+  box-shadow:0 0 40px rgba(255,47,176,.08), inset 0 0 60px rgba(0,229,255,.04);
+}
+.hero .kicker{color:var(--blue2); font-family:'Rajdhani',sans-serif; font-weight:700; letter-spacing:.22em; font-size:13px; text-transform:uppercase;}
+.hero h1{font-size:42px; margin:10px 0; font-family:'Orbitron',sans-serif; letter-spacing:.02em; background:linear-gradient(90deg,var(--pink2),var(--blue2)); -webkit-background-clip:text; background-clip:text; color:transparent; text-shadow:0 0 20px rgba(255,47,176,.45), 0 0 40px rgba(5,230,255,.2);}
+.hero p{color:var(--muted); max-width:640px; font-size:15.5px;}
+section{margin-bottom:56px; scroll-margin-top:24px;}
+section h2{
+  font-size:24px; display:flex; align-items:center; gap:12px; margin-bottom:6px;
+  font-family:'Rajdhani',sans-serif; font-weight:700; letter-spacing:.01em;
+  padding-bottom:10px; border-bottom:1px solid var(--line); color:var(--ink);
+}
+section h2 .num{
+  color:#07030d; background:linear-gradient(135deg,var(--pink),var(--blue)); font-size:13px; font-weight:800;
+  width:30px; height:30px; border-radius:8px; display:flex; align-items:center; justify-content:center;
+  flex:none; box-shadow:0 0 12px rgba(255,47,176,.4);
+}
+section h3{font-size:15px; color:var(--blue2); font-family:'Rajdhani',sans-serif; font-weight:600; margin:22px 0 8px; text-transform:uppercase; letter-spacing:.06em;}
+p{color:#d8c9f0; font-size:15px;}
+ul,ol{color:#d8c9f0; font-size:15px; padding-left:20px;}
+li{margin-bottom:6px;}
+.card{background:rgba(18,10,31,0.7); border:1px solid var(--line); border-radius:14px; padding:20px; margin:14px 0;}
+.grid2{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+.grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
+@media (max-width:900px){.grid2,.grid3{grid-template-columns:1fr} .layout{grid-template-columns:1fr} nav.side{position:relative; height:auto;}}
+table{width:100%; border-collapse:collapse; font-size:14px; margin:12px 0;}
+th,td{border:1px solid var(--line); padding:8px 10px; text-align:left; color:#d8c9f0;}
+th{background:var(--panel2); color:var(--pink2); font-family:'Rajdhani',sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:.04em; font-size:13px;}
+pre{
+  background:#0a0512; border:1px solid var(--line); border-radius:12px;
+  padding:16px 18px; overflow-x:auto; font-size:13.5px; margin:10px 0;
+  box-shadow:inset 0 0 20px rgba(0,229,255,.05);
+}
+code{font-family:'JetBrains Mono','Fira Code',Consolas,'Courier New',monospace;}
+.kw{color:var(--pink2)}.str{color:var(--good)}.com{color:#7a6a99;font-style:italic}.fn{color:var(--blue2)}.num2{color:#ffb86c}
+.expl{border-left:3px solid var(--pink); padding:6px 0 6px 14px; margin:8px 0; color:var(--muted); font-size:13.5px;}
+.expl li{margin-bottom:4px;}
+.pill-row{display:flex; gap:8px; flex-wrap:wrap; margin:10px 0;}
+.pill{background:var(--panel2); border:1px solid var(--line); border-radius:8px; padding:6px 12px; font-size:13px; color:#d8c9f0; font-family:'Rajdhani',sans-serif; font-weight:600; letter-spacing:.02em;}
+.good{color:var(--good)}.bad{color:var(--danger)}
+.qa{background:rgba(18,10,31,0.7); border:1px solid var(--line); border-radius:12px; padding:14px 18px; margin:10px 0;}
+.qa .q{color:var(--pink2); font-family:'Rajdhani',sans-serif; font-weight:700; font-size:15.5px; letter-spacing:.01em;}
+.qa .a{color:#d8c9f0; font-size:14px; margin-top:6px;}
+
+/* ===== Back button — select another language ===== */
+.back-wrap{ margin-bottom:22px; }
+.back-btn{
+  background-color:#852564;
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: inline-block;
+  text-align: center;
+  font-weight: bold;
+  padding: 0.7em 2em;
+  border: 3px solid #FF0072;
+  border-radius: 2px;
+  position: relative;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.1);
+  color: #07EBDA;
+  text-decoration: none;
+  transition: 0.3s ease all;
+  z-index: 1;
+  cursor:pointer;
+  font-family:inherit;
+}
+.back-btn:before {
+  transition: 0.5s all ease;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  right: 50%;
+  bottom: 0;
+  opacity: 0;
+  content: '';
+  background-color: #FF0072;
+  z-index: -1;
+}
+.back-btn:hover, .back-btn:focus {
+  color: #07EBDA;
+}
+.back-btn:hover:before, .back-btn:focus:before {
+  transition: 0.5s all ease;
+  left: 0;
+  right: 0;
+  opacity: 1;
+}
+.back-btn:active {
+  transform: scale(0.9);
+}
+
+</style>
+</head>
+<body>
+<div class="layout">
+<nav class="side">
+<div class="brand">
+<span class="logo">AS</span>
+<h1>Android Studio</h1>
+<p>Complete Master Guide</p>
+</div>
+<h2>Foundations</h2>
+<a href="#intro">1. Introduction</a>
+<a href="#history">2. History &amp; Founders</a>
+<a href="#versions">3. Versions</a>
+<a href="#filestructure">4. Project Structure</a>
+<a href="#syntax">5. Core Workflow</a>
+<a href="#keywords">6. Key Components</a>
+<a href="#datatypes">7. Supported Languages</a>
+<a href="#variables">8. Build Variants</a>
+<a href="#operators">9. Gradle Build System</a>
+<a href="#controlflow">10. Run &amp; Debug Workflow</a>
+<h2>Core Language</h2>
+<a href="#functions">11. Built-in Tools</a>
+<a href="#classes">12. Project Templates</a>
+<a href="#objects">13. UI Design Tools</a>
+<a href="#oop">14. Architecture Support</a>
+<a href="#modules">15. Modules</a>
+<a href="#libraries">16. Libraries &amp; Integrations</a>
+<a href="#apis">17. Emulator &amp; Device Testing</a>
+<a href="#errors">18. Debugging Tools</a>
+<a href="#memory">19. Profiling Tools</a>
+<a href="#performance">20. Build Performance</a>
+<h2>Craft</h2>
+<a href="#bestpractices">21. Best Practices</a>
+<a href="#security">22. App Security</a>
+<a href="#accessibility">23. Accessibility</a>
+<a href="#codestyle">24. Editor Intelligence</a>
+<a href="#patterns">25. Recommended Architecture</a>
+<a href="#projectstructure">26. Full Project Layout</a>
+<a href="#mistakes">27. Common Mistakes</a>
+<h2>Practice &amp; Career</h2>
+<a href="#interview">28. Interview Questions</a>
+<a href="#problems">29. Practice Exercises</a>
+<a href="#realprojects">30. Real Projects</a>
+<a href="#cheatsheet">31. Cheat Sheet</a>
+<a href="#faq">32. FAQ</a>
+<a href="#proscons">33. Pros and Cons</a>
+<a href="#comparison">34. Comparison with Other IDEs</a>
+<a href="#latest">35. Latest Features</a>
+<a href="#future">36. Future of Android Studio</a>
+</nav>
+<main>
+    <div class="back-wrap">
+    <button class="back-btn" onclick="window.location.href='QubeatLanguage.html'">select another language</button>
+  </div>
+<div class="hero">
+    <div class="kicker">Master Guide &middot; 36 Sections</div>
+    <h1>Android Studio</h1>
+    <p>The official Android IDE, built on IntelliJ IDEA — everything you need to build, run, debug, and profile Android apps.</p>
+  </div>
+<section id="intro"><h2><span class="num">1</span> Introduction</h2>
+<p>Android Studio is the official Integrated Development Environment (IDE) for building Android applications, built on JetBrains' IntelliJ IDEA platform.</p>
+<div class="grid3">
+  <div class="card"><strong style="color:var(--pink2)">Type</strong><br/>Integrated Development Environment (IDE), not a language</div>
+  <div class="card"><strong style="color:var(--pink2)">Runs on</strong><br/>Windows, macOS, Linux</div>
+  <div class="card"><strong style="color:var(--pink2)">Used for</strong><br/>Building, testing, and debugging Android apps</div>
+</div>
+<p>Every new project starts from a template, is written in Kotlin or Java, designed with the Layout Editor, and run on an emulator or physical device — all inside one IDE.</p>
+</section>
+<section id="history"><h2><span class="num">2</span> History &amp; Founders</h2>
+<p>Android Studio is developed by <strong>Google</strong>, announced at <strong>Google I/O in May 2013</strong>. It is built on <strong>IntelliJ IDEA</strong>, the IDE platform created by <strong>JetBrains</strong> (founded by Sergey Dmitriev, Eugene Belyaev, and Valentin Kipiatkov). Android Studio officially replaced the Eclipse ADT plugin as Google's recommended tool in 2014.</p>
+<table><tr><th>Year</th><th>Milestone</th></tr>
+<tr><td>2013</td><td>Announced at Google I/O, built on IntelliJ IDEA</td></tr>
+<tr><td>2014</td><td>Officially replaces the Eclipse ADT plugin</td></tr>
+<tr><td>2017</td><td>Kotlin added as a first-class supported language</td></tr>
+<tr><td>2020</td><td>Android Studio 4.0 adds the Motion Editor and Build Analyzer</td></tr>
+<tr><td>Present</td><td>Continuous rolling releases synced with the IntelliJ platform</td></tr></table>
+</section>
+<section id="versions"><h2><span class="num">3</span> Versions</h2>
+<p>Releases historically carried dessert-themed codenames, then switched to alphabetical letter names tied to IntelliJ platform versions, e.g. <strong>Arctic Fox</strong>, <strong>Bumblebee</strong>, <strong>Chipmunk</strong>, <strong>Flamingo</strong>, <strong>Giraffe</strong>, <strong>Hedgehog</strong>, <strong>Iguana</strong>, <strong>Koala</strong>, <strong>Ladybug</strong>.</p>
+</section>
+<section id="filestructure"><h2><span class="num">4</span> Project Structure</h2>
+<p>A typical Android Studio project layout:</p>
+<pre><code>app/
+├── src/main/java/      // app source code
+├── src/main/res/        // layouts, drawables, strings
+├── AndroidManifest.xml
+└── build.gradle.kts</code></pre>
+</section>
+<section id="syntax"><h2><span class="num">5</span> Core Workflow</h2>
+<p>The core workflow inside Android Studio:</p>
+<ol><li>Create a project from a template</li><li>Design the UI in the Layout Editor</li><li>Write app logic in Kotlin or Java</li><li>Run on an emulator or connected device</li><li>Debug with Logcat and the built-in debugger</li></ol>
+</section>
+<section id="keywords"><h2><span class="num">6</span> Key Components</h2>
+<div class="pill-row">
+<span class="pill">Editor</span><span class="pill">Layout Editor</span><span class="pill">Gradle</span><span class="pill">Emulator</span>
+<span class="pill">Logcat</span><span class="pill">Profiler</span><span class="pill">Device Manager</span><span class="pill">Version Control</span>
+</div>
+</section>
+<section id="datatypes"><h2><span class="num">7</span> Supported Languages</h2>
+<p>Android Studio officially supports <strong>Kotlin</strong> (Google's preferred language since 2019) and <strong>Java</strong> for app logic, <strong>XML</strong> for layouts and resources, and <strong>C++</strong> via the NDK for native/performance-critical code.</p>
+</section>
+<section id="variables"><h2><span class="num">8</span> Build Variants</h2>
+<p><strong>Build variants</strong> combine build types (debug/release) with product flavors, letting a single project produce multiple app versions (e.g. free vs. paid) from one codebase.</p>
+</section>
+<section id="operators"><h2><span class="num">9</span> Gradle Build System</h2>
+<p>Android Studio uses <strong>Gradle</strong> as its build system — <code>build.gradle</code>/<code>build.gradle.kts</code> scripts compile code, package resources, and manage dependencies.</p>
+</section>
+<section id="controlflow"><h2><span class="num">10</span> Run &amp; Debug Workflow</h2>
+<p><strong>Run ▶</strong> builds and deploys the app to an emulator or device. <strong>Debug 🐞</strong> attaches a debugger with breakpoints, variable inspection, and step-through execution.</p>
+</section>
+<section id="functions"><h2><span class="num">11</span> Built-in Tools</h2>
+<p>Built-in tools include the <strong>Layout Inspector</strong>, <strong>APK Analyzer</strong>, the <strong>CPU/Memory/Network Profiler</strong>, and <strong>Lint</strong> code inspections.</p>
+</section>
+<section id="classes"><h2><span class="num">12</span> Project Templates</h2>
+<p>Project and Activity templates (Empty Activity, Bottom Navigation Activity, and more) scaffold common app structures instantly, saving boilerplate setup.</p>
+</section>
+<section id="objects"><h2><span class="num">13</span> UI Design Tools</h2>
+<p>The <strong>Layout Editor</strong> offers drag-and-drop XML UI design, and the <strong>Jetpack Compose Preview</strong> gives a live preview for declarative UI code.</p>
+</section>
+<section id="oop"><h2><span class="num">14</span> Architecture Support</h2>
+<p>Android Studio encourages the <strong>Jetpack Architecture Components</strong> (ViewModel, LiveData, Room, Navigation) for building clean, testable app architecture.</p>
+</section>
+<section id="modules"><h2><span class="num">15</span> Modules</h2>
+<p>Projects are organized into <strong>modules</strong> — an app module plus optional library or feature modules — each independently manageable within one project.</p>
+</section>
+<section id="libraries"><h2><span class="num">16</span> Libraries &amp; Integrations</h2>
+<div class="pill-row"><span class="pill">Jetpack Compose</span><span class="pill">Firebase</span><span class="pill">Retrofit</span><span class="pill">Room</span><span class="pill">CameraX</span><span class="pill">Material Components</span></div>
+</section>
+<section id="apis"><h2><span class="num">17</span> Emulator &amp; Device Testing</h2>
+<p>The <strong>Android Emulator</strong> simulates devices and API levels; the <strong>Device Manager</strong> provisions virtual devices; real devices connect for testing over ADB.</p>
+</section>
+<section id="errors"><h2><span class="num">18</span> Debugging Tools</h2>
+<p><strong>Logcat</strong> streams system and app logs in real time. Breakpoints and the built-in debugger let you inspect variables and step through code during execution.</p>
+</section>
+<section id="memory"><h2><span class="num">19</span> Profiling Tools</h2>
+<p>Built-in <strong>CPU, Memory, Network, and Energy Profilers</strong> help detect memory leaks, UI jank, and battery drain directly inside the IDE.</p>
+</section>
+<section id="performance"><h2><span class="num">20</span> Build Performance</h2>
+<p>Tools for keeping builds fast: <strong>Baseline Profiles</strong>, the <strong>Macrobenchmark</strong> library, and the <strong>Build Analyzer</strong> for diagnosing slow Gradle builds.</p>
+</section>
+<section id="bestpractices"><h2><span class="num">21</span> Best Practices</h2>
+<ul><li>Keep Gradle and the Android Gradle Plugin updated.</li><li>Use version catalogs to manage dependencies consistently.</li><li>Use Apply Changes for faster iteration while developing.</li></ul>
+</section>
+<section id="security"><h2><span class="num">22</span> App Security</h2>
+<ul><li>Check Google Play Console's pre-launch reports before release.</li><li>Use Lint's security inspections.</li><li>Enable R8/ProGuard for code shrinking and obfuscation in release builds.</li></ul>
+</section>
+<section id="accessibility"><h2><span class="num">23</span> Accessibility</h2>
+<p>The <strong>Accessibility Scanner</strong> integration flags missing content descriptions, low contrast, and undersized touch targets directly during development.</p>
+</section>
+<section id="codestyle"><h2><span class="num">24</span> Editor Intelligence</h2>
+<p>Android Studio inherits IntelliJ's smart code completion, refactoring tools, and automatic code formatting to keep code consistent as you type.</p>
+</section>
+<section id="patterns"><h2><span class="num">25</span> Recommended Architecture</h2>
+<div class="card"><h3>MVVM</h3><p>The officially recommended architecture pattern, directly supported by Jetpack libraries like ViewModel and LiveData/StateFlow.</p></div>
+</section>
+<section id="projectstructure"><h2><span class="num">26</span> Full Project Layout</h2>
+<pre><code>MyApp/
+├── app/
+├── gradle/
+├── settings.gradle.kts
+└── build.gradle.kts</code></pre>
+</section>
+<section id="mistakes"><h2><span class="num">27</span> Common Mistakes</h2>
+<ul><li>Ignoring Gradle sync errors instead of resolving them.</li><li>Skipping SDK/Emulator updates.</li><li>Not testing across multiple screen sizes and API levels.</li></ul>
+</section>
+<section id="interview"><h2><span class="num">28</span> Interview Questions</h2>
+<div class="qa"><div class="q">Q: What is Android Studio built on?</div><div class="a">A: JetBrains' IntelliJ IDEA platform.</div></div>
+<div class="qa"><div class="q">Q: What is Gradle's role in Android Studio?</div><div class="a">A: It builds, compiles, and manages dependencies for Android projects.</div></div>
+</section>
+<section id="problems"><h2><span class="num">29</span> Practice Exercises</h2>
+<ol><li>Create a new project with an Empty Activity, then add a second Activity with navigation between them.</li><li>Profile a sample app and fix an introduced memory leak.</li></ol>
+</section>
+<section id="realprojects"><h2><span class="num">30</span> Real Projects</h2>
+<div class="grid3"><div class="card">Simple notes app</div><div class="card">Firebase-backed chat app</div><div class="card">REST API-driven news reader</div></div>
+</section>
+<section id="cheatsheet"><h2><span class="num">31</span> Cheat Sheet</h2>
+<pre><code>Run ▶ / Debug 🐞
+Logcat, Layout Editor
+Gradle Sync, Device Manager, Profiler</code></pre>
+</section>
+<section id="faq"><h2><span class="num">32</span> FAQ</h2>
+<div class="qa"><div class="q">Is Android Studio required for Android development?</div><div class="a">It's Google's official, fully supported IDE; alternatives exist but lack the same first-party tooling and Google backing.</div></div>
+</section>
+<section id="proscons"><h2><span class="num">33</span> Pros and Cons</h2>
+<div class="grid2">
+<div class="card"><strong class="good">Pros</strong><ul><li>Official Google support</li><li>Deep Kotlin and Jetpack integration</li><li>Powerful debugging and profiling tools</li></ul></div>
+<div class="card"><strong class="bad">Cons</strong><ul><li>Resource-heavy on lower-end machines</li><li>Gradle builds can be slow on large projects</li></ul></div>
+</div>
+</section>
+<section id="comparison"><h2><span class="num">34</span> Comparison with Other IDEs</h2>
+<table><tr><th>Aspect</th><th>Android Studio</th><th>Xcode</th></tr>
+<tr><td>Platform</td><td>Android</td><td>iOS / macOS</td></tr>
+<tr><td>Built on</td><td>IntelliJ IDEA (JetBrains)</td><td>Apple's own tooling</td></tr>
+<tr><td>Primary languages</td><td>Kotlin, Java</td><td>Swift, Objective-C</td></tr></table>
+</section>
+<section id="latest"><h2><span class="num">35</span> Latest Features</h2>
+<ul><li>AI-assisted coding features (Gemini in Android Studio).</li><li>Improved Jetpack Compose tooling and previews.</li><li>Faster Gradle builds via configuration cache.</li></ul>
+</section>
+<section id="future"><h2><span class="num">36</span> Future of Android Studio</h2>
+<p>Android Studio continues deepening its Jetpack Compose tooling and AI-assisted development features as Google pushes Android development further toward a Kotlin-first, declarative-UI future.</p>
+</section>
+</main>
+</div>
+</body>
+</html>

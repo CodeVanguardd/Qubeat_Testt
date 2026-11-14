@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SQL — The Complete Master Guide</title>
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800;900&family=Rajdhani:wght@600;700&family=Sora:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#07030d;
+  --panel:#120a1f;
+  --panel2:#1a0f2e;
+  --line:#3a1f5c;
+  --ink:#f3e9ff;
+  --muted:#b39cd0;
+  --pink:#ff2fb0;
+  --pink2:#ff7ad9;
+  --blue:#00e5ff;
+  --blue2:#7df9ff;
+  --danger:#ff5c7a;
+  --good:#39ffb0;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; color:var(--ink);
+  font-family:'Sora',ui-sans-serif,system-ui,-apple-system,Arial,sans-serif;
+  line-height:1.65;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(255,47,176,0.16), transparent 45%),
+    radial-gradient(circle at 85% 10%, rgba(0,229,255,0.16), transparent 40%),
+    radial-gradient(circle at 50% 90%, rgba(255,47,176,0.12), transparent 50%),
+    linear-gradient(0deg, transparent 24%, rgba(0,229,255,0.05) 25%, rgba(0,229,255,0.05) 26%, transparent 27%, transparent 74%, rgba(255,47,176,0.05) 75%, rgba(255,47,176,0.05) 76%, transparent 77%),
+    var(--bg);
+  background-size:auto, auto, auto, 60px 60px, auto;
+  position:relative;
+  overflow-x:hidden;
+}
+body::before{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+  background:linear-gradient(90deg, transparent 49%, rgba(0,229,255,0.4) 50%, transparent 51%);
+  opacity:0; mix-blend-mode:screen;
+  animation:strike 7s infinite;
+}
+body::after{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+  background:linear-gradient(180deg, transparent 60%, rgba(255,47,176,0.35) 61%, transparent 63%);
+  opacity:0; mix-blend-mode:screen;
+  animation:strike2 11s infinite;
+}
+@keyframes strike{
+  0%,93%,100%{opacity:0} 93.2%{opacity:.9} 93.4%{opacity:0} 93.6%{opacity:.5} 93.9%{opacity:0}
+}
+@keyframes strike2{
+  0%,88%,100%{opacity:0} 88.2%{opacity:.7} 88.5%{opacity:0} 88.8%{opacity:.4} 89.1%{opacity:0}
+}
+a{color:var(--blue)}
+.layout{display:grid; grid-template-columns:280px 1fr; min-height:100vh; position:relative; z-index:1;}
+nav.side{
+  position:sticky; top:0; height:100vh; overflow-y:auto;
+  background:rgba(18,10,31,0.85); backdrop-filter:blur(6px);
+  border-right:1px solid var(--line); padding:20px 14px;
+}
+nav.side h2{
+  font-size:12.5px; text-transform:uppercase; letter-spacing:.2em; font-family:'Rajdhani',sans-serif;
+  color:var(--blue2); margin:18px 6px 8px; font-weight:700;
+}
+nav.side h2:first-child{margin-top:0}
+nav.side a{
+  display:block; padding:6px 8px; border-radius:8px;
+  color:var(--muted); text-decoration:none; font-size:13.5px;
+}
+nav.side a:hover{background:var(--panel2); color:var(--pink2); text-shadow:0 0 8px var(--pink)}
+.brand{padding:6px 8px 18px; border-bottom:1px solid var(--line); margin-bottom:6px;}
+.brand .logo{font-family:'Orbitron',sans-serif; letter-spacing:0;
+  display:inline-flex; align-items:center; justify-content:center;
+  width:40px; height:40px; font-weight:900; font-size:16px;
+  border-radius:10px; color:#07030d;
+  background:linear-gradient(135deg,var(--pink),var(--blue));
+  box-shadow:0 0 18px rgba(255,47,176,.5), 0 0 30px rgba(0,229,255,.25);
+}
+.brand h1{font-size:18px; margin:10px 0 2px; font-family:'Orbitron',sans-serif; background:linear-gradient(90deg,var(--pink2),var(--blue2)); -webkit-background-clip:text; background-clip:text; color:transparent;}
+.brand p{font-size:12px; color:var(--muted); margin:0}
+main{padding:48px 56px; max-width:980px; position:relative; z-index:1;}
+.hero{
+  border:1px solid var(--line);
+  background:linear-gradient(135deg, rgba(255,47,176,0.08), rgba(0,229,255,0.08)), var(--panel);
+  border-radius:22px; padding:38px; margin-bottom:44px; position:relative; overflow:hidden;
+  box-shadow:0 0 40px rgba(255,47,176,.08), inset 0 0 60px rgba(0,229,255,.04);
+}
+.hero .kicker{color:var(--blue2); font-family:'Rajdhani',sans-serif; font-weight:700; letter-spacing:.22em; font-size:13px; text-transform:uppercase;}
+.hero h1{font-size:42px; margin:10px 0; font-family:'Orbitron',sans-serif; letter-spacing:.02em; background:linear-gradient(90deg,var(--pink2),var(--blue2)); -webkit-background-clip:text; background-clip:text; color:transparent; text-shadow:0 0 20px rgba(255,47,176,.45), 0 0 40px rgba(5,230,255,.2);}
+.hero p{color:var(--muted); max-width:640px; font-size:15.5px;}
+section{margin-bottom:56px; scroll-margin-top:24px;}
+section h2{
+  font-size:24px; display:flex; align-items:center; gap:12px; margin-bottom:6px;
+  font-family:'Rajdhani',sans-serif; font-weight:700; letter-spacing:.01em;
+  padding-bottom:10px; border-bottom:1px solid var(--line); color:var(--ink);
+}
+section h2 .num{
+  color:#07030d; background:linear-gradient(135deg,var(--pink),var(--blue)); font-size:13px; font-weight:800;
+  width:30px; height:30px; border-radius:8px; display:flex; align-items:center; justify-content:center;
+  flex:none; box-shadow:0 0 12px rgba(255,47,176,.4);
+}
+section h3{font-size:15px; color:var(--blue2); font-family:'Rajdhani',sans-serif; font-weight:600; margin:22px 0 8px; text-transform:uppercase; letter-spacing:.06em;}
+p{color:#d8c9f0; font-size:15px;}
+ul,ol{color:#d8c9f0; font-size:15px; padding-left:20px;}
+li{margin-bottom:6px;}
+.card{background:rgba(18,10,31,0.7); border:1px solid var(--line); border-radius:14px; padding:20px; margin:14px 0;}
+.grid2{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+.grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
+@media (max-width:900px){.grid2,.grid3{grid-template-columns:1fr} .layout{grid-template-columns:1fr} nav.side{position:relative; height:auto;}}
+table{width:100%; border-collapse:collapse; font-size:14px; margin:12px 0;}
+th,td{border:1px solid var(--line); padding:8px 10px; text-align:left; color:#d8c9f0;}
+th{background:var(--panel2); color:var(--pink2); font-family:'Rajdhani',sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:.04em; font-size:13px;}
+pre{
+  background:#0a0512; border:1px solid var(--line); border-radius:12px;
+  padding:16px 18px; overflow-x:auto; font-size:13.5px; margin:10px 0;
+  box-shadow:inset 0 0 20px rgba(0,229,255,.05);
+}
+code{font-family:'JetBrains Mono','Fira Code',Consolas,'Courier New',monospace;}
+.kw{color:var(--pink2)}.str{color:var(--good)}.com{color:#7a6a99;font-style:italic}.fn{color:var(--blue2)}.num2{color:#ffb86c}
+.expl{border-left:3px solid var(--pink); padding:6px 0 6px 14px; margin:8px 0; color:var(--muted); font-size:13.5px;}
+.expl li{margin-bottom:4px;}
+.pill-row{display:flex; gap:8px; flex-wrap:wrap; margin:10px 0;}
+.pill{background:var(--panel2); border:1px solid var(--line); border-radius:8px; padding:6px 12px; font-size:13px; color:#d8c9f0; font-family:'Rajdhani',sans-serif; font-weight:600; letter-spacing:.02em;}
+.good{color:var(--good)}.bad{color:var(--danger)}
+.qa{background:rgba(18,10,31,0.7); border:1px solid var(--line); border-radius:12px; padding:14px 18px; margin:10px 0;}
+.qa .q{color:var(--pink2); font-family:'Rajdhani',sans-serif; font-weight:700; font-size:15.5px; letter-spacing:.01em;}
+.qa .a{color:#d8c9f0; font-size:14px; margin-top:6px;}
+
+/* ===== Back button — select another language ===== */
+.back-wrap{ margin-bottom:22px; }
+.back-btn{
+  background-color:#852564;
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: inline-block;
+  text-align: center;
+  font-weight: bold;
+  padding: 0.7em 2em;
+  border: 3px solid #FF0072;
+  border-radius: 2px;
+  position: relative;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.1);
+  color: #07EBDA;
+  text-decoration: none;
+  transition: 0.3s ease all;
+  z-index: 1;
+  cursor:pointer;
+  font-family:inherit;
+}
+.back-btn:before {
+  transition: 0.5s all ease;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  right: 50%;
+  bottom: 0;
+  opacity: 0;
+  content: '';
+  background-color: #FF0072;
+  z-index: -1;
+}
+.back-btn:hover, .back-btn:focus {
+  color: #07EBDA;
+}
+.back-btn:hover:before, .back-btn:focus:before {
+  transition: 0.5s all ease;
+  left: 0;
+  right: 0;
+  opacity: 1;
+}
+.back-btn:active {
+  transform: scale(0.9);
+}
+
+</style>
+</head>
+<body>
+<div class="layout">
+<nav class="side">
+<div class="brand">
+<span class="logo">SQ</span>
+<h1>SQL</h1>
+<p>Complete Master Guide</p>
+</div>
+<h2>Foundations</h2>
+<a href="#intro">1. Introduction</a>
+<a href="#history">2. History</a>
+<a href="#versions">3. Versions</a>
+<a href="#filestructure">4. File Structure</a>
+<a href="#syntax">5. Syntax</a>
+<a href="#keywords">6. Keywords</a>
+<a href="#datatypes">7. Data Types</a>
+<a href="#variables">8. Variables</a>
+<a href="#operators">9. Operators</a>
+<a href="#controlflow">10. Control Flow</a>
+<h2>Core Language</h2>
+<a href="#functions">11. Functions</a>
+<a href="#classes">12. Classes</a>
+<a href="#objects">13. Objects</a>
+<a href="#oop">14. OOP Concepts</a>
+<a href="#modules">15. Modules</a>
+<a href="#libraries">16. Libraries</a>
+<a href="#apis">17. APIs</a>
+<a href="#errors">18. Error Handling</a>
+<a href="#memory">19. Memory Management</a>
+<a href="#performance">20. Performance</a>
+<h2>Craft</h2>
+<a href="#bestpractices">21. Best Practices</a>
+<a href="#security">22. Security</a>
+<a href="#accessibility">23. Accessibility</a>
+<a href="#codestyle">24. Code Style</a>
+<a href="#patterns">25. Design Patterns</a>
+<a href="#projectstructure">26. Project Structure</a>
+<a href="#mistakes">27. Common Mistakes</a>
+<h2>Practice & Career</h2>
+<a href="#interview">28. Interview Questions</a>
+<a href="#problems">29. Practice Problems</a>
+<a href="#realprojects">30. Real Projects</a>
+<a href="#cheatsheet">31. Cheat Sheet</a>
+<a href="#faq">32. FAQ</a>
+<a href="#proscons">33. Pros and Cons</a>
+<a href="#comparison">34. Comparison with Other Languages</a>
+<a href="#latest">35. Latest Features</a>
+<a href="#future">36. Future of the Language</a>
+</nav>
+<main>
+    <div class="back-wrap">
+    <button class="back-btn" onclick="window.location.href='QubeatLanguage.html'">select another language</button>
+  </div>
+<div class="hero">
+    <div class="kicker">Master Guide &middot; 36 Sections</div>
+    <h1>SQL</h1>
+    <p>A special-purpose language for querying and managing relational databases — the backbone of nearly every app's data layer.</p>
+  </div>
+<section id="intro"><h2><span class="num">1</span> Introduction</h2>
+<p>SQL (Structured Query Language) is a special-purpose language for creating, querying, and managing data in relational databases.</p>
+<div class="grid3">
+  <div class="card"><strong style="color:var(--pink2)">Type</strong><br/>Declarative query language, not general-purpose</div>
+  <div class="card"><strong style="color:var(--pink2)">Runs on</strong><br/>Any relational database (MySQL, PostgreSQL, SQL Server, Oracle, SQLite)</div>
+  <div class="card"><strong style="color:var(--pink2)">Used for</strong><br/>Storing, retrieving, and manipulating structured data</div>
+</div>
+<pre><code>SELECT * FROM users WHERE age > 18;</code></pre>
+</section>
+<section id="history"><h2><span class="num">2</span> History</h2>
+<p>SQL was created by <strong>Donald D. Chamberlin</strong> and <strong>Raymond F. Boyce</strong> at IBM in the early 1970s (originally named SEQUEL), built on <strong>Edgar F. Codd's</strong> 1970 relational model paper.</p>
+<table><tr><th>Year</th><th>Milestone</th></tr>
+<tr><td>1970</td><td>Codd publishes the relational database model</td></tr>
+<tr><td>1974</td><td>SEQUEL developed at IBM</td></tr>
+<tr><td>1986</td><td>ANSI SQL standardized</td></tr>
+<tr><td>1999</td><td>SQL:1999 adds recursive queries</td></tr>
+<tr><td>2016</td><td>SQL:2016 adds native JSON support</td></tr></table>
+</section>
+<section id="versions"><h2><span class="num">3</span> Versions</h2>
+<table><tr><th>Standard / Dialect</th><th>Key Additions</th></tr>
+<tr><td>SQL-92</td><td>Baseline modern SQL standard</td></tr>
+<tr><td>SQL:1999</td><td>Recursive queries, triggers</td></tr>
+<tr><td>SQL:2011</td><td>Temporal (time-versioned) data</td></tr>
+<tr><td>SQL:2016</td><td>JSON functions</td></tr>
+<tr><td>Vendor dialects</td><td>T-SQL (SQL Server), PL/SQL (Oracle), MySQL/PostgreSQL extensions</td></tr></table>
+</section>
+<section id="filestructure"><h2><span class="num">4</span> File Structure</h2>
+<p>SQL has no compiled "file" format — statements are grouped into <code>.sql</code> scripts that run against a database.</p>
+<pre><code>-- schema.sql
+CREATE TABLE users (id INT PRIMARY KEY, name VARCHAR(100));
+INSERT INTO users VALUES (1, 'Ana');
+SELECT * FROM users;</code></pre>
+</section>
+<section id="syntax"><h2><span class="num">5</span> Syntax</h2>
+<div class="grid2">
+<div class="card"><h3>Example 1 — Query</h3><pre><code>SELECT name, age FROM users
+WHERE age > 18
+ORDER BY age DESC;</code></pre></div>
+<div class="card"><h3>Example 2 — Insert</h3><pre><code>INSERT INTO users (name, age)
+VALUES ('Ana', 22);</code></pre></div>
+</div>
+</section>
+<section id="keywords"><h2><span class="num">6</span> Keywords</h2>
+<div class="pill-row">
+<span class="pill">SELECT</span><span class="pill">FROM</span><span class="pill">WHERE</span><span class="pill">JOIN</span>
+<span class="pill">GROUP BY</span><span class="pill">HAVING</span><span class="pill">ORDER BY</span>
+<span class="pill">INSERT / UPDATE / DELETE</span><span class="pill">CREATE / ALTER / DROP</span><span class="pill">INDEX</span>
+</div>
+</section>
+<section id="datatypes"><h2><span class="num">7</span> Data Types</h2>
+<p>Common column types: <code>INT</code>, <code>BIGINT</code>, <code>DECIMAL/NUMERIC</code>, <code>VARCHAR/TEXT</code>, <code>DATE/TIMESTAMP</code>, <code>BOOLEAN</code>, and (in most modern engines) <code>JSON</code>.</p>
+<pre><code>CREATE TABLE products (
+  id INT PRIMARY KEY,
+  price DECIMAL(10,2),
+  name VARCHAR(100)
+);</code></pre>
+</section>
+<section id="variables"><h2><span class="num">8</span> Variables</h2>
+<p>Plain SQL queries don't use variables, but stored procedures do, via <code>DECLARE</code> or session variables.</p>
+<pre><code>DECLARE @count INT = 0;
+SET @count = @count + 1;</code></pre>
+</section>
+<section id="operators"><h2><span class="num">9</span> Operators</h2>
+<p>Comparison (<code>=</code>, <code>&lt;&gt;</code>, <code>&lt;</code>, <code>&gt;</code>), logical (<code>AND</code>, <code>OR</code>, <code>NOT</code>), arithmetic (<code>+ - * /</code>), pattern matching (<code>LIKE</code>), and set operators (<code>IN</code>, <code>BETWEEN</code>).</p>
+</section>
+<section id="controlflow"><h2><span class="num">10</span> Control Flow</h2>
+<p>Row-level conditionals use <code>CASE WHEN</code>; procedural control (<code>IF/ELSE</code>, <code>WHILE</code>) is available inside stored procedures.</p>
+<pre><code>SELECT CASE WHEN age >= 18 THEN 'Adult' ELSE 'Minor' END
+FROM users;</code></pre>
+</section>
+<section id="functions"><h2><span class="num">11</span> Functions</h2>
+<p>Built-in aggregate functions (<code>COUNT</code>, <code>SUM</code>, <code>AVG</code>, <code>MAX</code>, <code>MIN</code>) plus user-defined functions and stored procedures.</p>
+<pre><code>SELECT COUNT(*), AVG(price) FROM products;</code></pre>
+</section>
+<section id="classes"><h2><span class="num">12</span> Classes</h2>
+<p>SQL has no classes — schemas are defined with tables, not object-oriented class hierarchies.</p>
+</section>
+<section id="objects"><h2><span class="num">13</span> Objects</h2>
+<p>The closest concept is a <strong>row</strong> (record): a single instance of data conforming to a table's schema.</p>
+</section>
+<section id="oop"><h2><span class="num">14</span> OOP Concepts</h2>
+<p>SQL is a declarative language, not object-oriented. Object-relational databases like PostgreSQL add OOP-adjacent features (custom types, table inheritance), but plain SQL stays declarative.</p>
+</section>
+<section id="modules"><h2><span class="num">15</span> Modules</h2>
+<p>Logic is organized into <strong>schemas</strong>, reusable <strong>views</strong>, and <strong>stored procedures/functions</strong>.</p>
+<pre><code>CREATE VIEW active_users AS
+SELECT * FROM users WHERE active = true;</code></pre>
+</section>
+<section id="libraries"><h2><span class="num">16</span> Libraries</h2>
+<div class="pill-row"><span class="pill">pgAdmin</span><span class="pill">MySQL Workbench</span><span class="pill">Sequelize (ORM)</span><span class="pill">Prisma</span><span class="pill">SQLAlchemy</span></div>
+</section>
+<section id="apis"><h2><span class="num">17</span> APIs</h2>
+<p>Database drivers (JDBC, ODBC, psycopg2, mysql2) let application code send SQL over a connection and read back results.</p>
+<pre><code>cursor.execute("SELECT * FROM users");</code></pre>
+</section>
+<section id="errors"><h2><span class="num">18</span> Error Handling</h2>
+<p>Error handling is done with <code>TRY...CATCH</code> (T-SQL) or <code>EXCEPTION</code> blocks (PL/SQL), or handled at the application layer around driver calls.</p>
+</section>
+<section id="memory"><h2><span class="num">19</span> Memory Management</h2>
+<p>Memory is managed entirely by the database engine — the query planner, buffer pool, and index caches — not by the SQL author.</p>
+</section>
+<section id="performance"><h2><span class="num">20</span> Performance</h2>
+<ul><li>Index columns used in <code>WHERE</code>/<code>JOIN</code> clauses.</li><li>Avoid <code>SELECT *</code> in production queries.</li><li>Use <code>EXPLAIN</code>/<code>EXPLAIN ANALYZE</code> to inspect query plans.</li></ul>
+</section>
+<section id="bestpractices"><h2><span class="num">21</span> Best Practices</h2>
+<ul><li>Always use parameterized/prepared statements.</li><li>Name constraints and indexes explicitly.</li><li>Normalize schemas, denormalize selectively for performance.</li></ul>
+</section>
+<section id="security"><h2><span class="num">22</span> Security</h2>
+<ul><li>Prevent SQL injection with parameterized queries — never concatenate raw user input into SQL strings.</li><li>Apply least-privilege database roles per application/service.</li></ul>
+</section>
+<section id="accessibility"><h2><span class="num">23</span> Accessibility</h2>
+<p>Not directly applicable to SQL itself, but clear schema naming and documentation improve maintainability for every developer who touches the database.</p>
+</section>
+<section id="codestyle"><h2><span class="num">24</span> Code Style</h2>
+<ul><li>Uppercase SQL keywords (<code>SELECT</code>, <code>FROM</code>).</li><li>Consistent <code>snake_case</code> table/column naming.</li><li>One clause per line for long queries.</li></ul>
+</section>
+<section id="patterns"><h2><span class="num">25</span> Design Patterns</h2>
+<div class="card"><h3>Repository Pattern</h3><p>Wraps raw SQL behind a data-access layer so the rest of the app never writes queries directly.</p></div>
+</section>
+<section id="projectstructure"><h2><span class="num">26</span> Project Structure</h2>
+<pre><code>db/
+├── migrations/
+├── seeds/
+├── schema.sql
+└── queries/</code></pre>
+</section>
+<section id="mistakes"><h2><span class="num">27</span> Common Mistakes</h2>
+<ul><li>Forgetting <code>WHERE</code> on an <code>UPDATE</code>/<code>DELETE</code>.</li><li>N+1 query problems in application code.</li><li>Missing indexes on foreign keys.</li></ul>
+</section>
+<section id="interview"><h2><span class="num">28</span> Interview Questions</h2>
+<div class="qa"><div class="q">Q: Difference between WHERE and HAVING?</div><div class="a">A: WHERE filters rows before grouping; HAVING filters groups after GROUP BY aggregation.</div></div>
+<div class="qa"><div class="q">Q: What is a JOIN?</div><div class="a">A: It combines rows from two or more tables based on a related column.</div></div>
+</section>
+<section id="problems"><h2><span class="num">29</span> Practice Problems</h2>
+<ol><li>Write a query to find the second-highest salary in a table.</li><li>Write a query using JOIN to list orders together with customer names.</li></ol>
+</section>
+<section id="realprojects"><h2><span class="num">30</span> Real Projects</h2>
+<div class="grid3"><div class="card">E-commerce order database</div><div class="card">Analytics dashboard backend</div><div class="card">Inventory management system</div></div>
+</section>
+<section id="cheatsheet"><h2><span class="num">31</span> Cheat Sheet</h2>
+<pre><code>SELECT / FROM / WHERE
+JOIN (INNER / LEFT / RIGHT / FULL)
+GROUP BY / HAVING
+INSERT / UPDATE / DELETE</code></pre>
+</section>
+<section id="faq"><h2><span class="num">32</span> FAQ</h2>
+<div class="qa"><div class="q">Is SQL a programming language?</div><div class="a">It's a declarative, special-purpose query language — not a general-purpose one like Python or Java.</div></div>
+</section>
+<section id="proscons"><h2><span class="num">33</span> Pros and Cons</h2>
+<div class="grid2">
+<div class="card"><strong class="good">Pros</strong><ul><li>Universal standard across databases</li><li>Powerful for relational data</li><li>Mature tooling</li></ul></div>
+<div class="card"><strong class="bad">Cons</strong><ul><li>Not ideal for unstructured data</li><li>Dialect differences across vendors</li></ul></div>
+</div>
+</section>
+<section id="comparison"><h2><span class="num">34</span> Comparison with Other Languages</h2>
+<table><tr><th>Aspect</th><th>SQL (Relational)</th><th>NoSQL</th></tr>
+<tr><td>Schema</td><td>Fixed, defined upfront</td><td>Flexible/schemaless</td></tr>
+<tr><td>Scaling</td><td>Vertical (traditionally)</td><td>Horizontal by design</td></tr></table>
+</section>
+<section id="latest"><h2><span class="num">35</span> Latest Features</h2>
+<ul><li>Native JSON column types.</li><li>Window functions for analytics.</li><li>Common Table Expressions (CTEs) for readable recursive queries.</li></ul>
+</section>
+<section id="future"><h2><span class="num">36</span> Future of the Language</h2>
+<p>SQL keeps expanding into JSON and graph-style querying, and is increasingly used as the interface layer for analytics and ML data pipelines ("SQL-on-everything").</p>
+</section>
+</main>
+</div>
+</body>
+</html>

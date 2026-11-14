@@ -1,0 +1,1466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QuBeat | How To Play</title>
+    <link rel="stylesheet" href="QuebeatMain.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double:wght@100..900&family=Germania+One&family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rubik+Maze&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Saira:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=New+Tegomin&family=Saira:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Segoe UI", Arial, sans-serif;
+            color: #f8f9ff;
+            background-image: url(background.gif);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 20px;
+        }
+
+        .menu-shell {
+            width: min(100%, 960px);
+            background: rgba(7, 10, 26, 0.92);
+            border: 1px solid rgba(102, 46, 246, 0.35);
+            border-radius: 26px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+            overflow: hidden;
+            position: relative;
+            padding: 30px 28px 34px;
+            margin: 0 auto;
+        }
+
+        /* Sticky top navigation bar */
+        .site-nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            width: min(100%, 960px);
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            padding: 14px 22px;
+            background: rgba(7, 10, 26, 0.88);
+            border: 1px solid rgba(102, 46, 246, 0.35);
+            border-radius: 18px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 12px 34px rgba(0, 0, 0, 0.4);
+        }
+
+        .site-nav .brand {
+            font-family: 'Bitcount Grid Double', sans-serif;
+            font-size: 1.05rem;
+            letter-spacing: 0.12em;
+            color: #ff62d6;
+            text-shadow: 0 0 10px rgba(255, 98, 214, 0.45);
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .site-nav .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: flex-end;
+        }
+
+        .site-nav .nav-links a {
+            font-family: 'Saira', sans-serif;
+            font-weight: 700;
+            font-size: 0.82rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: #d4d8ff;
+            text-decoration: none;
+            padding: 9px 16px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 98, 214, 0.22);
+            background: rgba(20, 12, 46, 0.75);
+            transition: transform 0.16s ease, box-shadow 0.16s ease, color 0.16s ease, background 0.16s ease;
+        }
+
+        .site-nav .nav-links a:hover {
+            transform: translateY(-2px);
+            color: #040414;
+            background: linear-gradient(90deg, #4de7ff, #ff62d6);
+            box-shadow: 0 0 20px rgba(255, 84, 163, 0.3);
+        }
+
+        .site-nav .nav-links a.active {
+            color: #040414;
+            background: linear-gradient(90deg, #ea4cff, #54f1ff);
+            box-shadow: 0 0 18px rgba(84, 241, 255, 0.35);
+        }
+
+        @media (max-width: 640px) {
+            .site-nav {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .site-nav .nav-links {
+                justify-content: center;
+            }
+        }
+
+        /* Comic-brutal Home button — copied from Qubeat.html's Main Menu button */
+        .comic-brutal-button-container {
+            --primary-color: #8516B5;
+            --secondary-color: #F20069;
+            --text-color: #F20069;
+            --accent-color: #00F2F2;
+            --panel-color: #00F2F2;
+            --shadow-color: rgba(0, 0, 0, 0.75);
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+            width: fit-content;
+        }
+
+        .comic-brutal-button {
+            position: relative;
+            font-size: 0.85em;
+            border: none;
+            background: none;
+            cursor: pointer;
+            padding: 0;
+            display: inline-block;
+            text-decoration: none;
+            transform: rotate(-2deg);
+            transform-origin: center;
+            transition: transform 0.15s cubic-bezier(0.22, 0.61, 0.36, 1);
+        }
+
+        .comic-brutal-button .button-inner {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            padding: 0.55em 1em;
+            z-index: 3;
+            overflow: hidden;
+            transform: skew(-3deg, 1deg);
+            transition: transform 0.15s cubic-bezier(0.22, 0.61, 0.36, 1);
+            clip-path: polygon(
+                0% 10%,
+                3% 0%,
+                97% 0%,
+                100% 10%,
+                100% 90%,
+                97% 100%,
+                3% 100%,
+                0% 90%
+            );
+        }
+
+        .comic-brutal-button .button-text {
+            position: relative;
+            font-weight: 900;
+            font-size: 1.05em;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            z-index: 5;
+            color: var(--text-color);
+            text-shadow:
+                0.05em 0.05em 0 var(--panel-color),
+                -0.05em -0.05em 0 var(--panel-color),
+                0.05em -0.05em 0 var(--panel-color),
+                -0.05em 0.05em 0 var(--panel-color);
+            transform: rotate(2deg);
+        }
+
+        .comic-brutal-button .button-frame {
+            position: absolute;
+            top: -0.3em;
+            left: -0.3em;
+            right: -0.3em;
+            bottom: -0.3em;
+            background-color: var(--accent-color);
+            border: 0.15em solid var(--text-color);
+            z-index: 1;
+            transition: transform 0.15s cubic-bezier(0.22, 0.61, 0.36, 1);
+        }
+
+        .comic-brutal-button .button-shadow {
+            position: absolute;
+            top: 0.4em;
+            left: 0.4em;
+            right: -0.4em;
+            bottom: -0.4em;
+            background-color: var(--shadow-color);
+            z-index: 0;
+            transition: all 0.15s cubic-bezier(0.22, 0.61, 0.36, 1);
+        }
+
+        .comic-brutal-button .halftone-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(
+                circle at 30% 30%,
+                rgba(0, 0, 0, 0.2) 0.1em,
+                transparent 0.1em
+            );
+            background-size: 0.5em 0.5em;
+            background-position: 0 0;
+            opacity: 0.3;
+            z-index: 2;
+            mix-blend-mode: multiply;
+        }
+
+        .comic-brutal-button .ink-splatter {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            background: radial-gradient(
+                    circle at 20% 30%,
+                    rgba(0, 0, 0, 0.15) 0%,
+                    rgba(0, 0, 0, 0.08) 20%,
+                    transparent 50%
+                ),
+                radial-gradient(
+                    circle at 70% 65%,
+                    rgba(0, 0, 0, 0.15) 0%,
+                    rgba(0, 0, 0, 0.08) 25%,
+                    transparent 50%
+                ),
+                radial-gradient(
+                    circle at 40% 50%,
+                    rgba(0, 0, 0, 0.15) 0%,
+                    rgba(0, 0, 0, 0.08) 30%,
+                    transparent 60%
+                ),
+                radial-gradient(
+                    circle at 85% 15%,
+                    rgba(0, 0, 0, 0.15) 0%,
+                    rgba(0, 0, 0, 0.08) 15%,
+                    transparent 40%
+                );
+        }
+
+        .comic-brutal-button:hover {
+            transform: rotate(-1deg) scale(1.05);
+        }
+
+        .comic-brutal-button:hover .button-inner {
+            transform: skew(-5deg, 2deg);
+            background-color: var(--secondary-color);
+        }
+
+        .comic-brutal-button:hover .button-text {
+            color: var(--panel-color);
+            text-shadow:
+                0.05em 0.05em 0 var(--text-color),
+                -0.05em -0.05em 0 var(--text-color),
+                0.05em -0.05em 0 var(--text-color),
+                -0.05em 0.05em 0 var(--text-color);
+        }
+
+        .comic-brutal-button:hover .button-shadow {
+            transform: translate(0.2em, 0.2em);
+        }
+
+        .comic-brutal-button:hover .ink-splatter {
+            opacity: 1;
+        }
+
+        .comic-brutal-button:focus {
+            outline: none;
+        }
+
+        .comic-brutal-button:focus .button-frame {
+            border-color: var(--secondary-color);
+        }
+
+        .comic-brutal-button:active {
+            transform: rotate(0) scale(0.98);
+        }
+
+        .comic-brutal-button:active .button-inner {
+            transform: skew(0, 0);
+        }
+
+        .comic-brutal-button:active .button-shadow {
+            transform: translate(0.1em, 0.1em);
+        }
+
+        @keyframes brutalBurst {
+            0% { transform: scale(0.95); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .comic-brutal-button:active .button-text {
+            animation: brutalBurst 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes brutalDash {
+            to { stroke-dashoffset: -20; }
+        }
+
+        .comic-brutal-button:focus::after {
+            content: "";
+            position: absolute;
+            top: -0.5em;
+            left: -0.5em;
+            right: -0.5em;
+            bottom: -0.5em;
+            border: 0.15em dashed var(--text-color);
+            z-index: 0;
+            animation: brutalDash 1s linear infinite;
+            pointer-events: none;
+        }
+
+        .comic-brutal-button::before {
+            content: "";
+            position: absolute;
+            top: 0.4em;
+            left: 0.8em;
+            width: 1em;
+            height: 1em;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            z-index: 2;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .comic-brutal-button:hover::before {
+            opacity: 0.7;
+        }
+
+        @keyframes brutalActionLines {
+            0% { opacity: 0; transform: scale(0.7); }
+            50% { opacity: 1; }
+            100% { opacity: 0; transform: scale(1.2); }
+        }
+
+        .comic-brutal-button:active::before {
+            content: "";
+            position: absolute;
+            top: -1em;
+            left: -1em;
+            right: -1em;
+            bottom: -1em;
+            background-image: radial-gradient(var(--text-color) 0%, transparent 70%),
+                repeating-conic-gradient(
+                    transparent 0%,
+                    transparent 5%,
+                    var(--text-color) 5%,
+                    var(--text-color) 6%
+                );
+            opacity: 0;
+            z-index: 6;
+            mix-blend-mode: overlay;
+            pointer-events: none;
+            animation: brutalActionLines 0.5s ease-out forwards;
+        }
+
+        /* FAQ accordion */
+        .faq-list {
+            display: grid;
+            gap: 10px;
+        }
+
+        .faq-item {
+            background: linear-gradient(180deg, rgba(20, 12, 46, 0.9), rgba(7, 10, 26, 0.82));
+            border: 1px solid rgba(255, 98, 214, 0.16);
+            border-radius: 16px;
+            padding: 4px 18px;
+        }
+
+        .faq-item summary {
+            cursor: pointer;
+            list-style: none;
+            padding: 14px 0;
+            font-family: 'Bitcount Grid Double', sans-serif;
+            font-size: 0.95rem;
+            letter-spacing: 0.04em;
+            color: #ff9fe6;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .faq-item summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .faq-item summary::after {
+            content: "+";
+            font-size: 1.2rem;
+            color: #8ae2ff;
+            transition: transform 0.2s ease;
+            flex: 0 0 auto;
+        }
+
+        .faq-item[open] summary::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-item p {
+            margin: 0 0 14px;
+            line-height: 1.65;
+            color: #d4d8ff;
+            font-size: 0.92rem;
+            font-family: 'Saira', sans-serif;
+        }
+
+        /* About Pacing table */
+        .pacing-cols {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+            margin-top: 4px;
+        }
+
+        .pacing-col h4 {
+            margin: 0 0 10px;
+            font-size: 0.9rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #8ae2ff;
+            font-family: 'Bitcount Grid Double', sans-serif;
+        }
+
+        .pacing-tier {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 98, 214, 0.12);
+        }
+
+        .pacing-tier:last-child {
+            border-bottom: none;
+        }
+
+        .pacing-tier .name {
+            flex: 0 0 auto;
+            min-width: 108px;
+            font-weight: 800;
+            color: #ff9fe6;
+            font-family: 'Saira', sans-serif;
+            font-size: 0.88rem;
+            letter-spacing: 0.03em;
+        }
+
+        .pacing-tier .desc {
+            margin: 0;
+            color: #c6d1ff;
+            font-family: 'Saira', sans-serif;
+            font-size: 0.88rem;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 640px) {
+            .pacing-cols {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Difficulty tiers */
+        .difficulty-tiers {
+            display: grid;
+            gap: 10px;
+            margin-top: 4px;
+        }
+
+        .diff-tier {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            background: linear-gradient(180deg, rgba(20, 12, 46, 0.96), rgba(7, 10, 26, 0.88));
+            border: 1px solid rgba(255, 98, 214, 0.18);
+            border-radius: 18px;
+            padding: 14px 20px;
+        }
+
+        .diff-chip {
+            flex: 0 0 auto;
+            padding: 8px 16px;
+            border-radius: 10px;
+            font-family: 'Bitcount Grid Double', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-weight: 800;
+            color: #040414;
+            min-width: 118px;
+            text-align: center;
+        }
+
+        .diff-chip.syntax { background: #3ddc84; }
+        .diff-chip.compiler { background: #fac921; }
+        .diff-chip.overclock { background: #ff3b3b; }
+
+        .diff-tier p {
+            margin: 0;
+            color: #d4d8ff;
+            font-family: 'Saira', sans-serif;
+            font-size: 0.92rem;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 560px) {
+            .diff-tier {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        /* Game Flow walkthrough */
+        .flow-step {
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+            gap: 20px;
+            align-items: center;
+            background: linear-gradient(180deg, rgba(20, 12, 46, 0.96), rgba(7, 10, 26, 0.88));
+            border: 1px solid rgba(255, 98, 214, 0.18);
+            border-radius: 22px;
+            padding: 20px;
+            margin-bottom: 18px;
+            box-shadow: inset 0 0 30px rgba(255, 98, 214, 0.06), 0 8px 26px rgba(0, 0, 0, 0.22);
+        }
+
+        .flow-step:nth-child(even) {
+            grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+        }
+
+        .flow-step:nth-child(even) .flow-shot {
+            order: -1;
+        }
+
+        .flow-shot {
+            width: 100%;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 98, 214, 0.22);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+            display: block;
+        }
+
+        .flow-body .flow-step-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            font-family: 'Bitcount Grid Double', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: #040414;
+            background: linear-gradient(135deg, #ff2ca4, #7c3aff);
+            box-shadow: 0 0 14px rgba(255, 44, 164, 0.45);
+            margin-bottom: 10px;
+        }
+
+        .flow-body h4 {
+            margin: 0 0 8px;
+            font-size: 1.05rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: #ff9fe6;
+            font-family: 'Bitcount Grid Double', sans-serif;
+        }
+
+        .flow-body p, .flow-body li {
+            margin: 0 0 8px;
+            line-height: 1.65;
+            color: #d4d8ff;
+            font-size: 0.92rem;
+            font-family: 'Saira', sans-serif;
+        }
+
+        .flow-body ul {
+            margin: 0;
+            padding-left: 18px;
+        }
+
+        .flow-body li b {
+            color: #8ae2ff;
+        }
+
+        @media (max-width: 760px) {
+            .flow-step,
+            .flow-step:nth-child(even) {
+                grid-template-columns: 1fr;
+            }
+            .flow-step:nth-child(even) .flow-shot {
+                order: 0;
+            }
+        }
+
+        /* Difficulty tiers (Syntax / Compiler / Overclock) */
+        .difficulty-list {
+            display: grid;
+            gap: 10px;
+            margin-top: 4px;
+        }
+
+        .difficulty-tier {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 14px 18px;
+            border-radius: 16px;
+            background: linear-gradient(180deg, rgba(20, 12, 46, 0.9), rgba(7, 10, 26, 0.82));
+            border: 1px solid rgba(255, 98, 214, 0.16);
+        }
+
+        .difficulty-tier .swatch {
+            flex: 0 0 auto;
+            width: 14px;
+            height: 14px;
+            border-radius: 4px;
+        }
+
+        .difficulty-tier.syntax .swatch { background: #ff2ca4; box-shadow: 0 0 10px rgba(255, 44, 164, 0.6); }
+        .difficulty-tier.compiler .swatch { background: #fac921; box-shadow: 0 0 10px rgba(250, 201, 33, 0.6); }
+        .difficulty-tier.overclock .swatch { background: #ff3b3b; box-shadow: 0 0 10px rgba(255, 59, 59, 0.6); }
+
+        .difficulty-tier .name {
+            flex: 0 0 auto;
+            min-width: 110px;
+            font-weight: 800;
+            font-family: 'Bitcount Grid Double', sans-serif;
+            font-size: 0.92rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .difficulty-tier.syntax .name { color: #ff62d6; }
+        .difficulty-tier.compiler .name { color: #fac921; }
+        .difficulty-tier.overclock .name { color: #ff6363; }
+
+        .difficulty-tier .desc {
+            margin: 0;
+            color: #c6d1ff;
+            font-family: 'Saira', sans-serif;
+            font-size: 0.9rem;
+            line-height: 1.55;
+        }
+
+        @media (max-width: 640px) {
+            .difficulty-tier {
+                flex-wrap: wrap;
+            }
+        }
+
+        /* Game Flow walkthrough */
+        .flow-list {
+            display: grid;
+            gap: 18px;
+            margin-top: 4px;
+        }
+
+        .flow-step {
+            display: grid;
+            grid-template-columns: minmax(220px, 340px) 1fr;
+            gap: 20px;
+            align-items: center;
+            background: linear-gradient(180deg, rgba(20, 12, 46, 0.96), rgba(7, 10, 26, 0.88));
+            border: 1px solid rgba(255, 98, 214, 0.18);
+            border-radius: 20px;
+            padding: 18px;
+            box-shadow: inset 0 0 30px rgba(255, 98, 214, 0.06), 0 8px 26px rgba(0, 0, 0, 0.22);
+        }
+
+        .flow-step img {
+            width: 100%;
+            display: block;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 98, 214, 0.2);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+        }
+
+        .flow-step .flow-body h4 {
+            margin: 0 0 8px;
+            font-size: 1.02rem;
+            letter-spacing: 0.04em;
+            color: #ff9fe6;
+            text-transform: uppercase;
+            font-family: 'Bitcount Grid Double', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .flow-step .flow-num {
+            flex: 0 0 auto;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Bitcount Grid Double', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: #040414;
+            background: linear-gradient(135deg, #ff2ca4, #7c3aff);
+            box-shadow: 0 0 14px rgba(255, 44, 164, 0.45);
+        }
+
+        .flow-step p {
+            margin: 0;
+            line-height: 1.65;
+            color: #d4d8ff;
+            font-size: 0.94rem;
+            font-family: 'Saira', sans-serif;
+        }
+
+        .flow-step:nth-child(even) {
+            grid-template-columns: 1fr minmax(220px, 340px);
+        }
+
+        .flow-step:nth-child(even) img {
+            order: 2;
+        }
+
+        @media (max-width: 760px) {
+            .flow-step,
+            .flow-step:nth-child(even) {
+                grid-template-columns: 1fr;
+            }
+            .flow-step:nth-child(even) img {
+                order: 0;
+            }
+        }
+
+        /* In-game screenshot preview + HUD breakdown */
+        .preview-frame {
+            width: 100%;
+            border-radius: 18px;
+            border: 1px solid rgba(255, 98, 214, 0.25);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35), inset 0 0 30px rgba(255, 98, 214, 0.05);
+            display: block;
+            margin-bottom: 18px;
+        }
+
+        .hud-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        .hud-item {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            background: linear-gradient(180deg, rgba(20, 12, 46, 0.9), rgba(7, 10, 26, 0.82));
+            border: 1px solid rgba(255, 98, 214, 0.16);
+            border-radius: 16px;
+            padding: 14px 18px;
+        }
+
+        .hud-dot {
+            flex: 0 0 auto;
+            width: 10px;
+            height: 10px;
+            margin-top: 6px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff2ca4, #7c3aff);
+            box-shadow: 0 0 10px rgba(255, 44, 164, 0.5);
+        }
+
+        .hud-item b {
+            color: #8ae2ff;
+        }
+
+        .hud-item p {
+            margin: 0;
+            line-height: 1.65;
+            color: #d4d8ff;
+            font-size: 0.92rem;
+            font-family: 'Saira', sans-serif;
+        }
+
+        .menu-shell::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            height: 4px;
+            background: linear-gradient(90deg, rgba(255, 40, 135, 0.8), rgba(70, 205, 255, 0.8));
+        }
+
+        .topbar {
+            text-align: center;
+            margin-bottom: 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .topbar .eyebrow {
+            letter-spacing: 0.35em;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            color: #8b8df5;
+            margin-bottom: 10px;
+        }
+
+        .topbar .glitch {
+            font-size: clamp(1.7rem, 4.4vw, 4.6rem);
+            margin: 0;
+            line-height: 0.95;
+            color: #ff62d6;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            white-space: nowrap;
+            display: inline-block;
+            animation: glitch 1.6s infinite linear alternate-reverse;
+        }
+
+        .topbar .glitch::before,
+        .topbar .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            right: 0;
+            opacity: 0.75;
+        }
+
+        .topbar .glitch::before {
+            text-shadow: -2px 0 #55d8ff;
+            clip-path: inset(0 0 60% 0);
+            animation: glitchTop 1.8s infinite linear alternate-reverse;
+        }
+
+        .topbar .glitch::after {
+            text-shadow: 2px 0 #ff3abe;
+            clip-path: inset(50% 0 0 0);
+            animation: glitchBottom 1.5s infinite linear alternate-reverse;
+        }
+
+        .topbar .sub {
+            max-width: 640px;
+            margin: 14px auto 0;
+            color: #c4d2ff;
+            font-family: 'Saira', sans-serif;
+        }
+
+        /* Back to menu pill, reusing the main menu's action-button look */
+        .back-row {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 22px;
+        }
+
+        .back-row a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 22px;
+            border-radius: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.16);
+            background: linear-gradient(90deg, #4de7ff, #ff62d6);
+            color: #040414;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-family: 'Bitcount Grid Double', sans-serif;
+            transition: transform 0.16s ease, box-shadow 0.16s ease;
+        }
+
+        .back-row a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 24px rgba(255, 84, 163, 0.32), 0 0 42px rgba(77, 211, 255, 0.18);
+        }
+
+        /* Step-by-step gameplay loop */
+        .steps {
+            display: grid;
+            gap: 14px;
+            margin: 0 0 26px;
+        }
+
+        .step-card {
+            background: linear-gradient(180deg, rgba(20, 12, 46, 0.96), rgba(7, 10, 26, 0.88));
+            border: 1px solid rgba(255, 98, 214, 0.18);
+            border-radius: 20px;
+            padding: 18px 22px;
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            box-shadow: inset 0 0 30px rgba(255, 98, 214, 0.06), 0 8px 26px rgba(0, 0, 0, 0.22);
+        }
+
+        .step-num {
+            flex: 0 0 auto;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Bitcount Grid Double', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: #040414;
+            background: linear-gradient(135deg, #ff2ca4, #7c3aff);
+            box-shadow: 0 0 18px rgba(255, 44, 164, 0.45);
+        }
+
+        .step-body h4 {
+            margin: 2px 0 6px;
+            font-size: 1.02rem;
+            letter-spacing: 0.04em;
+            color: #ff9fe6;
+            text-transform: uppercase;
+        }
+
+        .step-body p {
+            margin: 0;
+            line-height: 1.65;
+            color: #d4d8ff;
+            font-size: 0.95rem;
+            font-family: 'Saira', sans-serif;
+        }
+
+        .step-body .tag {
+            display: inline-block;
+            margin-left: 6px;
+            padding: 2px 9px;
+            border-radius: 999px;
+            font-size: 0.68rem;
+            letter-spacing: 0.08em;
+            font-weight: 800;
+            vertical-align: middle;
+        }
+
+        .tag.shoot { background: rgba(77, 231, 255, 0.16); color: #4de7ff; border: 1px solid rgba(77, 231, 255, 0.4); }
+        .tag.parry { background: rgba(255, 98, 214, 0.16); color: #ff62d6; border: 1px solid rgba(255, 98, 214, 0.4); }
+
+        /* Two-column info grid: modes, hp, pacing, difficulty */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+            margin-bottom: 24px;
+        }
+
+        .menu-card {
+            background: linear-gradient(180deg, rgba(20, 12, 46, 0.96), rgba(7, 10, 26, 0.88));
+            border: 1px solid rgba(255, 98, 214, 0.18);
+            border-radius: 22px;
+            padding: 24px 22px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: inset 0 0 45px rgba(255, 98, 214, 0.08), 0 10px 40px rgba(0, 0, 0, 0.25);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top left, rgba(255, 98, 214, 0.08), transparent 35%), radial-gradient(circle at bottom right, rgba(84, 241, 255, 0.08), transparent 28%);
+            pointer-events: none;
+        }
+
+        .menu-card h3 {
+            margin: 0 0 10px;
+            font-size: 1.05rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #ff62d6;
+            position: relative;
+            text-shadow: 0 0 10px rgba(255, 98, 214, 0.45);
+            font-family: 'Bitcount Grid Double', sans-serif;
+        }
+
+        .menu-card p, .menu-card ul {
+            margin: 0;
+            line-height: 1.7;
+            color: #d4d8ff;
+            font-size: 0.92rem;
+            font-family: 'Saira', sans-serif;
+        }
+
+        .menu-card ul {
+            padding-left: 18px;
+        }
+
+        .menu-card li {
+            margin-bottom: 4px;
+        }
+
+        .menu-card li b {
+            color: #8ae2ff;
+        }
+
+        .menu-section {
+            margin-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 20px;
+        }
+
+        .menu-section h3 {
+            margin: 0 0 10px;
+            font-size: 1.1rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #ff62d6;
+            font-family: 'Bitcount Grid Double', sans-serif;
+        }
+
+        .menu-section p {
+            margin: 0 0 10px;
+            line-height: 1.7;
+            color: #c6d1ff;
+            font-family: 'Saira', sans-serif;
+        }
+
+        .cta-row {
+            display: flex;
+            justify-content: center;
+            margin-top: 28px;
+        }
+
+        .cta-row a {
+            padding: 18px 32px;
+            border-radius: 18px;
+            border: 2px solid rgba(255, 255, 255, 0.16);
+            background: linear-gradient(90deg, #ea4cff, #54f1ff);
+            color: #040414;
+            font-size: 1rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            text-decoration: none;
+            font-family: 'Bitcount Grid Double', sans-serif;
+            transition: transform 0.16s ease, box-shadow 0.16s ease;
+        }
+
+        .cta-row a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 24px rgba(255, 84, 163, 0.32), 0 0 42px rgba(77, 211, 255, 0.18);
+        }
+
+        @media (max-width: 760px) {
+            .menu-shell { padding: 22px; }
+            .menu-grid { grid-template-columns: 1fr; }
+            .step-card { flex-direction: column; }
+        }
+
+        @media (max-width: 480px) {
+            .topbar .glitch {
+                font-size: clamp(1.15rem, 7vw, 1.8rem);
+                letter-spacing: 0.08em;
+            }
+        }
+
+        @keyframes glitch {
+            0% { transform: translate(0, 0); }
+            10% { transform: translate(-2px, -1px); }
+            20% { transform: translate(2px, 1px); }
+            30% { transform: translate(-1px, 2px); }
+            40% { transform: translate(2px, -2px); }
+            50% { transform: translate(-2px, 1px); }
+            60% { transform: translate(2px, 2px); }
+            70% { transform: translate(-1px, -2px); }
+            80% { transform: translate(1px, 1px); }
+            100% { transform: translate(0, 0); }
+        }
+
+        @keyframes glitchTop {
+            0% { transform: translate(-2px, -2px); }
+            50% { transform: translate(2px, 2px); }
+            100% { transform: translate(-2px, -2px); }
+        }
+
+        @keyframes glitchBottom {
+            0% { transform: translate(2px, 2px); }
+            50% { transform: translate(-2px, -2px); }
+            100% { transform: translate(2px, 2px); }
+        }
+    </style>
+</head>
+<body>
+    <nav class="site-nav">
+        <div class="comic-brutal-button-container">
+            <a class="comic-brutal-button" id="mainMenuBtn" href="QuBeatMenu.html" aria-label="Back to main menu">
+                <div class="button-inner">
+                    <span class="button-text">Home</span>
+                    <div class="halftone-overlay"></div>
+                    <div class="ink-splatter"></div>
+                </div>
+                <div class="button-shadow"></div>
+                <div class="button-frame"></div>
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="#game-flow" class="tab-link">Game Flow</a>
+            <a href="#tips" class="tab-link">Tips</a>
+            <a href="#faq" class="tab-link">FAQ</a>
+            <a href="#pacing" class="tab-link">About Pacing</a>
+        </div>
+    </nav>
+    <div class="game-shell menu-shell">
+        <header class="topbar">
+            <p class="eyebrow" style="font-family: 'Prompt', sans-serif;">Learn the Web. Rule the Arena</p>
+            <h1 class="glitch" data-text="How To Play" style="font-family: 'Rubik Maze', sans-serif;">How To Play</h1>
+            <p class="sub">QuBeat is a beat-timed coding quiz duel — answer fast, hit your cues on the beat, and keep your HP above zero longer than your rival.</p>
+        </header>
+
+        <div class="menu-section" id="game-flow" style="margin-top: 0; border-top: none; padding-top: 0;">
+            <h3>Game Flow</h3>
+            <p>Here's every screen you'll pass through on your way into a match, in order.</p>
+
+            <div class="flow-step">
+                <img class="flow-shot" src="Gamemode.png" alt="QuBeat mode select screen showing Arcade and Logic Duel options, mode preview, and pacing option" />
+                <div class="flow-body">
+                    <span class="flow-step-num">1</span>
+                    <h4>Mode Select</h4>
+                    <p>First you pick a mode: <b>Arcade</b> (you vs an NPC) or <b>Logic Duel</b> (two players, pass-and-play). Click a mode to preview its description on the right in the Mode Preview panel.</p>
+                    <p>Whichever mode you pick reveals its own Pacing option — Logic Duel shows Whole Note / Off-Beat Note / Ghost Note, Arcade shows Turtle / Normal / Swift / Blitz / Lightning. Pick your pace, then hit <b>Continue</b> — or <b>Main Menu</b> to back out.</p>
+                </div>
+            </div>
+
+            <div class="flow-step">
+                <img class="flow-shot" src="GameLanguage.png" alt="QuBeat Language Lab screen showing a grid of programming languages to pick from, with a tip box on the left" />
+                <div class="flow-body">
+                    <span class="flow-step-num">2</span>
+                    <h4>Language Lab</h4>
+                    <p>Next is the Language Lab — pick a language card from the grid (HTML, CSS, Java, JavaScript, C, C# and more). The tip box on the left reminds you to master a language's basics before jumping into the coding challenges.</p>
+                    <p>After clicking a language, a description pops up along with the option to Play or Learn More. Use <b>Back</b> anytime to return to Mode Select.</p>
+                </div>
+            </div>
+
+            <div class="flow-step">
+                <img class="flow-shot" src="GameDifficulty.png" alt="QuBeat difficulty picker for the chosen language, showing Syntax, Compiler, and Overclock buttons plus a Begin button" />
+                <div class="flow-body">
+                    <span class="flow-step-num">3</span>
+                    <h4>Choose Your Difficulty</h4>
+                    <p>Picking a language opens its difficulty picker — choose between <b>Syntax</b>, <b>Compiler</b>, and <b>Overclock</b> (see the breakdown below). A <b>Syntax Guide</b> link is available if you want a refresher first, and <b>Begin</b> carries you forward once you're ready.</p>
+                </div>
+            </div>
+
+            <div class="flow-step">
+                <img class="flow-shot" src="GameCharacterSelect.png" alt="QuBeat character selection screen for Player 1, with Girl and Boy rows and a tip box pointing to Mode Select" />
+                <div class="flow-body">
+                    <span class="flow-step-num">4</span>
+                    <h4>Character Selection</h4>
+                    <p>Each player picks a character to play as. In Arcade, only you pick — the NPC's character is assigned automatically. In Logic Duel, both players pick their own before the match begins.</p>
+                    <p>The tip box is here too: you can jump to <b>Mode Select</b> anytime — even mid-match — to switch mode, language, or difficulty. <b>Back</b> returns you to the difficulty picker.</p>
+                </div>
+            </div>
+
+            <div class="flow-step">
+                <img class="flow-shot" src="GameStarting.png" alt="QuBeat starting screen with a Press Start to begin the game prompt, Start and Back buttons" />
+                <div class="flow-body">
+                    <span class="flow-step-num">5</span>
+                    <h4>Game Starting</h4>
+                    <p>The last stop before the action — a "Press Start to begin the game" prompt with your final <b>Start</b> and <b>Back</b> buttons. The Mode Select tip is still on hand in case you want to double-check your setup before diving in.</p>
+                </div>
+            </div>
+
+            <div class="flow-step">
+                <img class="flow-shot" src="GameResults.png" alt="QuBeat results screen showing Match Complete, Player 1 Wins, HP bars for both players, and Play Again and Main Menu buttons" />
+                <div class="flow-body">
+                    <span class="flow-step-num">6</span>
+                    <h4>Results</h4>
+                    <p>Once the match ends, the Results screen shows who won and why — HP hitting zero, questions running out, or time running out — plus each player's final HP as a side-by-side bar. From here you can <b>Play Again</b> with the same settings or head back to the <b>Main Menu</b>.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-section">
+            <h3>The Match Loop</h3>
+            <div class="steps">
+                <div class="step-card">
+                    <div class="step-num">1</div>
+                    <div class="step-body">
+                        <h4>Pick a Question <span class="tag shoot">SHOOT</span></h4>
+                        <p>The picker chooses a question from the answers on screen. Time it to the beat — click on the "SHOOT" cue, not too early, not too late.</p>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">2</div>
+                    <div class="step-body">
+                        <h4>Answer Correctly</h4>
+                        <p>The other player (the answerer) picks the correct choice out of four. Get it right to fire back at the picker.</p>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">3</div>
+                    <div class="step-body">
+                        <h4>Defend the Hit <span class="tag parry">PARRY</span></h4>
+                        <p>The picker must "PARRY" on beat to block the answerer's counter. A clean parry swaps roles for the next round — a missed one costs HP and the picker goes again.</p>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">4</div>
+                    <div class="step-body">
+                        <h4>Win the Duel</h4>
+                        <p>Wrong answers, missed cues, and blocked shots chip away at HP. First player to hit 0% HP loses the match.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-section" style="margin-top: 0;">
+            <h3>In-Match HUD Preview</h3>
+            <img class="preview-frame" src="Gamestart.png" alt="QuBeat in-match screen showing HP bars, mode info, beat meter, and question picker" />
+            <div class="hud-list">
+                <div class="hud-item">
+                    <span class="hud-dot"></span>
+                    <p><b>Player 1 / Player 2 HP (100%)</b> — the two colored bars on the left and right edges of the top panel. Each shows how much health that player has left; it drains with every missed beat or wrong answer, and hitting 0% ends the match.</p>
+                </div>
+                <div class="hud-item">
+                    <span class="hud-dot"></span>
+                    <p><b>Mode — Logic Duel</b> — the active game mode for this match (two players, each with their own character, as opposed to the single-player Arcade mode).</p>
+                </div>
+                <div class="hud-item">
+                    <span class="hud-dot"></span>
+                    <p><b>Pacing — Whole Note</b> — how much reaction time you get on SHOOT/PARRY cues. This is one of the slower pacing settings, giving more time to react than faster settings like Lightning.</p>
+                </div>
+                <div class="hud-item">
+                    <span class="hud-dot"></span>
+                    <p><b>Language — Html</b> — the quiz track this match is pulling questions from. It can be switched anytime from Mode Select.</p>
+                </div>
+                <div class="hud-item">
+                    <span class="hud-dot"></span>
+                    <p><b>Difficulty — Syntax</b> — the difficulty tier of the questions being asked, affecting how tricky they are.</p>
+                </div>
+                <div class="hud-item">
+                    <span class="hud-dot"></span>
+                    <p><b>Time / Beat bar</b> — the horizontal meter in the middle showing how close the next beat is; the number underneath ("2") counts down the current beat. Timing your click to this pulse — not just watching the number — is what lands a clean SHOOT or PARRY.</p>
+                </div>
+                <div class="hud-item">
+                    <span class="hud-dot"></span>
+                    <p><b>Pause button</b> — top-left button to pause the match at any time.</p>
+                </div>
+                <div class="hud-item">
+                    <span class="hud-dot"></span>
+                    <p><b>Tip box</b> — a reminder that you can open Mode Select anytime, even mid-match, to change the mode, language, or difficulty.</p>
+                </div>
+                <div class="hud-item">
+                    <span class="hud-dot"></span>
+                    <p><b>Character Display panel</b> — right side panel showing the active character sprite and whose turn it currently is ("Player 1's Turn").</p>
+                </div>
+                <div class="hud-item">
+                    <span class="hud-dot"></span>
+                    <p><b>"Pick a Question" panel</b> — the four color-coded answer tiles at the bottom. This is the picker's turn to choose which question gets asked (e.g. bold text elements, valid color names, largest heading, or the correct image element) — timed to the SHOOT cue on the beat bar above.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-grid">
+            <div class="menu-card">
+                <h3>Game Modes</h3>
+                <ul>
+                    <li><b>Arcade</b> — you vs an NPC rival. Only you pick a character; the NPC's is assigned automatically and the match jumps straight to Start.</li>
+                    <li><b>Logic Duel (Co-op)</b> — two players, each picking their own character before the match begins.</li>
+                </ul>
+            </div>
+            <div class="menu-card">
+                <h3>Pacing &amp; Difficulty</h3>
+                <ul>
+                    <li><b>Pacing</b> sets how long you get to react to SHOOT/PARRY cues — from Turtle (slow) up to Lightning (near-instant).</li>
+                    <li><b>Difficulty</b> changes how tricky the questions are, from basic syntax to advanced logic.</li>
+                </ul>
+            </div>
+            <div class="menu-card">
+                <h3>Choose Your Language</h3>
+                <p>Quiz questions are pulled from your chosen language track — HTML, CSS, JavaScript, and more. Switch it anytime from Mode Select.</p>
+            </div>
+            <div class="menu-card">
+                <h3>Health &amp; Misses</h3>
+                <p>Every missed beat or wrong answer costs HP, and repeated misses in a row deal escalating damage — so a shaky streak gets punished harder the longer it runs. Land your cues to keep your streak clean.</p>
+            </div>
+        </div>
+
+        <div class="menu-section" id="tips">
+            <h3>Tips</h3>
+            <p>Watch the beat meter, not just the countdown number — timing your click to the pulse matters more than reacting fast. You can jump to Mode Select anytime, even mid-match, to change the mode, language, or difficulty.</p>
+        </div>
+
+        <div class="menu-section" id="pacing">
+            <h3>About Pacing</h3>
+            <p>Pacing sets how much reaction time you get on SHOOT/PARRY cues. Each mode has its own set of pacing options, ordered from most forgiving to most demanding:</p>
+            <div class="pacing-cols">
+                <div class="pacing-col">
+                    <h4>Logic Duel (Co-op)</h4>
+                    <div class="pacing-tier">
+                        <span class="name">Whole Note</span>
+                        <p class="desc">The slowest, most forgiving pacing — steady beats with plenty of room to react.</p>
+                    </div>
+                    <div class="pacing-tier">
+                        <span class="name">Off-Beat Note</span>
+                        <p class="desc">A middle tier that shifts the rhythm slightly, so you have to pay closer attention to the beat meter.</p>
+                    </div>
+                    <div class="pacing-tier">
+                        <span class="name">Ghost Note</span>
+                        <p class="desc">The trickiest Logic Duel pacing — cues are tighter and less predictable, rewarding sharp timing.</p>
+                    </div>
+                </div>
+                <div class="pacing-col">
+                    <h4>Arcade</h4>
+                    <div class="pacing-tier">
+                        <span class="name">Turtle</span>
+                        <p class="desc">The slowest Arcade pacing — the most reaction time against the NPC.</p>
+                    </div>
+                    <div class="pacing-tier">
+                        <span class="name">Normal</span>
+                        <p class="desc">A standard, balanced pace for a regular match.</p>
+                    </div>
+                    <div class="pacing-tier">
+                        <span class="name">Swift</span>
+                        <p class="desc">A quicker pace that tightens your reaction window.</p>
+                    </div>
+                    <div class="pacing-tier">
+                        <span class="name">Blitz</span>
+                        <p class="desc">Fast pacing with very little margin for hesitation.</p>
+                    </div>
+                    <div class="pacing-tier">
+                        <span class="name">Lightning</span>
+                        <p class="desc">The fastest Arcade pacing — near-instant cues for players who want maximum challenge.</p>
+                    </div>
+                </div>
+            </div>
+            <p style="margin-top: 14px;">You can pick pacing on Mode Select before a match starts, and it's carried through with your other settings when you replay.</p>
+        </div>
+
+        <div class="menu-section" id="difficulty">
+            <h3>Difficulty</h3>
+            <p>After picking a language, you'll choose a difficulty for its questions — from easiest to hardest:</p>
+            <div class="difficulty-tiers">
+                <div class="diff-tier">
+                    <span class="diff-chip syntax">Syntax</span>
+                    <p>The easiest tier — questions focus on the basics, like fundamental syntax and core concepts of the language.</p>
+                </div>
+                <div class="diff-tier">
+                    <span class="diff-chip compiler">Compiler</span>
+                    <p>A step up in difficulty — questions get trickier and expect a firmer grasp of how the language actually works.</p>
+                </div>
+                <div class="diff-tier">
+                    <span class="diff-chip overclock">Overclock</span>
+                    <p>The hardest tier — the most challenging questions, for players who want to push their knowledge to the limit.</p>
+                </div>
+            </div>
+            <p style="margin-top: 14px;">Difficulty is picked per language on the difficulty screen, alongside a <b>Syntax Guide</b> link if you want a refresher before you <b>Begin</b>.</p>
+        </div>
+
+        <div class="menu-section" id="faq">
+            <h3>FAQ</h3>
+            <div class="faq-list">
+                <details class="faq-item" open>
+                    <summary>How is the winner decided?</summary>
+                    <p>By final HP — whoever has the higher HP wins the match. This applies whether the match ends because a player's HP hits zero, the questions run out, or time runs out. Equal HP is a tie.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>What's the difference between Arcade and Logic Duel?</summary>
+                    <p>Arcade is you vs an NPC — only you pick a character, and the match jumps straight to Start. Logic Duel (Co-op) is pass-and-play for two players, and both players pick a character before the match begins.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Can I change the mode, language, pacing, or difficulty mid-match?</summary>
+                    <p>Yes — the in-match tip box is a reminder that you can open Mode Select at any time, even mid-match, to change these settings.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>What happens if I miss a cue or answer wrong?</summary>
+                    <p>Every missed beat or wrong answer costs HP, and repeated misses in a row deal escalating damage — so a shaky streak gets punished harder the longer it runs.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Can I switch the quiz language later?</summary>
+                    <p>Yes — quiz questions are pulled from your chosen language track (HTML, CSS, JavaScript, and more), and you can switch it anytime from Mode Select.</p>
+                </details>
+            </div>
+        </div>
+
+        <div class="cta-row">
+            <a href="Qubeat.html">Start Playing</a>
+        </div>
+    </div>
+    <audio id="bgMusic" src="musics/howtoplayandcreditsound.mp3" loop preload="auto"></audio>
+    <audio id="mainMenuSfx" src="musics/main_menu.mp3" preload="auto"></audio>
+    <audio id="tabClickSfx" src="musics/credits.mp3" preload="auto"></audio>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var tabSfx = document.getElementById('tabClickSfx');
+            var tabs = document.querySelectorAll('.tab-link');
+            tabs.forEach(function (tab) {
+                tab.addEventListener('click', function () {
+                    if (tabSfx) {
+                        tabSfx.currentTime = 0;
+                        tabSfx.play().catch(function () {});
+                    }
+                });
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var bgMusic = document.getElementById('bgMusic');
+            if (bgMusic) {
+                bgMusic.volume = 0.5;
+                var tryPlay = function () {
+                    bgMusic.play().catch(function () {});
+                };
+                tryPlay();
+                ['click', 'keydown', 'touchstart'].forEach(function (evt) {
+                    document.addEventListener(evt, tryPlay, { once: true });
+                });
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var btn = document.getElementById('mainMenuBtn');
+            var sfx = document.getElementById('mainMenuSfx');
+            if (!btn) return;
+            var navigating = false;
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+                if (navigating) return;
+                navigating = true;
+                var target = btn.getAttribute('href');
+                if (sfx) {
+                    sfx.currentTime = 0;
+                    sfx.play().catch(function () {});
+                }
+                setTimeout(function () {
+                    window.location.href = target;
+                }, 150);
+            });
+        });
+    </script>
+</body>
+</html>

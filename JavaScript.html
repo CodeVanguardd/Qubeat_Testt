@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>JavaScript — The Complete Master Guide</title>
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800;900&family=Rajdhani:wght@600;700&family=Sora:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#07030d;
+  --panel:#120a1f;
+  --panel2:#1a0f2e;
+  --line:#3a1f5c;
+  --ink:#f3e9ff;
+  --muted:#b39cd0;
+  --pink:#ff2fb0;
+  --pink2:#ff7ad9;
+  --blue:#00e5ff;
+  --blue2:#7df9ff;
+  --danger:#ff5c7a;
+  --good:#39ffb0;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; color:var(--ink);
+  font-family:'Sora',ui-sans-serif,system-ui,-apple-system,Arial,sans-serif;
+  line-height:1.65;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(255,47,176,0.16), transparent 45%),
+    radial-gradient(circle at 85% 10%, rgba(0,229,255,0.16), transparent 40%),
+    radial-gradient(circle at 50% 90%, rgba(255,47,176,0.12), transparent 50%),
+    linear-gradient(0deg, transparent 24%, rgba(0,229,255,0.05) 25%, rgba(0,229,255,0.05) 26%, transparent 27%, transparent 74%, rgba(255,47,176,0.05) 75%, rgba(255,47,176,0.05) 76%, transparent 77%),
+    var(--bg);
+  background-size:auto, auto, auto, 60px 60px, auto;
+  position:relative;
+  overflow-x:hidden;
+}
+body::before{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+  background:linear-gradient(90deg, transparent 49%, rgba(0,229,255,0.4) 50%, transparent 51%);
+  opacity:0; mix-blend-mode:screen;
+  animation:strike 7s infinite;
+}
+body::after{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+  background:linear-gradient(180deg, transparent 60%, rgba(255,47,176,0.35) 61%, transparent 63%);
+  opacity:0; mix-blend-mode:screen;
+  animation:strike2 11s infinite;
+}
+@keyframes strike{
+  0%,93%,100%{opacity:0} 93.2%{opacity:.9} 93.4%{opacity:0} 93.6%{opacity:.5} 93.9%{opacity:0}
+}
+@keyframes strike2{
+  0%,88%,100%{opacity:0} 88.2%{opacity:.7} 88.5%{opacity:0} 88.8%{opacity:.4} 89.1%{opacity:0}
+}
+a{color:var(--blue)}
+.layout{display:grid; grid-template-columns:280px 1fr; min-height:100vh; position:relative; z-index:1;}
+nav.side{
+  position:sticky; top:0; height:100vh; overflow-y:auto;
+  background:rgba(18,10,31,0.85); backdrop-filter:blur(6px);
+  border-right:1px solid var(--line); padding:20px 14px;
+}
+nav.side h2{
+  font-size:12.5px; text-transform:uppercase; letter-spacing:.2em; font-family:'Rajdhani',sans-serif;
+  color:var(--blue2); margin:18px 6px 8px; font-weight:700;
+}
+nav.side h2:first-child{margin-top:0}
+nav.side a{
+  display:block; padding:6px 8px; border-radius:8px;
+  color:var(--muted); text-decoration:none; font-size:13.5px;
+}
+nav.side a:hover{background:var(--panel2); color:var(--pink2); text-shadow:0 0 8px var(--pink)}
+.brand{padding:6px 8px 18px; border-bottom:1px solid var(--line); margin-bottom:6px;}
+.brand .logo{font-family:'Orbitron',sans-serif; letter-spacing:0;
+  display:inline-flex; align-items:center; justify-content:center;
+  width:40px; height:40px; font-weight:900; font-size:16px;
+  border-radius:10px; color:#07030d;
+  background:linear-gradient(135deg,var(--pink),var(--blue));
+  box-shadow:0 0 18px rgba(255,47,176,.5), 0 0 30px rgba(0,229,255,.25);
+}
+.brand h1{font-size:18px; margin:10px 0 2px; font-family:'Orbitron',sans-serif; background:linear-gradient(90deg,var(--pink2),var(--blue2)); -webkit-background-clip:text; background-clip:text; color:transparent;}
+.brand p{font-size:12px; color:var(--muted); margin:0}
+main{padding:48px 56px; max-width:980px; position:relative; z-index:1;}
+.hero{
+  border:1px solid var(--line);
+  background:linear-gradient(135deg, rgba(255,47,176,0.08), rgba(0,229,255,0.08)), var(--panel);
+  border-radius:22px; padding:38px; margin-bottom:44px; position:relative; overflow:hidden;
+  box-shadow:0 0 40px rgba(255,47,176,.08), inset 0 0 60px rgba(0,229,255,.04);
+}
+.hero .kicker{color:var(--blue2); font-family:'Rajdhani',sans-serif; font-weight:700; letter-spacing:.22em; font-size:13px; text-transform:uppercase;}
+.hero h1{font-size:42px; margin:10px 0; font-family:'Orbitron',sans-serif; letter-spacing:.02em; background:linear-gradient(90deg,var(--pink2),var(--blue2)); -webkit-background-clip:text; background-clip:text; color:transparent; text-shadow:0 0 20px rgba(255,47,176,.45), 0 0 40px rgba(5,230,255,.2);}
+.hero p{color:var(--muted); max-width:640px; font-size:15.5px;}
+section{margin-bottom:56px; scroll-margin-top:24px;}
+section h2{
+  font-size:24px; display:flex; align-items:center; gap:12px; margin-bottom:6px;
+  font-family:'Rajdhani',sans-serif; font-weight:700; letter-spacing:.01em;
+  padding-bottom:10px; border-bottom:1px solid var(--line); color:var(--ink);
+}
+section h2 .num{
+  color:#07030d; background:linear-gradient(135deg,var(--pink),var(--blue)); font-size:13px; font-weight:800;
+  width:30px; height:30px; border-radius:8px; display:flex; align-items:center; justify-content:center;
+  flex:none; box-shadow:0 0 12px rgba(255,47,176,.4);
+}
+section h3{font-size:15px; color:var(--blue2); font-family:'Rajdhani',sans-serif; font-weight:600; margin:22px 0 8px; text-transform:uppercase; letter-spacing:.06em;}
+p{color:#d8c9f0; font-size:15px;}
+ul,ol{color:#d8c9f0; font-size:15px; padding-left:20px;}
+li{margin-bottom:6px;}
+.card{background:rgba(18,10,31,0.7); border:1px solid var(--line); border-radius:14px; padding:20px; margin:14px 0;}
+.grid2{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+.grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
+@media (max-width:900px){.grid2,.grid3{grid-template-columns:1fr} .layout{grid-template-columns:1fr} nav.side{position:relative; height:auto;}}
+table{width:100%; border-collapse:collapse; font-size:14px; margin:12px 0;}
+th,td{border:1px solid var(--line); padding:8px 10px; text-align:left; color:#d8c9f0;}
+th{background:var(--panel2); color:var(--pink2); font-family:'Rajdhani',sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:.04em; font-size:13px;}
+pre{
+  background:#0a0512; border:1px solid var(--line); border-radius:12px;
+  padding:16px 18px; overflow-x:auto; font-size:13.5px; margin:10px 0;
+  box-shadow:inset 0 0 20px rgba(0,229,255,.05);
+}
+code{font-family:'JetBrains Mono','Fira Code',Consolas,'Courier New',monospace;}
+.kw{color:var(--pink2)}.str{color:var(--good)}.com{color:#7a6a99;font-style:italic}.fn{color:var(--blue2)}.num2{color:#ffb86c}
+.expl{border-left:3px solid var(--pink); padding:6px 0 6px 14px; margin:8px 0; color:var(--muted); font-size:13.5px;}
+.expl li{margin-bottom:4px;}
+.pill-row{display:flex; gap:8px; flex-wrap:wrap; margin:10px 0;}
+.pill{background:var(--panel2); border:1px solid var(--line); border-radius:8px; padding:6px 12px; font-size:13px; color:#d8c9f0; font-family:'Rajdhani',sans-serif; font-weight:600; letter-spacing:.02em;}
+.good{color:var(--good)}.bad{color:var(--danger)}
+.qa{background:rgba(18,10,31,0.7); border:1px solid var(--line); border-radius:12px; padding:14px 18px; margin:10px 0;}
+.qa .q{color:var(--pink2); font-family:'Rajdhani',sans-serif; font-weight:700; font-size:15.5px; letter-spacing:.01em;}
+.qa .a{color:#d8c9f0; font-size:14px; margin-top:6px;}
+
+/* ===== Back button — select another language ===== */
+.back-wrap{ margin-bottom:22px; }
+.back-btn{
+  background-color:#852564;
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: inline-block;
+  text-align: center;
+  font-weight: bold;
+  padding: 0.7em 2em;
+  border: 3px solid #FF0072;
+  border-radius: 2px;
+  position: relative;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.1);
+  color: #07EBDA;
+  text-decoration: none;
+  transition: 0.3s ease all;
+  z-index: 1;
+  cursor:pointer;
+  font-family:inherit;
+}
+.back-btn:before {
+  transition: 0.5s all ease;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  right: 50%;
+  bottom: 0;
+  opacity: 0;
+  content: '';
+  background-color: #FF0072;
+  z-index: -1;
+}
+.back-btn:hover, .back-btn:focus {
+  color: #07EBDA;
+}
+.back-btn:hover:before, .back-btn:focus:before {
+  transition: 0.5s all ease;
+  left: 0;
+  right: 0;
+  opacity: 1;
+}
+.back-btn:active {
+  transform: scale(0.9);
+}
+
+</style>
+</head>
+<body>
+<div class="layout">
+<nav class="side">
+<div class="brand">
+<span class="logo">JS</span>
+<h1>JavaScript</h1>
+<p>Complete Master Guide</p>
+</div>
+<h2>Foundations</h2>
+<a href="#intro">1. Introduction</a>
+<a href="#history">2. History</a>
+<a href="#versions">3. Versions</a>
+<a href="#filestructure">4. File Structure</a>
+<a href="#syntax">5. Syntax</a>
+<a href="#keywords">6. Keywords</a>
+<a href="#datatypes">7. Data Types</a>
+<a href="#variables">8. Variables</a>
+<a href="#operators">9. Operators</a>
+<a href="#controlflow">10. Control Flow</a>
+<h2>Core Language</h2>
+<a href="#functions">11. Functions</a>
+<a href="#classes">12. Classes</a>
+<a href="#objects">13. Objects</a>
+<a href="#oop">14. OOP Concepts</a>
+<a href="#modules">15. Modules</a>
+<a href="#libraries">16. Libraries</a>
+<a href="#apis">17. APIs</a>
+<a href="#errors">18. Error Handling</a>
+<a href="#memory">19. Memory Management</a>
+<a href="#performance">20. Performance</a>
+<h2>Craft</h2>
+<a href="#bestpractices">21. Best Practices</a>
+<a href="#security">22. Security</a>
+<a href="#accessibility">23. Accessibility</a>
+<a href="#codestyle">24. Code Style</a>
+<a href="#patterns">25. Design Patterns</a>
+<a href="#projectstructure">26. Project Structure</a>
+<a href="#mistakes">27. Common Mistakes</a>
+<h2>Practice & Career</h2>
+<a href="#interview">28. Interview Questions</a>
+<a href="#problems">29. Practice Problems</a>
+<a href="#realprojects">30. Real Projects</a>
+<a href="#cheatsheet">31. Cheat Sheet</a>
+<a href="#faq">32. FAQ</a>
+<a href="#proscons">33. Pros and Cons</a>
+<a href="#comparison">34. Comparison</a>
+<a href="#latest">35. Latest Features</a>
+<a href="#future">36. Future</a>
+</nav>
+<main>
+  <div class="back-wrap">
+    <button class="back-btn" onclick="window.location.href='QubeatLanguage.html'">select another language</button>
+  </div>
+<div class="hero">
+    <div class="kicker">Master Guide · 36 Sections</div>
+    <h1>JavaScript</h1>
+    <p>The language of the web — dynamic, event-driven, and everywhere. From syntax to async patterns, classes, and where the language is headed next.</p>
+  </div>
+<section id="intro">
+    <h2><span class="num">1</span> Introduction</h2>
+    <p>JavaScript is a high-level, interpreted, multi-paradigm programming language most famous as the scripting language of web browsers. It lets developers add interactivity, logic, and dynamic behavior to otherwise static HTML pages — from validating a form to rendering an entire application. Outside the browser, JavaScript (via Node.js) also powers servers, command-line tools, mobile apps, and desktop software.</p>
+    <p>What makes JavaScript distinctive is its flexibility: it supports procedural, object-oriented, and functional programming styles, uses dynamic typing, and treats functions as first-class citizens. It's single-threaded but handles concurrency through an event loop, making it well suited for I/O-heavy, interactive applications.</p>
+    <div class="grid3">
+      <div class="card"><strong style="color:var(--pink2)">Type</strong><br/>Interpreted / JIT-compiled, dynamically typed</div>
+      <div class="card"><strong style="color:var(--pink2)">Runs on</strong><br/>Browsers, Node.js, Deno, Bun</div>
+      <div class="card"><strong style="color:var(--pink2)">Paradigms</strong><br/>Procedural, OOP, Functional, Event-driven</div>
+    </div>
+    <pre><code><span class="com">// A minimal JavaScript program</span>
+<span class="kw">console</span>.<span class="fn">log</span>(<span class="str">"Hello, JavaScript!"</span>);</code></pre>
+    <div class="expl">
+      <li><code>console.log()</code> is a built-in method that prints output — here, to the browser or terminal console.</li>
+      <li>The string <code>"Hello, JavaScript!"</code> is passed as an argument.</li>
+      <li>The semicolon ends the statement (optional in JS, but good practice).</li>
+    </div>
+  </section>
+
+  <section id="history">
+    <h2><span class="num">2</span> History</h2>
+    <p>JavaScript was created by <strong>Brendan Eich</strong> at Netscape in just 10 days in May 1995. It was originally named Mocha, then LiveScript, and finally renamed JavaScript as a marketing move to ride the popularity of Java — despite the two languages being fundamentally different.</p>
+    <table>
+      <tr><th>Year</th><th>Milestone</th></tr>
+      <tr><td>1995</td><td>Created at Netscape by Brendan Eich</td></tr>
+      <tr><td>1997</td><td>Standardized as ECMAScript (ECMA-262)</td></tr>
+      <tr><td>2009</td><td>Node.js released — JS runs server-side</td></tr>
+      <tr><td>2015</td><td>ES6/ES2015 — classes, modules, let/const, arrow functions</td></tr>
+      <tr><td>2015–present</td><td>Yearly ECMAScript releases (ES2016, ES2017…)</td></tr>
+    </table>
+  </section>
+
+  <section id="versions">
+    <h2><span class="num">3</span> Versions</h2>
+    <p>JavaScript follows the ECMAScript (ES) specification. Since 2015, a new version ships every year.</p>
+    <table>
+      <tr><th>Version</th><th>Key Additions</th></tr>
+      <tr><td>ES5 (2009)</td><td><code>strict mode</code>, JSON support, array methods (map, filter)</td></tr>
+      <tr><td>ES6 / ES2015</td><td>let/const, classes, arrow functions, promises, modules, template literals</td></tr>
+      <tr><td>ES2017</td><td>async/await</td></tr>
+      <tr><td>ES2020</td><td>Optional chaining <code>?.</code>, nullish coalescing <code>??</code></td></tr>
+      <tr><td>ES2022</td><td>Class fields, top-level await</td></tr>
+      <tr><td>ES2023+</td><td>Array grouping, immutable array methods (toSorted, toReversed)</td></tr>
+    </table>
+  </section>
+
+  <section id="filestructure">
+    <h2><span class="num">4</span> File Structure</h2>
+    <p>JavaScript files use the <code>.js</code> extension (or <code>.mjs</code> for native ES modules, <code>.cjs</code> for CommonJS). A file can be linked to HTML or run directly with Node.js.</p>
+    <pre><code>&lt;<span class="kw">script</span> <span class="fn">src</span>=<span class="str">"app.js"</span> <span class="fn">defer</span>&gt;&lt;/<span class="kw">script</span>&gt;</code></pre>
+    <div class="expl">
+      <li><code>src</code> points to the external JS file.</li>
+      <li><code>defer</code> tells the browser to run the script only after the HTML is parsed.</li>
+    </div>
+    <pre><code><span class="com">// app.js — typical structure</span>
+<span class="kw">import</span> { greet } <span class="kw">from</span> <span class="str">'./utils.js'</span>; <span class="com">// 1. imports</span>
+<span class="kw">const</span> APP_NAME = <span class="str">'Demo'</span>;             <span class="com">// 2. constants</span>
+<span class="kw">function</span> <span class="fn">init</span>() { <span class="fn">greet</span>(APP_NAME); }  <span class="com">// 3. logic</span>
+<span class="fn">init</span>();                                     <span class="com">// 4. execution</span></code></pre>
+  </section>
+
+  <section id="syntax">
+    <h2><span class="num">5</span> Syntax</h2>
+    <p>JavaScript syntax is C-like: curly braces define blocks, semicolons end statements, and comments start with <code>//</code> or <code>/* */</code>.</p>
+    <div class="grid2">
+      <div class="card">
+        <h3>Example 1 — Statements</h3>
+        <pre><code><span class="kw">let</span> x = <span class="num2">5</span>;      <span class="com">// declare</span>
+x = x + <span class="num2">1</span>;      <span class="com">// reassign</span>
+<span class="kw">if</span> (x &gt; <span class="num2">5</span>) {    <span class="com">// block</span>
+  <span class="kw">console</span>.<span class="fn">log</span>(x);
+}</code></pre>
+      </div>
+      <div class="card">
+        <h3>Example 2 — Expressions</h3>
+        <pre><code><span class="kw">const</span> total = (<span class="num2">2</span> + <span class="num2">3</span>) * <span class="num2">4</span>; <span class="com">// 20</span>
+<span class="kw">const</span> msg = `Total: ${total}`;   <span class="com">// template literal</span></code></pre>
+      </div>
+    </div>
+  </section>
+
+  <section id="keywords">
+    <h2><span class="num">6</span> Keywords</h2>
+    <p>Reserved words that cannot be used as identifiers:</p>
+    <div class="pill-row">
+      <span class="pill">let</span><span class="pill">const</span><span class="pill">var</span><span class="pill">function</span><span class="pill">return</span>
+      <span class="pill">if / else</span><span class="pill">switch</span><span class="pill">for</span><span class="pill">while</span><span class="pill">do</span>
+      <span class="pill">class</span><span class="pill">extends</span><span class="pill">new</span><span class="pill">this</span><span class="pill">super</span>
+      <span class="pill">import / export</span><span class="pill">try / catch / finally</span><span class="pill">throw</span>
+      <span class="pill">async / await</span><span class="pill">yield</span><span class="pill">typeof</span><span class="pill">instanceof</span>
+      <span class="pill">null</span><span class="pill">undefined</span><span class="pill">true / false</span>
+    </div>
+  </section>
+
+  <section id="datatypes">
+    <h2><span class="num">7</span> Data Types</h2>
+    <table>
+      <tr><th>Type</th><th>Example</th><th>Notes</th></tr>
+      <tr><td>Number</td><td><code>42</code>, <code>3.14</code></td><td>Single numeric type (no int/float split)</td></tr>
+      <tr><td>String</td><td><code>"hi"</code>, <code>`hi`</code></td><td>Immutable text</td></tr>
+      <tr><td>Boolean</td><td><code>true</code> / <code>false</code></td><td>Logic values</td></tr>
+      <tr><td>Undefined</td><td><code>undefined</code></td><td>Declared, not assigned</td></tr>
+      <tr><td>Null</td><td><code>null</code></td><td>Intentional absence of value</td></tr>
+      <tr><td>Object</td><td><code>{a:1}</code>, <code>[1,2]</code></td><td>Reference type</td></tr>
+      <tr><td>Symbol</td><td><code>Symbol('id')</code></td><td>Unique identifier</td></tr>
+      <tr><td>BigInt</td><td><code>10n</code></td><td>Arbitrary precision integers</td></tr>
+    </table>
+    <pre><code><span class="kw">typeof</span> <span class="num2">42</span>;        <span class="com">// "number"</span>
+<span class="kw">typeof</span> <span class="str">"hi"</span>;      <span class="com">// "string"</span>
+<span class="kw">typeof</span> <span class="kw">undefined</span>; <span class="com">// "undefined"</span></code></pre>
+  </section>
+
+  <section id="variables">
+    <h2><span class="num">8</span> Variables</h2>
+    <div class="grid2">
+      <div class="card">
+        <h3>Example 1</h3>
+        <pre><code><span class="kw">let</span> age = <span class="num2">25</span>;     <span class="com">// mutable, block-scoped</span>
+<span class="kw">const</span> PI = <span class="num2">3.14</span>;  <span class="com">// immutable binding</span>
+<span class="kw">var</span> old = <span class="str">"x"</span>;    <span class="com">// function-scoped (legacy)</span></code></pre>
+      </div>
+      <div class="card">
+        <h3>Example 2 — Destructuring</h3>
+        <pre><code><span class="kw">const</span> { name, age } = { name: <span class="str">"Ana"</span>, age: <span class="num2">30</span> };
+<span class="kw">const</span> [first, second] = [<span class="num2">1</span>, <span class="num2">2</span>];</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <section id="operators">
+    <h2><span class="num">9</span> Operators</h2>
+    <table>
+      <tr><th>Category</th><th>Operators</th></tr>
+      <tr><td>Arithmetic</td><td><code>+ - * / % **</code></td></tr>
+      <tr><td>Assignment</td><td><code>= += -= *= /=</code></td></tr>
+      <tr><td>Comparison</td><td><code>== === != !== &gt; &lt; &gt;= &lt;=</code></td></tr>
+      <tr><td>Logical</td><td><code>&amp;&amp; || !</code></td></tr>
+      <tr><td>Ternary</td><td><code>cond ? a : b</code></td></tr>
+      <tr><td>Nullish</td><td><code>?? ?.</code></td></tr>
+    </table>
+    <pre><code><span class="kw">const</span> age = <span class="num2">17</span>;
+<span class="kw">const</span> status = age &gt;= <span class="num2">18</span> ? <span class="str">"adult"</span> : <span class="str">"minor"</span>; <span class="com">// ternary</span>
+<span class="kw">const</span> name = user?.profile?.name ?? <span class="str">"Guest"</span>; <span class="com">// optional chain + nullish</span></code></pre>
+  </section>
+
+  <section id="controlflow">
+    <h2><span class="num">10</span> Control Flow</h2>
+    <div class="grid2">
+      <div class="card">
+        <h3>Example 1 — if / switch</h3>
+        <pre><code><span class="kw">if</span> (score &gt;= <span class="num2">90</span>) grade = <span class="str">"A"</span>;
+<span class="kw">else if</span> (score &gt;= <span class="num2">80</span>) grade = <span class="str">"B"</span>;
+<span class="kw">else</span> grade = <span class="str">"C"</span>;
+
+<span class="kw">switch</span> (day) {
+  <span class="kw">case</span> <span class="num2">1</span>: label = <span class="str">"Mon"</span>; <span class="kw">break</span>;
+  <span class="kw">default</span>: label = <span class="str">"?"</span>;
+}</code></pre>
+      </div>
+      <div class="card">
+        <h3>Example 2 — Loops</h3>
+        <pre><code><span class="kw">for</span> (<span class="kw">let</span> i = <span class="num2">0</span>; i &lt; <span class="num2">5</span>; i++) { <span class="kw">console</span>.<span class="fn">log</span>(i); }
+<span class="kw">for</span> (<span class="kw">const</span> item <span class="kw">of</span> [<span class="str">"a"</span>,<span class="str">"b"</span>]) { <span class="kw">console</span>.<span class="fn">log</span>(item); }
+<span class="kw">while</span> (n &gt; <span class="num2">0</span>) { n--; }</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <section id="functions">
+    <h2><span class="num">11</span> Functions</h2>
+    <div class="grid2">
+      <div class="card">
+        <h3>Example 1 — Declaration</h3>
+        <pre><code><span class="kw">function</span> <span class="fn">add</span>(a, b) {
+  <span class="kw">return</span> a + b; <span class="com">// sum returned to caller</span>
+}
+<span class="fn">add</span>(<span class="num2">2</span>, <span class="num2">3</span>); <span class="com">// 5</span></code></pre>
+      </div>
+      <div class="card">
+        <h3>Example 2 — Arrow + default params</h3>
+        <pre><code><span class="kw">const</span> greet = (name = <span class="str">"Guest"</span>) =&gt; `Hi, ${name}`;
+<span class="fn">greet</span>();       <span class="com">// "Hi, Guest"</span>
+<span class="fn">greet</span>(<span class="str">"Mo"</span>);  <span class="com">// "Hi, Mo"</span></code></pre>
+      </div>
+    </div>
+    <div class="expl">
+      <li>Arrow functions don't bind their own <code>this</code> — useful inside callbacks.</li>
+      <li>Default parameters fill in values when an argument is omitted.</li>
+    </div>
+  </section>
+
+  <section id="classes">
+    <h2><span class="num">12</span> Classes</h2>
+    <pre><code><span class="kw">class</span> Animal {
+  <span class="kw">constructor</span>(name) { <span class="kw">this</span>.name = name; }   <span class="com">// runs on 'new'</span>
+  <span class="fn">speak</span>() { <span class="kw">return</span> `${<span class="kw">this</span>.name} makes a sound`; }
+}
+<span class="kw">class</span> Dog <span class="kw">extends</span> Animal {                    <span class="com">// inheritance</span>
+  <span class="fn">speak</span>() { <span class="kw">return</span> `${<span class="kw">this</span>.name} barks`; }  <span class="com">// override</span>
+}
+<span class="kw">const</span> d = <span class="kw">new</span> Dog(<span class="str">"Rex"</span>);
+d.<span class="fn">speak</span>(); <span class="com">// "Rex barks"</span></code></pre>
+    <div class="expl">
+      <li><code>constructor</code> initializes new instances.</li>
+      <li><code>extends</code> sets up prototype-based inheritance.</li>
+      <li>Overriding <code>speak()</code> in <code>Dog</code> replaces the parent's method for that subclass.</li>
+    </div>
+  </section>
+
+  <section id="objects">
+    <h2><span class="num">13</span> Objects</h2>
+    <div class="grid2">
+      <div class="card">
+        <h3>Example 1 — Literal</h3>
+        <pre><code><span class="kw">const</span> car = {
+  brand: <span class="str">"Toyota"</span>,
+  year: <span class="num2">2022</span>,
+  <span class="fn">drive</span>() { <span class="kw">return</span> <span class="str">"vroom"</span>; }
+};
+car.brand;    <span class="com">// "Toyota"</span>
+car[<span class="str">"year"</span>]; <span class="com">// 2022</span></code></pre>
+      </div>
+      <div class="card">
+        <h3>Example 2 — Spread & keys</h3>
+        <pre><code><span class="kw">const</span> updated = { ...car, year: <span class="num2">2024</span> }; <span class="com">// clone + override</span>
+<span class="kw">Object</span>.<span class="fn">keys</span>(car);   <span class="com">// ["brand","year","drive"]</span></code></pre>
+      </div>
+    </div>
+  </section>
+
+  <section id="oop">
+    <h2><span class="num">14</span> OOP Concepts</h2>
+    <div class="grid2">
+      <div class="card"><strong style="color:var(--pink2)">Encapsulation</strong><p>Bundling data + behavior, hiding internals with <code>#privateFields</code>.</p></div>
+      <div class="card"><strong style="color:var(--pink2)">Inheritance</strong><p><code>extends</code> lets a subclass reuse a parent's behavior.</p></div>
+      <div class="card"><strong style="color:var(--pink2)">Polymorphism</strong><p>Subclasses override methods to change behavior while keeping the same interface.</p></div>
+      <div class="card"><strong style="color:var(--pink2)">Abstraction</strong><p>Exposing only what's necessary through public methods.</p></div>
+    </div>
+    <pre><code><span class="kw">class</span> Account {
+  #balance = <span class="num2">0</span>;                     <span class="com">// private field (encapsulation)</span>
+  <span class="fn">deposit</span>(amt) { <span class="kw">this</span>.#balance += amt; }
+  <span class="fn">getBalance</span>() { <span class="kw">return</span> <span class="kw">this</span>.#balance; }
+}</code></pre>
+  </section>
+
+  <section id="modules">
+    <h2><span class="num">15</span> Modules</h2>
+    <div class="grid2">
+      <div class="card">
+        <h3>math.js</h3>
+        <pre><code><span class="kw">export</span> <span class="kw">function</span> <span class="fn">square</span>(n) { <span class="kw">return</span> n * n; }
+<span class="kw">export</span> <span class="kw">const</span> PI = <span class="num2">3.14159</span>;</code></pre>
+      </div>
+      <div class="card">
+        <h3>app.js</h3>
+        <pre><code><span class="kw">import</span> { square, PI } <span class="kw">from</span> <span class="str">'./math.js'</span>;
+<span class="fn">square</span>(<span class="num2">4</span>); <span class="com">// 16</span></code></pre>
+      </div>
+    </div>
+  </section>
+
+  <section id="libraries">
+    <h2><span class="num">16</span> Libraries</h2>
+    <div class="pill-row">
+      <span class="pill">React — UI</span><span class="pill">Lodash — utilities</span><span class="pill">Axios — HTTP</span>
+      <span class="pill">Express — server</span><span class="pill">D3.js — data viz</span><span class="pill">Jest — testing</span>
+    </div>
+    <pre><code><span class="kw">import</span> axios <span class="kw">from</span> <span class="str">'axios'</span>;
+<span class="kw">const</span> res = <span class="kw">await</span> axios.<span class="fn">get</span>(<span class="str">'/api/users'</span>);</code></pre>
+  </section>
+
+  <section id="apis">
+    <h2><span class="num">17</span> APIs</h2>
+    <div class="grid2">
+      <div class="card">
+        <h3>Example 1 — Fetch API</h3>
+        <pre><code><span class="kw">const</span> res = <span class="kw">await</span> <span class="fn">fetch</span>(<span class="str">'/api/data'</span>);
+<span class="kw">const</span> data = <span class="kw">await</span> res.<span class="fn">json</span>();</code></pre>
+      </div>
+      <div class="card">
+        <h3>Example 2 — DOM API</h3>
+        <pre><code><span class="kw">document</span>.<span class="fn">querySelector</span>(<span class="str">'#btn'</span>)
+  .<span class="fn">addEventListener</span>(<span class="str">'click'</span>, () =&gt; alert(<span class="str">'hi'</span>));</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <section id="errors">
+    <h2><span class="num">18</span> Error Handling</h2>
+    <pre><code><span class="kw">try</span> {
+  <span class="kw">const</span> data = <span class="kw">JSON</span>.<span class="fn">parse</span>(badJSON); <span class="com">// may throw</span>
+} <span class="kw">catch</span> (err) {
+  <span class="kw">console</span>.<span class="fn">error</span>(<span class="str">"Failed:"</span>, err.message); <span class="com">// handle</span>
+} <span class="kw">finally</span> {
+  <span class="kw">console</span>.<span class="fn">log</span>(<span class="str">"Done"</span>);       <span class="com">// always runs</span>
+}</code></pre>
+    <div class="expl">
+      <li><code>try</code> wraps risky code.</li>
+      <li><code>catch</code> receives the thrown error object.</li>
+      <li><code>finally</code> runs regardless of success or failure.</li>
+    </div>
+  </section>
+
+  <section id="memory">
+    <h2><span class="num">19</span> Memory Management</h2>
+    <p>JavaScript uses automatic <strong>garbage collection</strong> (mark-and-sweep). Memory is freed when objects are no longer reachable from any reference.</p>
+    <pre><code><span class="kw">let</span> obj = { big: <span class="kw">new</span> Array(<span class="num2">1000000</span>) };
+obj = <span class="kw">null</span>; <span class="com">// no more references → eligible for GC</span></code></pre>
+    <p>Common leaks: forgotten timers, detached DOM references, and growing closures that hold onto large objects.</p>
+  </section>
+
+  <section id="performance">
+    <h2><span class="num">20</span> Performance</h2>
+    <ul>
+      <li>Avoid unnecessary re-renders/DOM writes — batch them.</li>
+      <li>Use <code>const</code>/<code>let</code> over <code>var</code> for predictable scoping and JIT optimization.</li>
+      <li>Debounce/throttle expensive event handlers (scroll, resize).</li>
+      <li>Use Web Workers for CPU-heavy tasks off the main thread.</li>
+    </ul>
+    <pre><code><span class="kw">function</span> <span class="fn">debounce</span>(fn, ms) {
+  <span class="kw">let</span> t;
+  <span class="kw">return</span> (...args) =&gt; { <span class="kw">clearTimeout</span>(t); t = <span class="fn">setTimeout</span>(() =&gt; fn(...args), ms); };
+}</code></pre>
+  </section>
+
+  <section id="bestpractices">
+    <h2><span class="num">21</span> Best Practices</h2>
+    <ul>
+      <li>Prefer <code>const</code>, use <code>let</code> only when reassignment is needed.</li>
+      <li>Use strict equality <code>===</code> instead of <code>==</code>.</li>
+      <li>Keep functions small and single-purpose.</li>
+      <li>Name things by intent: <code>isLoading</code>, not <code>flag</code>.</li>
+      <li>Handle promise rejections — never leave a floating <code>.then()</code> without <code>.catch()</code>.</li>
+    </ul>
+  </section>
+
+  <section id="security">
+    <h2><span class="num">22</span> Security</h2>
+    <ul>
+      <li><strong>XSS:</strong> never inject unsanitized HTML via <code>innerHTML</code>.</li>
+      <li><strong>Avoid <code>eval()</code></strong> — it executes arbitrary strings as code.</li>
+      <li>Validate input on the server, not just the client.</li>
+      <li>Use HTTPS and secure, HttpOnly cookies for sensitive data.</li>
+    </ul>
+    <pre><code><span class="com">// Bad — vulnerable to XSS</span>
+el.innerHTML = userInput;
+<span class="com">// Better</span>
+el.textContent = userInput;</code></pre>
+  </section>
+
+  <section id="accessibility">
+    <h2><span class="num">23</span> Accessibility</h2>
+    <ul>
+      <li>Use semantic HTML elements before reaching for JS-driven widgets.</li>
+      <li>Manage focus when opening modals or dynamic content.</li>
+      <li>Add ARIA attributes only when native semantics fall short.</li>
+    </ul>
+    <pre><code>btn.<span class="fn">setAttribute</span>(<span class="str">'aria-expanded'</span>, <span class="str">'true'</span>);
+modal.<span class="fn">focus</span>();</code></pre>
+  </section>
+
+  <section id="codestyle">
+    <h2><span class="num">24</span> Code Style</h2>
+    <ul>
+      <li>Use camelCase for variables/functions, PascalCase for classes.</li>
+      <li>Consistent indentation (2 spaces is common) and formatting via Prettier.</li>
+      <li>Enforce rules with ESLint.</li>
+    </ul>
+    <pre><code><span class="kw">const</span> userProfile = {};   <span class="com">// camelCase</span>
+<span class="kw">class</span> UserProfile {}      <span class="com">// PascalCase</span></code></pre>
+  </section>
+
+  <section id="patterns">
+    <h2><span class="num">25</span> Design Patterns</h2>
+    <div class="grid2">
+      <div class="card">
+        <h3>Module Pattern</h3>
+        <pre><code><span class="kw">const</span> Counter = (() =&gt; {
+  <span class="kw">let</span> count = <span class="num2">0</span>;
+  <span class="kw">return</span> { <span class="fn">inc</span>: () =&gt; ++count };
+})();</code></pre>
+      </div>
+      <div class="card">
+        <h3>Observer Pattern</h3>
+        <pre><code><span class="kw">class</span> EventBus {
+  listeners = [];
+  <span class="fn">on</span>(fn) { <span class="kw">this</span>.listeners.push(fn); }
+  <span class="fn">emit</span>(data) { <span class="kw">this</span>.listeners.forEach(f =&gt; f(data)); }
+}</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <section id="projectstructure">
+    <h2><span class="num">26</span> Project Structure</h2>
+    <pre><code>my-app/
+├── src/
+│   ├── components/
+│   ├── utils/
+│   ├── App.js
+│   └── index.js
+├── public/
+├── package.json
+└── .eslintrc</code></pre>
+  </section>
+
+  <section id="mistakes">
+    <h2><span class="num">27</span> Common Mistakes</h2>
+    <ul>
+      <li><span class="bad">Using <code>==</code></span> instead of <span class="good"><code>===</code></span> causes type coercion bugs.</li>
+      <li>Forgetting <code>await</code> on a promise, causing silent <code>[object Promise]</code> bugs.</li>
+      <li>Mutating state directly instead of creating a new copy.</li>
+      <li>Not handling <code>this</code> binding in regular (non-arrow) callbacks.</li>
+    </ul>
+  </section>
+
+  <section id="interview">
+    <h2><span class="num">28</span> Interview Questions</h2>
+    <div class="qa"><div class="q">Q: Difference between <code>let</code>, <code>const</code>, and <code>var</code>?</div><div class="a">A: <code>var</code> is function-scoped and hoisted; <code>let</code>/<code>const</code> are block-scoped. <code>const</code> can't be reassigned.</div></div>
+    <div class="qa"><div class="q">Q: What is closure?</div><div class="a">A: A function that "remembers" variables from its enclosing scope even after that scope has finished executing.</div></div>
+    <div class="qa"><div class="q">Q: Explain the event loop.</div><div class="a">A: JS runs on a single thread; the event loop moves completed async callbacks (from the task/microtask queues) back onto the call stack when it's empty.</div></div>
+  </section>
+
+  <section id="problems">
+    <h2><span class="num">29</span> Practice Problems</h2>
+    <ol>
+      <li>Reverse a string without using <code>.reverse()</code>.</li>
+      <li>Find the largest number in an array.</li>
+      <li>Check if a string is a palindrome.</li>
+      <li>Flatten a nested array.</li>
+      <li>Debounce a function from scratch.</li>
+    </ol>
+  </section>
+
+  <section id="realprojects">
+    <h2><span class="num">30</span> Real Projects</h2>
+    <div class="grid3">
+      <div class="card">To-do list app</div>
+      <div class="card">Weather dashboard (fetch API)</div>
+      <div class="card">Chat app with WebSockets</div>
+    </div>
+  </section>
+
+  <section id="cheatsheet">
+    <h2><span class="num">31</span> Cheat Sheet</h2>
+    <pre><code>Array: map filter reduce find forEach sort slice
+String: split join trim includes replace
+Object: keys values entries assign
+Async: async/await, Promise.all, fetch</code></pre>
+  </section>
+
+  <section id="faq">
+    <h2><span class="num">32</span> FAQ</h2>
+    <div class="qa"><div class="q">Is JavaScript the same as Java?</div><div class="a">No — only the name is similar; they're unrelated languages.</div></div>
+    <div class="qa"><div class="q">Do I need Node.js to write JS?</div><div class="a">No, but you need it to run JS outside the browser (servers, tooling).</div></div>
+  </section>
+
+  <section id="proscons">
+    <h2><span class="num">33</span> Pros and Cons</h2>
+    <div class="grid2">
+      <div class="card"><strong class="good">Pros</strong><ul><li>Runs everywhere (browser + server)</li><li>Huge ecosystem (npm)</li><li>Flexible, fast to prototype</li></ul></div>
+      <div class="card"><strong class="bad">Cons</strong><ul><li>Type coercion quirks</li><li>Callback/async complexity</li><li>Fragmented tooling</li></ul></div>
+    </div>
+  </section>
+
+  <section id="comparison">
+    <h2><span class="num">34</span> Comparison with Other Languages</h2>
+    <table>
+      <tr><th>Feature</th><th>JavaScript</th><th>Python</th><th>Java</th></tr>
+      <tr><td>Typing</td><td>Dynamic</td><td>Dynamic</td><td>Static</td></tr>
+      <tr><td>Primary use</td><td>Web</td><td>Data/Scripting</td><td>Enterprise</td></tr>
+      <tr><td>Concurrency</td><td>Event loop</td><td>GIL/threads</td><td>Threads</td></tr>
+    </table>
+  </section>
+
+  <section id="latest">
+    <h2><span class="num">35</span> Latest Features</h2>
+    <ul>
+      <li>Array grouping: <code>Object.groupBy()</code></li>
+      <li>Immutable array methods: <code>toSorted()</code>, <code>toReversed()</code>, <code>with()</code></li>
+      <li>Top-level <code>await</code> in modules</li>
+    </ul>
+  </section>
+
+  <section id="future">
+    <h2><span class="num">36</span> Future of the Language</h2>
+    <p>JavaScript continues evolving through annual ECMAScript releases, with growing focus on pattern matching proposals, better decorators, and tighter integration with WebAssembly for performance-critical code. Its role as the universal language of the web — and increasingly the server — keeps it central to software development.</p>
+  </section>
+</main>
+</div>
+</body>
+</html>

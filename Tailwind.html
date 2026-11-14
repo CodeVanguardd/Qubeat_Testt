@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tailwind CSS — The Complete Master Guide</title>
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800;900&family=Rajdhani:wght@600;700&family=Sora:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#07030d;
+  --panel:#120a1f;
+  --panel2:#1a0f2e;
+  --line:#3a1f5c;
+  --ink:#f3e9ff;
+  --muted:#b39cd0;
+  --pink:#ff2fb0;
+  --pink2:#ff7ad9;
+  --blue:#00e5ff;
+  --blue2:#7df9ff;
+  --danger:#ff5c7a;
+  --good:#39ffb0;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; color:var(--ink);
+  font-family:'Sora',ui-sans-serif,system-ui,-apple-system,Arial,sans-serif;
+  line-height:1.65;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(255,47,176,0.16), transparent 45%),
+    radial-gradient(circle at 85% 10%, rgba(0,229,255,0.16), transparent 40%),
+    radial-gradient(circle at 50% 90%, rgba(255,47,176,0.12), transparent 50%),
+    linear-gradient(0deg, transparent 24%, rgba(0,229,255,0.05) 25%, rgba(0,229,255,0.05) 26%, transparent 27%, transparent 74%, rgba(255,47,176,0.05) 75%, rgba(255,47,176,0.05) 76%, transparent 77%),
+    var(--bg);
+  background-size:auto, auto, auto, 60px 60px, auto;
+  position:relative;
+  overflow-x:hidden;
+}
+body::before{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+  background:linear-gradient(90deg, transparent 49%, rgba(0,229,255,0.4) 50%, transparent 51%);
+  opacity:0; mix-blend-mode:screen;
+  animation:strike 7s infinite;
+}
+body::after{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+  background:linear-gradient(180deg, transparent 60%, rgba(255,47,176,0.35) 61%, transparent 63%);
+  opacity:0; mix-blend-mode:screen;
+  animation:strike2 11s infinite;
+}
+@keyframes strike{
+  0%,93%,100%{opacity:0} 93.2%{opacity:.9} 93.4%{opacity:0} 93.6%{opacity:.5} 93.9%{opacity:0}
+}
+@keyframes strike2{
+  0%,88%,100%{opacity:0} 88.2%{opacity:.7} 88.5%{opacity:0} 88.8%{opacity:.4} 89.1%{opacity:0}
+}
+a{color:var(--blue)}
+.layout{display:grid; grid-template-columns:280px 1fr; min-height:100vh; position:relative; z-index:1;}
+nav.side{
+  position:sticky; top:0; height:100vh; overflow-y:auto;
+  background:rgba(18,10,31,0.85); backdrop-filter:blur(6px);
+  border-right:1px solid var(--line); padding:20px 14px;
+}
+nav.side h2{
+  font-size:12.5px; text-transform:uppercase; letter-spacing:.2em; font-family:'Rajdhani',sans-serif;
+  color:var(--blue2); margin:18px 6px 8px; font-weight:700;
+}
+nav.side h2:first-child{margin-top:0}
+nav.side a{
+  display:block; padding:6px 8px; border-radius:8px;
+  color:var(--muted); text-decoration:none; font-size:13.5px;
+}
+nav.side a:hover{background:var(--panel2); color:var(--pink2); text-shadow:0 0 8px var(--pink)}
+.brand{padding:6px 8px 18px; border-bottom:1px solid var(--line); margin-bottom:6px;}
+.brand .logo{font-family:'Orbitron',sans-serif; letter-spacing:0;
+  display:inline-flex; align-items:center; justify-content:center;
+  width:40px; height:40px; font-weight:900; font-size:16px;
+  border-radius:10px; color:#07030d;
+  background:linear-gradient(135deg,var(--pink),var(--blue));
+  box-shadow:0 0 18px rgba(255,47,176,.5), 0 0 30px rgba(0,229,255,.25);
+}
+.brand h1{font-size:18px; margin:10px 0 2px; font-family:'Orbitron',sans-serif; background:linear-gradient(90deg,var(--pink2),var(--blue2)); -webkit-background-clip:text; background-clip:text; color:transparent;}
+.brand p{font-size:12px; color:var(--muted); margin:0}
+main{padding:48px 56px; max-width:980px; position:relative; z-index:1;}
+.hero{
+  border:1px solid var(--line);
+  background:linear-gradient(135deg, rgba(255,47,176,0.08), rgba(0,229,255,0.08)), var(--panel);
+  border-radius:22px; padding:38px; margin-bottom:44px; position:relative; overflow:hidden;
+  box-shadow:0 0 40px rgba(255,47,176,.08), inset 0 0 60px rgba(0,229,255,.04);
+}
+.hero .kicker{color:var(--blue2); font-family:'Rajdhani',sans-serif; font-weight:700; letter-spacing:.22em; font-size:13px; text-transform:uppercase;}
+.hero h1{font-size:42px; margin:10px 0; font-family:'Orbitron',sans-serif; letter-spacing:.02em; background:linear-gradient(90deg,var(--pink2),var(--blue2)); -webkit-background-clip:text; background-clip:text; color:transparent; text-shadow:0 0 20px rgba(255,47,176,.45), 0 0 40px rgba(5,230,255,.2);}
+.hero p{color:var(--muted); max-width:640px; font-size:15.5px;}
+section{margin-bottom:56px; scroll-margin-top:24px;}
+section h2{
+  font-size:24px; display:flex; align-items:center; gap:12px; margin-bottom:6px;
+  font-family:'Rajdhani',sans-serif; font-weight:700; letter-spacing:.01em;
+  padding-bottom:10px; border-bottom:1px solid var(--line); color:var(--ink);
+}
+section h2 .num{
+  color:#07030d; background:linear-gradient(135deg,var(--pink),var(--blue)); font-size:13px; font-weight:800;
+  width:30px; height:30px; border-radius:8px; display:flex; align-items:center; justify-content:center;
+  flex:none; box-shadow:0 0 12px rgba(255,47,176,.4);
+}
+section h3{font-size:15px; color:var(--blue2); font-family:'Rajdhani',sans-serif; font-weight:600; margin:22px 0 8px; text-transform:uppercase; letter-spacing:.06em;}
+p{color:#d8c9f0; font-size:15px;}
+ul,ol{color:#d8c9f0; font-size:15px; padding-left:20px;}
+li{margin-bottom:6px;}
+.card{background:rgba(18,10,31,0.7); border:1px solid var(--line); border-radius:14px; padding:20px; margin:14px 0;}
+.grid2{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+.grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
+@media (max-width:900px){.grid2,.grid3{grid-template-columns:1fr} .layout{grid-template-columns:1fr} nav.side{position:relative; height:auto;}}
+table{width:100%; border-collapse:collapse; font-size:14px; margin:12px 0;}
+th,td{border:1px solid var(--line); padding:8px 10px; text-align:left; color:#d8c9f0;}
+th{background:var(--panel2); color:var(--pink2); font-family:'Rajdhani',sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:.04em; font-size:13px;}
+pre{
+  background:#0a0512; border:1px solid var(--line); border-radius:12px;
+  padding:16px 18px; overflow-x:auto; font-size:13.5px; margin:10px 0;
+  box-shadow:inset 0 0 20px rgba(0,229,255,.05);
+}
+code{font-family:'JetBrains Mono','Fira Code',Consolas,'Courier New',monospace;}
+.kw{color:var(--pink2)}.str{color:var(--good)}.com{color:#7a6a99;font-style:italic}.fn{color:var(--blue2)}.num2{color:#ffb86c}
+.expl{border-left:3px solid var(--pink); padding:6px 0 6px 14px; margin:8px 0; color:var(--muted); font-size:13.5px;}
+.expl li{margin-bottom:4px;}
+.pill-row{display:flex; gap:8px; flex-wrap:wrap; margin:10px 0;}
+.pill{background:var(--panel2); border:1px solid var(--line); border-radius:8px; padding:6px 12px; font-size:13px; color:#d8c9f0; font-family:'Rajdhani',sans-serif; font-weight:600; letter-spacing:.02em;}
+.good{color:var(--good)}.bad{color:var(--danger)}
+.qa{background:rgba(18,10,31,0.7); border:1px solid var(--line); border-radius:12px; padding:14px 18px; margin:10px 0;}
+.qa .q{color:var(--pink2); font-family:'Rajdhani',sans-serif; font-weight:700; font-size:15.5px; letter-spacing:.01em;}
+.qa .a{color:#d8c9f0; font-size:14px; margin-top:6px;}
+
+/* ===== Back button — select another language ===== */
+.back-wrap{ margin-bottom:22px; }
+.back-btn{
+  background-color:#852564;
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: inline-block;
+  text-align: center;
+  font-weight: bold;
+  padding: 0.7em 2em;
+  border: 3px solid #FF0072;
+  border-radius: 2px;
+  position: relative;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.1);
+  color: #07EBDA;
+  text-decoration: none;
+  transition: 0.3s ease all;
+  z-index: 1;
+  cursor:pointer;
+  font-family:inherit;
+}
+.back-btn:before {
+  transition: 0.5s all ease;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  right: 50%;
+  bottom: 0;
+  opacity: 0;
+  content: '';
+  background-color: #FF0072;
+  z-index: -1;
+}
+.back-btn:hover, .back-btn:focus {
+  color: #07EBDA;
+}
+.back-btn:hover:before, .back-btn:focus:before {
+  transition: 0.5s all ease;
+  left: 0;
+  right: 0;
+  opacity: 1;
+}
+.back-btn:active {
+  transform: scale(0.9);
+}
+
+</style>
+</head>
+<body>
+<div class="layout">
+<nav class="side">
+<div class="brand">
+<span class="logo">TW</span>
+<h1>Tailwind CSS</h1>
+<p>Complete Master Guide</p>
+</div>
+<h2>Foundations</h2>
+<a href="#intro">1. Introduction</a>
+<a href="#history">2. History</a>
+<a href="#versions">3. Versions</a>
+<a href="#filestructure">4. File Structure</a>
+<a href="#syntax">5. Syntax</a>
+<a href="#keywords">6. Keywords</a>
+<a href="#datatypes">7. Data Types</a>
+<a href="#variables">8. Variables</a>
+<a href="#operators">9. Operators</a>
+<a href="#controlflow">10. Control Flow</a>
+<h2>Core Language</h2>
+<a href="#functions">11. Functions</a>
+<a href="#classes">12. Classes</a>
+<a href="#objects">13. Objects</a>
+<a href="#oop">14. OOP Concepts</a>
+<a href="#modules">15. Modules</a>
+<a href="#libraries">16. Libraries</a>
+<a href="#apis">17. APIs</a>
+<a href="#errors">18. Error Handling</a>
+<a href="#memory">19. Memory Management</a>
+<a href="#performance">20. Performance</a>
+<h2>Craft</h2>
+<a href="#bestpractices">21. Best Practices</a>
+<a href="#security">22. Security</a>
+<a href="#accessibility">23. Accessibility</a>
+<a href="#codestyle">24. Code Style</a>
+<a href="#patterns">25. Design Patterns</a>
+<a href="#projectstructure">26. Project Structure</a>
+<a href="#mistakes">27. Common Mistakes</a>
+<h2>Practice & Career</h2>
+<a href="#interview">28. Interview Questions</a>
+<a href="#problems">29. Practice Problems</a>
+<a href="#realprojects">30. Real Projects</a>
+<a href="#cheatsheet">31. Cheat Sheet</a>
+<a href="#faq">32. FAQ</a>
+<a href="#proscons">33. Pros and Cons</a>
+<a href="#comparison">34. Comparison</a>
+<a href="#latest">35. Latest Features</a>
+<a href="#future">36. Future</a>
+</nav>
+<main>
+  <div class="back-wrap">
+    <button class="back-btn" onclick="window.location.href='QubeatLanguage.html'">select another language</button>
+  </div>
+<div class="hero">
+    <div class="kicker">Master Guide · 36 Sections</div>
+    <h1>Tailwind CSS</h1>
+    <p>A utility-first CSS framework for building custom designs fast — compose small, single-purpose classes right in your markup instead of writing new CSS.</p>
+  </div>
+
+<section id="intro"><h2><span class="num">1</span> Introduction</h2>
+<p>Tailwind CSS is a utility-first CSS framework: instead of writing custom class names and CSS rules, you compose small, single-purpose utility classes directly in your HTML — <code>flex</code>, <code>p-4</code>, <code>text-center</code> — to build designs fast without leaving the markup.</p>
+<p>It ships no pre-built components by default; instead it gives you low-level building blocks and a design system (spacing scale, colors, typography) that keeps everything consistent.</p>
+<div class="grid3">
+  <div class="card"><strong style="color:var(--pink2)">Type</strong><br/>Utility-first CSS framework</div>
+  <div class="card"><strong style="color:var(--pink2)">Runs on</strong><br/>Any HTML/JS project via build tool</div>
+  <div class="card"><strong style="color:var(--pink2)">Paradigm</strong><br/>Compositional, utility classes</div>
+</div>
+<pre><code>&lt;<span class="kw">button</span> <span class="fn">class</span>=<span class="str">"px-4 py-2 bg-pink-600 text-white rounded-lg"</span>&gt;
+  Click me
+&lt;/<span class="kw">button</span>&gt;</code></pre>
+<div class="expl"><li><code>px-4 py-2</code> sets padding on x and y axes using Tailwind's spacing scale.</li><li><code>bg-pink-600</code> and <code>text-white</code> set background and text color.</li><li><code>rounded-lg</code> applies a border-radius utility.</li></div>
+</section>
+
+<section id="history"><h2><span class="num">2</span> History</h2>
+<p>Tailwind CSS was created by <strong>Adam Wathan</strong> and released publicly in <strong>November 2017</strong>, growing out of the utility-class approach used at his consultancy.</p>
+<table><tr><th>Year</th><th>Milestone</th></tr>
+<tr><td>2017</td><td>Public release (v0.x)</td></tr>
+<tr><td>2019</td><td>v1.0 — stable utility set</td></tr>
+<tr><td>2021</td><td>v3.0 — Just-in-Time engine (on-demand classes)</td></tr>
+<tr><td>2024</td><td>v4.0 — new high-performance engine, CSS-first config</td></tr></table>
+</section>
+
+<section id="versions"><h2><span class="num">3</span> Versions</h2>
+<table><tr><th>Version</th><th>Key Additions</th></tr>
+<tr><td>v1</td><td>Core utility classes, config file</td></tr>
+<tr><td>v2</td><td>Dark mode, extended color palette</td></tr>
+<tr><td>v3</td><td>JIT engine — generates only classes you use</td></tr>
+<tr><td>v4</td><td>Oxide engine (Rust), CSS-native <code>@theme</code> config</td></tr></table>
+</section>
+
+<section id="filestructure"><h2><span class="num">4</span> File Structure</h2>
+<p>Tailwind is configured via <code>tailwind.config.js</code> and applied through directives in your main CSS file.</p>
+<pre><code><span class="com">/* input.css */</span>
+<span class="fn">@tailwind</span> base;
+<span class="fn">@tailwind</span> components;
+<span class="fn">@tailwind</span> utilities;</code></pre>
+<pre><code><span class="com">// tailwind.config.js</span>
+<span class="kw">module</span>.exports = {
+  content: [<span class="str">"./src/**/*.{html,js}"</span>],
+  theme: { extend: {} },
+};</code></pre>
+</section>
+
+<section id="syntax"><h2><span class="num">5</span> Syntax</h2>
+<div class="grid2">
+<div class="card"><h3>Example 1 — Utility classes</h3><pre><code>&lt;<span class="kw">div</span> <span class="fn">class</span>=<span class="str">"flex items-center gap-2"</span>&gt;</code></pre></div>
+<div class="card"><h3>Example 2 — Responsive prefix</h3><pre><code>&lt;<span class="kw">div</span> <span class="fn">class</span>=<span class="str">"w-full md:w-1/2 lg:w-1/3"</span>&gt;</code></pre></div>
+</div>
+</section>
+
+<section id="keywords"><h2><span class="num">6</span> Keywords (Prefixes & Modifiers)</h2>
+<div class="pill-row">
+<span class="pill">hover:</span><span class="pill">focus:</span><span class="pill">active:</span><span class="pill">disabled:</span>
+<span class="pill">sm: md: lg: xl:</span><span class="pill">dark:</span><span class="pill">group-hover:</span><span class="pill">first: last:</span>
+</div>
+</section>
+
+<section id="datatypes"><h2><span class="num">7</span> Data Types (Scales)</h2>
+<table><tr><th>Scale</th><th>Example classes</th></tr>
+<tr><td>Spacing</td><td><code>p-1</code> … <code>p-96</code></td></tr>
+<tr><td>Color</td><td><code>bg-pink-500</code>, <code>text-cyan-400</code></td></tr>
+<tr><td>Font size</td><td><code>text-sm</code> … <code>text-6xl</code></td></tr>
+<tr><td>Breakpoints</td><td><code>sm md lg xl 2xl</code></td></tr></table>
+</section>
+
+<section id="variables"><h2><span class="num">8</span> Variables (Theme Tokens)</h2>
+<div class="grid2">
+<div class="card"><h3>Example 1 — Config extension</h3><pre><code><span class="kw">theme</span>: { extend: { colors: { brand: <span class="str">'#ff2fb0'</span> } } }</code></pre></div>
+<div class="card"><h3>Example 2 — Using the token</h3><pre><code>&lt;<span class="kw">div</span> <span class="fn">class</span>=<span class="str">"bg-brand text-white"</span>&gt;</code></pre></div>
+</div>
+</section>
+
+<section id="operators"><h2><span class="num">9</span> Operators (Arbitrary Values)</h2>
+<table><tr><th>Syntax</th><th>Meaning</th></tr>
+<tr><td><code>w-[137px]</code></td><td>Arbitrary exact value</td></tr>
+<tr><td><code>bg-[#1da1f2]</code></td><td>Arbitrary hex color</td></tr>
+<tr><td><code>grid-cols-[1fr_2fr]</code></td><td>Arbitrary grid template</td></tr></table>
+</section>
+
+<section id="controlflow"><h2><span class="num">10</span> Control Flow (State Variants)</h2>
+<div class="grid2">
+<div class="card"><h3>Example 1 — Conditional states</h3><pre><code>&lt;<span class="kw">button</span> <span class="fn">class</span>=<span class="str">"bg-pink-500 hover:bg-pink-700 disabled:opacity-50"</span>&gt;</code></pre></div>
+<div class="card"><h3>Example 2 — Dark mode</h3><pre><code>&lt;<span class="kw">div</span> <span class="fn">class</span>=<span class="str">"bg-white dark:bg-gray-900"</span>&gt;</code></pre></div>
+</div>
+</section>
+
+<section id="functions"><h2><span class="num">11</span> Functions (@apply & directives)</h2>
+<div class="grid2">
+<div class="card"><h3>Example 1 — @apply</h3><pre><code><span class="fn">.btn</span> {
+  <span class="fn">@apply</span> px-4 py-2 bg-pink-600 rounded-lg text-white;
+}</code></pre></div>
+<div class="card"><h3>Example 2 — theme() function</h3><pre><code><span class="fn">.custom</span> { color: <span class="kw">theme</span>(<span class="str">'colors.pink.500'</span>); }</code></pre></div>
+</div>
+</section>
+
+<section id="classes"><h2><span class="num">12</span> Classes (Utility Composition)</h2>
+<pre><code>&lt;<span class="kw">div</span> <span class="fn">class</span>=<span class="str">"flex flex-col gap-4 p-6 rounded-xl shadow-lg bg-panel"</span>&gt;
+  &lt;<span class="kw">h2</span> <span class="fn">class</span>=<span class="str">"text-xl font-bold text-pink-400"</span>&gt;Title&lt;/<span class="kw">h2</span>&gt;
+&lt;/<span class="kw">div</span>&gt;</code></pre>
+<div class="expl"><li>Each class does exactly one job — layout, spacing, color, or typography.</li><li>Composing many small classes replaces writing custom CSS rules.</li></div>
+</section>
+
+<section id="objects"><h2><span class="num">13</span> Objects (Component Extraction)</h2>
+<p>When a utility combo repeats, extract it into a component class or a framework component (React/Vue) rather than repeating long class strings.</p>
+<pre><code><span class="kw">function</span> <span class="fn">Button</span>({ children }) {
+  <span class="kw">return</span> &lt;button className=<span class="str">"px-4 py-2 bg-pink-600 rounded-lg"</span>&gt;{children}&lt;/button&gt;;
+}</code></pre>
+</section>
+
+<section id="oop"><h2><span class="num">14</span> OOP Concepts (Component Thinking)</h2>
+<div class="grid2">
+<div class="card"><strong style="color:var(--pink2)">Composition</strong><p>Build complex UI by combining small utilities — analogous to composing small objects.</p></div>
+<div class="card"><strong style="color:var(--pink2)">Reuse</strong><p>Extract repeated utility groups into components instead of duplicating classes.</p></div>
+</div>
+</section>
+
+<section id="modules"><h2><span class="num">15</span> Modules (Plugins)</h2>
+<pre><code><span class="com">// tailwind.config.js</span>
+plugins: [require(<span class="str">'@tailwindcss/forms'</span>), require(<span class="str">'@tailwindcss/typography'</span>)]</code></pre>
+</section>
+
+<section id="libraries"><h2><span class="num">16</span> Libraries (Ecosystem)</h2>
+<div class="pill-row">
+<span class="pill">Headless UI — unstyled components</span><span class="pill">shadcn/ui — Tailwind + Radix components</span>
+<span class="pill">DaisyUI — component classes on top of Tailwind</span>
+</div>
+</section>
+
+<section id="apis"><h2><span class="num">17</span> APIs (Config API)</h2>
+<pre><code><span class="com">// programmatic theme access</span>
+<span class="kw">const</span> fullConfig = resolveConfig(tailwindConfig);
+fullConfig.theme.colors.pink[<span class="str">'500'</span>];</code></pre>
+</section>
+
+<section id="errors"><h2><span class="num">18</span> Error Handling (Build Issues)</h2>
+<ul>
+<li>Classes not generated? Check your <code>content</code> paths in the config — Tailwind only scans files it's told to.</li>
+<li>Arbitrary values with spaces need underscores: <code>grid-cols-[1fr_2fr]</code>, not a literal space.</li>
+</ul>
+</section>
+
+<section id="memory"><h2><span class="num">19</span> Memory Management (Bundle Size)</h2>
+<p>Tailwind's JIT/Oxide engine only generates CSS for classes actually found in your source files, keeping the final CSS bundle small regardless of how many utilities exist in the framework.</p>
+</section>
+
+<section id="performance"><h2><span class="num">20</span> Performance</h2>
+<ul>
+<li>Purge unused styles automatically via content scanning (on by default in v3+).</li>
+<li>Avoid excessive arbitrary values that bypass the design scale and bloat CSS.</li>
+<li>Use <code>@apply</code> sparingly — it can reintroduce specificity issues.</li>
+</ul>
+</section>
+
+<section id="bestpractices"><h2><span class="num">21</span> Best Practices</h2>
+<ul>
+<li>Stick to the design scale (spacing, colors) instead of arbitrary values when possible.</li>
+<li>Extract repeated class groups into components, not <code>@apply</code> everywhere.</li>
+<li>Use responsive and state prefixes instead of custom media queries.</li>
+</ul>
+</section>
+
+<section id="security"><h2><span class="num">22</span> Security</h2>
+<ul>
+<li>Tailwind itself introduces no runtime — it's pure CSS, so there's no JS execution risk.</li>
+<li>Be careful with dynamically constructed class strings from user input — Tailwind can't purge classes it can't statically find.</li>
+</ul>
+</section>
+
+<section id="accessibility"><h2><span class="num">23</span> Accessibility</h2>
+<ul>
+<li>Use the <code>sr-only</code> utility for screen-reader-only text.</li>
+<li>Don't rely on color utilities alone — pair with icons/text for state.</li>
+<li>Respect <code>motion-reduce:</code> variant for animations.</li>
+</ul>
+<pre><code>&lt;<span class="kw">span</span> <span class="fn">class</span>=<span class="str">"sr-only"</span>&gt;Close menu&lt;/<span class="kw">span</span>&gt;</code></pre>
+</section>
+
+<section id="codestyle"><h2><span class="num">24</span> Code Style</h2>
+<ul>
+<li>Order classes logically: layout → spacing → typography → color → state.</li>
+<li>Use the official Prettier plugin to auto-sort class order.</li>
+<li>Keep class lists readable — break long lists across lines in JSX.</li>
+</ul>
+</section>
+
+<section id="patterns"><h2><span class="num">25</span> Design Patterns</h2>
+<div class="grid2">
+<div class="card"><h3>Component extraction</h3><pre><code><span class="kw">const</span> Card = ({children}) =&gt; &lt;div className=<span class="str">"p-6 rounded-xl bg-panel"</span>&gt;{children}&lt;/div&gt;;</code></pre></div>
+<div class="card"><h3>Variant maps (cva)</h3><pre><code><span class="kw">const</span> button = cva(<span class="str">"px-4 py-2 rounded-lg"</span>, {
+  variants: { color: { pink: <span class="str">"bg-pink-600"</span>, blue: <span class="str">"bg-cyan-600"</span> } }
+});</code></pre></div>
+</div>
+</section>
+
+<section id="projectstructure"><h2><span class="num">26</span> Project Structure</h2>
+<pre><code>project/
+├── src/
+│   ├── input.css        <span class="com"># @tailwind directives</span>
+│   └── components/
+├── tailwind.config.js
+└── package.json</code></pre>
+</section>
+
+<section id="mistakes"><h2><span class="num">27</span> Common Mistakes</h2>
+<ul>
+<li>Forgetting to include all file paths in the <code>content</code> config — styles silently missing.</li>
+<li>Fighting the framework with too many arbitrary values instead of extending the theme.</li>
+<li>Overusing <code>@apply</code>, losing the benefits of utility composition.</li>
+</ul>
+</section>
+
+<section id="interview"><h2><span class="num">28</span> Interview Questions</h2>
+<div class="qa"><div class="q">Q: What is "utility-first" CSS?</div><div class="a">A: Styling elements by composing many small, single-purpose classes directly in markup, instead of writing custom CSS classes per component.</div></div>
+<div class="qa"><div class="q">Q: How does Tailwind keep bundle size small?</div><div class="a">A: Its JIT/Oxide engine scans your source files and only generates CSS for the classes actually used.</div></div>
+</section>
+
+<section id="problems"><h2><span class="num">29</span> Practice Problems</h2>
+<ol>
+<li>Build a responsive navbar using flex utilities and breakpoint prefixes.</li>
+<li>Create a pricing card with hover and dark mode variants.</li>
+<li>Recreate a button with primary/secondary variants using arbitrary or theme colors.</li>
+</ol>
+</section>
+
+<section id="realprojects"><h2><span class="num">30</span> Real Projects</h2>
+<div class="grid3">
+<div class="card">Marketing landing page</div>
+<div class="card">Admin dashboard UI</div>
+<div class="card">Design-system component library</div>
+</div>
+</section>
+
+<section id="cheatsheet"><h2><span class="num">31</span> Cheat Sheet</h2>
+<pre><code>Layout: flex grid block hidden
+Spacing: p-4 m-2 gap-4
+Typography: text-lg font-bold text-center
+Color: bg-pink-500 text-cyan-400
+State: hover: focus: disabled: dark:</code></pre>
+</section>
+
+<section id="faq"><h2><span class="num">32</span> FAQ</h2>
+<div class="qa"><div class="q">Do I still need to know CSS?</div><div class="a">Yes — Tailwind is built on CSS concepts (box model, flexbox, grid); it just gives you a faster way to apply them.</div></div>
+<div class="qa"><div class="q">Does Tailwind bloat my HTML?</div><div class="a">Class lists can get long, but component extraction (React/Vue) usually keeps things manageable.</div></div>
+</section>
+
+<section id="proscons"><h2><span class="num">33</span> Pros and Cons</h2>
+<div class="grid2">
+<div class="card"><strong class="good">Pros</strong><ul><li>Fast iteration, no context-switching to CSS files</li><li>Consistent design scale</li><li>Small production bundles</li></ul></div>
+<div class="card"><strong class="bad">Cons</strong><ul><li>Verbose class lists in markup</li><li>Learning curve for the utility naming system</li></ul></div>
+</div>
+</section>
+
+<section id="comparison"><h2><span class="num">34</span> Comparison with Other Approaches</h2>
+<table><tr><th>Feature</th><th>Tailwind</th><th>Plain CSS</th><th>Bootstrap</th></tr>
+<tr><td>Approach</td><td>Utility-first</td><td>Custom rules</td><td>Pre-built components</td></tr>
+<tr><td>Customization</td><td>High</td><td>Total</td><td>Requires overrides</td></tr></table>
+</section>
+
+<section id="latest"><h2><span class="num">35</span> Latest Features</h2>
+<ul>
+<li>Tailwind v4's Oxide engine (Rust) for much faster builds</li>
+<li>CSS-first <code>@theme</code> configuration (less JS config)</li>
+<li>Native cascade layers support</li>
+</ul>
+</section>
+
+<section id="future"><h2><span class="num">36</span> Future of the Framework</h2>
+<p>Tailwind continues to push toward faster build engines and tighter integration with native CSS features like container queries and cascade layers, reducing the gap between "utility framework" and "how CSS itself works."</p>
+</section>
+</main>
+</div>
+</body>
+</html>

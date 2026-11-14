@@ -1,0 +1,2041 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QuBeat | Choose a Language</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitcoin&family=Bitcount+Grid+Double:wght@100..900&family=Caveat:wght@400;700&family=Creepster&family=Playwrite+NZ+Basic:wght@100..400&family=Protest+Revolution&family=Rubik+Maze&family=Russo+One&family=Saira:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double:wght@100..900&family=Caveat:wght@400..700&family=Chelsea+Market&family=Creepster&family=Griffy&family=Luckiest+Guy&family=New+Tegomin&family=Playwrite+NZ+Basic:wght@100..400&family=Protest+Revolution&family=Rubik+Maze&family=Russo+One&family=Saira:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double:wght@100..900&family=Caveat:wght@400..700&family=Chelsea+Market&family=Creepster&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Griffy&family=Luckiest+Guy&family=New+Tegomin&family=Playwrite+NZ+Basic:wght@100..400&family=Protest+Revolution&family=Rubik+Maze&family=Russo+One&family=Saira:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> 
+<style>
+        :root {
+            color-scheme: dark;
+            font-family: 'Saira', sans-serif;
+            color: #f8efff;
+            background: radial-gradient(circle at top left, rgba(255, 63, 184, 0.12), transparent 25%),
+                        linear-gradient(180deg, #07050f 0%, #0b0a18 100%);
+        }
+
+        * { box-sizing: border-box; }
+        html, body { margin: 0; min-height: 100%; }
+        body { display: flex; align-items: center; justify-content: center; padding: 24px;
+        background-image: url(background.gif);
+        background-size: cover;
+    opacity:0.9rem;}
+
+        .page-shell {
+            width: min(1120px, 100%);
+            margin: 0 auto;
+        }
+
+        .page-shell {
+            width: min(1120px, 100%);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: minmax(200px, 280px) minmax(0, 1fr);
+            gap: 24px;
+            align-items: start;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            padding: 24px;
+            border-radius: 28px;
+            background: rgba(7, 9, 25, 0.92);
+            border: 1px solid rgba(255, 98, 214, 0.18);
+            box-shadow: 0 28px 70px rgba(0, 0, 0, 0.3);
+        }
+
+        .sidebar p {
+            margin: 0;
+            color: #d8b6f5;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        .comic-brutal-button-container {
+            --primary-color: #8516B5;
+            --secondary-color: #F20069;
+            --text-color: #F20069;
+            --accent-color: #00F2F2;
+            --panel-color: #00F2F2;
+            --shadow-color: rgba(0, 0, 0, 0.75);
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1.2em 0;
+            width: fit-content;
+            margin: 0 auto;
+        }
+
+        .comic-brutal-button {
+            position: relative;
+            font-size: 1.2em;
+            border: none;
+            background: none;
+            cursor: pointer;
+            padding: 0;
+            transform: rotate(-2deg);
+            transform-origin: center;
+            transition: transform 0.15s cubic-bezier(0.22, 0.61, 0.36, 1);
+        }
+ 
+        .comic-brutal-button--small {
+            font-size: 0.85em;
+        }
+
+        .button-inner {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            padding: 0.55em 1em;
+            z-index: 3;
+            overflow: hidden;
+            transform: skew(-3deg, 1deg);
+            transition: transform 0.15s cubic-bezier(0.22, 0.61, 0.36, 1);
+            clip-path: polygon(
+                0% 10%,
+                3% 0%,
+                97% 0%,
+                100% 10%,
+                100% 90%,
+                97% 100%,
+                3% 100%,
+                0% 90%
+            );
+        }
+
+        .button-text {
+            position: relative;
+            font-weight: 900;
+            font-size: 1.05em;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            z-index: 5;
+            color: var(--text-color);
+            text-shadow:
+                0.05em 0.05em 0 var(--panel-color),
+                -0.05em -0.05em 0 var(--panel-color),
+                0.05em -0.05em 0 var(--panel-color),
+                -0.05em 0.05em 0 var(--panel-color);
+            transform: rotate(2deg);
+        }
+
+        .button-frame {
+            position: absolute;
+            top: -0.3em;
+            left: -0.3em;
+            right: -0.3em;
+            bottom: -0.3em;
+            background-color: var(--accent-color);
+            border: 0.15em solid var(--text-color);
+            z-index: 1;
+            transition: transform 0.15s cubic-bezier(0.22, 0.61, 0.36, 1);
+        }
+
+        .button-shadow {
+            position: absolute;
+            top: 0.4em;
+            left: 0.4em;
+            right: -0.4em;
+            bottom: -0.4em;
+            background-color: var(--shadow-color);
+            z-index: 0;
+            transition: all 0.15s cubic-bezier(0.22, 0.61, 0.36, 1);
+        }
+
+        .halftone-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(
+                circle at 30% 30%,
+                rgba(0, 0, 0, 0.2) 0.1em,
+                transparent 0.1em
+            );
+            background-size: 0.5em 0.5em;
+            background-position: 0 0;
+            opacity: 0.3;
+            z-index: 2;
+            mix-blend-mode: multiply;
+        }
+
+        .ink-splatter {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            background: radial-gradient(
+                    circle at 20% 30%,
+                    rgba(0, 0, 0, 0.15) 0%,
+                    rgba(0, 0, 0, 0.08) 20%,
+                    transparent 50%
+                ),
+                radial-gradient(
+                    circle at 70% 65%,
+                    rgba(0, 0, 0, 0.15) 0%,
+                    rgba(0, 0, 0, 0.08) 25%,
+                    transparent 50%
+                ),
+                radial-gradient(
+                    circle at 40% 50%,
+                    rgba(0, 0, 0, 0.15) 0%,
+                    rgba(0, 0, 0, 0.08) 30%,
+                    transparent 60%
+                ),
+                radial-gradient(
+                    circle at 85% 15%,
+                    rgba(0, 0, 0, 0.15) 0%,
+                    rgba(0, 0, 0, 0.08) 15%,
+                    transparent 40%
+                );
+        }
+
+        .comic-brutal-button:hover {
+            transform: rotate(-1deg) scale(1.05);
+        }
+
+        .comic-brutal-button:hover .button-inner {
+            transform: skew(-5deg, 2deg);
+            background-color: var(--secondary-color);
+        }
+
+        .comic-brutal-button:hover .button-text {
+            color: var(--panel-color);
+            text-shadow:
+                0.05em 0.05em 0 var(--text-color),
+                -0.05em -0.05em 0 var(--text-color),
+                0.05em -0.05em 0 var(--text-color),
+                -0.05em 0.05em 0 var(--text-color);
+        }
+
+        .comic-brutal-button:hover .button-shadow {
+            transform: translate(0.2em, 0.2em);
+        }
+
+        .comic-brutal-button:hover .ink-splatter {
+            opacity: 1;
+        }
+
+        .comic-brutal-button:focus {
+            outline: none;
+        }
+
+        .comic-brutal-button:focus .button-frame {
+            border-color: var(--secondary-color);
+        }
+
+        .comic-brutal-button:active {
+            transform: rotate(0) scale(0.98);
+        }
+
+        .comic-brutal-button:active .button-inner {
+            transform: skew(0, 0);
+        }
+
+        .comic-brutal-button:active .button-shadow {
+            transform: translate(0.1em, 0.1em);
+        }
+
+        @keyframes burst {
+            0% {
+                transform: scale(0.95);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .comic-brutal-button:active .button-text {
+            animation: burst 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes dash {
+            to {
+                stroke-dashoffset: -20;
+            }
+        }
+
+        .comic-brutal-button:focus::after {
+            content: "";
+            position: absolute;
+            top: -0.5em;
+            left: -0.5em;
+            right: -0.5em;
+            bottom: -0.5em;
+            border: 0.15em dashed var(--text-color);
+            z-index: 0;
+            animation: dash 1s linear infinite;
+            pointer-events: none;
+        }
+
+        .comic-brutal-button::before {
+            content: "";
+            position: absolute;
+            top: 0.4em;
+            left: 0.8em;
+            width: 1em;
+            height: 1em;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            z-index: 2;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .comic-brutal-button:hover::before {
+            opacity: 0.7;
+        }
+
+        @keyframes action-lines {
+            0% {
+                opacity: 0;
+                transform: scale(0.7);
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: scale(1.2);
+            }
+        }
+
+        .comic-brutal-button:active::before {
+            content: "";
+            position: absolute;
+            top: -1em;
+            left: -1em;
+            right: -1em;
+            bottom: -1em;
+            background-image: radial-gradient(var(--text-color) 0%, transparent 70%),
+                repeating-conic-gradient(
+                    transparent 0%,
+                    transparent 5%,
+                    var(--text-color) 5%,
+                    var(--text-color) 6%
+                );
+            opacity: 0;
+            z-index: 6;
+            mix-blend-mode: overlay;
+            pointer-events: none;
+            animation: action-lines 0.5s ease-out forwards;
+        }
+
+        .menu-shell {
+            background: rgba(6, 10, 24, 0.96);
+            border: 1px solid rgba(255, 98, 214, 0.18);
+            border-radius: 28px;
+            box-shadow: 0 30px 90px rgba(0, 0, 0, 0.55);
+            overflow: hidden;
+            position: relative;
+            padding: 32px;
+        }
+
+        .menu-shell::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            pointer-events: none;
+            box-shadow: inset 0 0 0 1px rgba(255, 98, 214, 0.1);
+        }
+
+        .topbar {
+            position: relative;
+            z-index: 1;
+            text-align: left;
+            margin-bottom: 24px;
+        }
+
+        .topbar h1 {
+            margin: 0 0 8px;
+            font-family: 'Bitcoin', cursive;
+            font-size: clamp(2.4rem, 4vw, 3.6rem);
+            letter-spacing: 0.22em;
+            color: #ff80dc;
+            text-transform: uppercase;
+            text-shadow: 0 0 24px rgba(255, 98, 214, 0.35);
+        }
+
+        .topbar p {
+            margin: 0;
+            font-family: 'Protest Revolution', cursive;
+            color: #d8b6f5;
+            font-size: 1rem;
+            line-height: 1.7;
+            max-width: 720px;
+        }
+
+        .selection-grid {
+            display: grid;
+            gap: 18px;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .language-button {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+            min-height: 140px;
+            padding: 24px;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            background: rgba(10, 13, 32, 0.96);
+            color: #fff;
+            cursor: pointer;
+            text-align: left;
+            transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .language-button:hover,
+        .language-button.active {
+            transform: translateY(-2px);
+            border-color: rgba(255, 98, 214, 0.45);
+            box-shadow: 0 18px 40px rgba(255, 98, 214, 0.18);
+            background: rgba(22, 9, 46, 0.98);
+        }
+
+        .language-button.active {
+            color: #fff;
+            outline: 2px solid rgba(255, 98, 214, 0.22);
+        }
+
+        .language-button .label {
+            display: block;
+            font-family: 'Rubik Maze', cursive;
+            font-size: 0.8rem;
+            letter-spacing: 0.24em;
+            text-transform: uppercase;
+            color: rgba(255, 198, 255, 0.7);
+        }
+
+        .language-button .name {
+            margin: 0;
+            font-family: 'Creepster', cursive;
+            font-size: 1.35rem;
+            font-weight: 700;
+            line-height: 1.1;
+            color: #ffd8f0;
+        }
+
+        .language-button .detail {
+            margin: 0;
+            color: #d8c3f8;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            max-width: 100%;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(4, 4, 18, 0.82);
+            display: grid;
+            place-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.24s ease, visibility 0.24s ease;
+            z-index: 10;
+        }
+
+        .modal-overlay.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .language-modal {
+            width: min(720px, calc(100% - 40px));
+            padding: 30px;
+            border-radius: 28px;
+            background: rgba(9, 7, 26, 0.98);
+            border: 1px solid rgba(255, 98, 214, 0.22);
+            box-shadow: 0 28px 80px rgba(0, 0, 0, 0.35);
+            position: relative;
+        }
+
+        .language-modal::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            pointer-events: none;
+            box-shadow: inset 0 0 0 1px rgba(255, 98, 214, 0.08);
+        }
+
+        .language-modal h2 {
+            margin: 0 0 12px;
+            font-family: 'Creepster', cursive;
+            font-size: clamp(2rem, 3vw, 2.4rem);
+            color: #ff80dc;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+        }
+
+        .language-modal p {
+            margin: 0 0 26px;
+            font-family: 'Russo One', sans-serif;
+            color: #e5c7ff;
+            line-height: 1.8;
+            font-size: 1rem;
+            max-width: 76ch;
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .close-btn {
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            background: rgba(255, 255, 255, 0.06);
+            color: #f9f3ff;
+            border-radius: 16px;
+            padding: 12px 16px;
+            cursor: pointer;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .close-btn:hover {
+            transform: translateY(-1px);
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .actions .action-btn:last-child {
+            margin-left: auto;
+        }
+
+        .action-btn {
+            border: none;
+            border-radius: 16px;
+            padding: 12px 18px;
+            min-width: 140px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+            text-decoration: none;
+            color: #040414;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .action-btn.primary {
+            background: linear-gradient(90deg, #ff5ae1, #56e5ff);
+            box-shadow: 0 16px 30px rgba(255, 90, 225, 0.25);
+            color: #040414;
+        }
+
+        .action-btn.secondary {
+            background: rgba(255, 255, 255, 0.08);
+            color: #ffdaf6;
+            border: 1px solid rgba(255, 98, 214, 0.25);
+            box-shadow: inset 0 0 12px rgba(255, 98, 214, 0.06);
+        }
+
+        .slice {
+            --c1: #14E0CF;
+            --c2: #E0146E;
+            --size-letter: 22px;
+            padding: 0.35em 0.9em;
+            font-size: var(--size-letter);
+            min-width: 110px;
+            background-color: transparent;
+            border: calc(var(--size-letter) / 6) solid var(--c2);
+            border-radius: 0.2em;
+            cursor: pointer;
+            overflow: hidden;
+            position: relative;
+            transition: 300ms cubic-bezier(0.83, 0, 0.17, 1);
+        }
+
+        .slice .text {
+            font-weight: 700;
+            color: var(--c2);
+            position: relative;
+            z-index: 1;
+            transition: color 700ms cubic-bezier(0.83, 0, 0.17, 1);
+        }
+
+        .slice::after {
+            content: "";
+            width: 0;
+            height: calc(300% + 1em);
+            position: absolute;
+            inset: 50%;
+            transform: translate(-50%, -50%) rotate(30deg);
+            background-color: var(--c2);
+            transition: 1000ms cubic-bezier(0.83, 0, 0.17, 1);
+            z-index: 0;
+        }
+
+        .slice:hover {
+            border-color: var(--c1);
+        }
+
+        .slice:hover .text {
+            color: var(--c1);
+        }
+
+        .slice:hover::after {
+            width: calc(120% + 1em);
+        }
+
+        .slice:active {
+            transform: scale(0.98);
+            filter: brightness(0.9);
+        }
+
+        .cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 11px 33px;
+            font-size: 1rem;
+            font-weight: 700;
+            color: white;
+            background: #D60967;
+            transition: 0.5s;
+            box-shadow: 6px 6px 0 black;
+            transform: skewX(-15deg);
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .cta:focus {
+            outline: none;
+        }
+
+        .cta:hover {
+            box-shadow: 10px 10px 0 #09D6CF;
+        }
+
+        .cta .span {
+            transform: skewX(15deg);
+        }
+
+        .cta .second {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            margin-left: 18px;
+            transition: 0.5s;
+        }
+
+        .cta:hover .second {
+            margin-left: 28px;
+        }
+
+        .cta svg {
+            display: block;
+            width: 24px;
+            height: 20px;
+        }
+
+        .cta .one,
+        .cta .two,
+        .cta .three {
+            transition: 0.4s;
+        }
+
+        .cta .one {
+            transform: translateX(-60%);
+        }
+
+        .cta .two {
+            transform: translateX(-30%);
+        }
+
+        .cta:hover .three {
+            animation: color_anim 1s infinite 0.2s;
+        }
+
+        .cta:hover .one {
+            transform: translateX(0%);
+            animation: color_anim 1s infinite 0.6s;
+        }
+
+        .cta:hover .two {
+            transform: translateX(0%);
+            animation: color_anim 1s infinite 0.4s;
+        }
+
+        @keyframes color_anim {
+            0% { fill: #FF05C6; }
+            50% { fill: #FF05C6; }
+            100% { fill: #FF05C6; }
+        }
+
+        @media (max-width: 1024px) {
+            .page-shell {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .selection-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .difficulty-selector {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(112px, 1fr));
+            gap: 10px;
+            margin: 16px 0;
+            justify-content: center;
+        }
+
+        .difficulty-wrapper {
+            position: relative;
+            height: 42px;
+            width: 100%;
+        }
+
+        .diff-input {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            cursor: pointer;
+            z-index: 10;
+            opacity: 0;
+        }
+
+        .diff-btn {
+            --primary: #1abc9c;
+            --shadow-primary: #00F2DA;
+            --color: #000000;
+            --font-size: 13px;
+            --shadow-primary-hue: 180;
+            --shadow-secondary-hue: 60;
+            --shadow-secondary: hsl(var(--shadow-secondary-hue), 90%, 60%);
+            --clip: polygon(11% 0, 95% 0, 100% 25%, 90% 90%, 95% 90%, 85% 90%, 85% 100%, 7% 100%, 0 80%);
+            --border: 5px;
+            --shimmy-distance: 5;
+            --clip-one: polygon(0 2%, 100% 2%, 100% 95%, 95% 95%, 95% 90%, 85% 90%, 85% 95%, 8% 95%, 0 70%);
+            --clip-two: polygon(0 78%, 100% 78%, 100% 100%, 95% 100%, 95% 90%, 85% 90%, 85% 100%, 8% 100%, 0 78%);
+            --clip-three: polygon(0 44%, 100% 44%, 100% 54%, 95% 54%, 95% 54%, 85% 54%, 85% 54%, 8% 54%, 0 54%);
+            --clip-four: polygon(0 0, 100% 0, 100% 0, 95% 0, 95% 0, 85% 0, 85% 0, 8% 0, 0 0);
+            --clip-five: polygon(0 0, 100% 0, 100% 0, 95% 0, 95% 0, 85% 0, 85% 0, 8% 0, 0 0);
+            --clip-six: polygon(0 40%, 100% 40%, 100% 85%, 95% 85%, 95% 85%, 85% 85%, 85% 85%, 8% 85%, 0 70%);
+            --clip-seven: polygon(0 63%, 100% 63%, 100% 80%, 95% 80%, 95% 80%, 85% 80%, 85% 80%, 8% 80%, 0 70%);
+            background: var(--primary);
+            color: var(--color);
+            text-transform: uppercase;
+            font-size: var(--font-size);
+            letter-spacing: 3px;
+            position: relative;
+            font-weight: 900;
+            width: 100%;
+            height: 100%;
+            line-height: 42px;
+            text-align: center;
+            transition: background 0.2s, 0.3s;
+            text-shadow: 0 0 4px rgba(255, 255, 255, 0.3);
+        }
+
+        .difficulty-wrapper:nth-child(1) .diff-btn {
+            --primary: #1E9630;
+            --shadow-primary: #2EBB50;
+        }
+
+        .difficulty-wrapper:nth-child(2) .diff-btn {
+            --primary: #f39c12;
+            --shadow-primary: #FFD700;
+        }
+
+        .difficulty-wrapper:nth-child(3) .diff-btn {
+            --primary: #FF0018;
+            --shadow-primary: #FF5555;
+        }
+
+        .diff-input:checked + .diff-btn {
+            --primary: #F20091;
+            --shadow-primary: #FF00D9;
+        }
+
+        .difficulty-wrapper:nth-child(2) .diff-input:checked + .diff-btn {
+            --primary: #F20091;
+            --shadow-primary: #FF00D9;
+        }
+
+        .difficulty-wrapper:nth-child(3) .diff-input:checked + .diff-btn {
+            --primary: #F20091;
+            --shadow-primary: #FF00D9;
+        }
+
+        .diff-input:hover + .diff-btn {
+            --font-size: 11px;
+        }
+
+        .diff-btn:after, .diff-btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            clip-path: var(--clip);
+            z-index: -1;
+        }
+
+        .diff-btn:before {
+            background: var(--shadow-primary);
+            transform: translate(var(--border), 0);
+        }
+
+        .diff-btn:after {
+            background: var(--primary);
+        }
+
+        .diff-glitch {
+            position: absolute;
+            top: calc(var(--border) * -1);
+            left: calc(var(--border) * -1);
+            right: calc(var(--border) * -1);
+            bottom: calc(var(--border) * -1);
+            background: var(--shadow-primary);
+            text-shadow: 2px 2px var(--shadow-primary), -2px -2px var(--shadow-secondary);
+            clip-path: var(--clip);
+            animation: glitch-diff 2s infinite;
+            display: none;
+        }
+
+        .diff-input:hover + .diff-btn .diff-glitch {
+            display: block;
+        }
+
+        .diff-input:checked + .diff-btn .diff-glitch {
+            display: block;
+            animation: glitch-diff 5s infinite;
+        }
+
+        .diff-glitch:before {
+            content: '';
+            position: absolute;
+            top: calc(var(--border) * 1);
+            right: calc(var(--border) * 1);
+            bottom: calc(var(--border) * 1);
+            left: calc(var(--border) * 1);
+            clip-path: var(--clip);
+            background: var(--primary);
+            z-index: -1;
+        }
+
+        @keyframes glitch-diff {
+            0% { clip-path: var(--clip-one); }
+            2%, 8% { clip-path: var(--clip-two); transform: translate(calc(var(--shimmy-distance) * -1%), 0); }
+            6% { clip-path: var(--clip-two); transform: translate(calc(var(--shimmy-distance) * 1%), 0); }
+            9% { clip-path: var(--clip-two); transform: translate(0, 0); }
+            10% { clip-path: var(--clip-three); transform: translate(calc(var(--shimmy-distance) * 1%), 0); }
+            13% { clip-path: var(--clip-three); transform: translate(0, 0); }
+            14%, 21% { clip-path: var(--clip-four); transform: translate(calc(var(--shimmy-distance) * 1%), 0); }
+            25% { clip-path: var(--clip-five); transform: translate(calc(var(--shimmy-distance) * 1%), 0); }
+            30% { clip-path: var(--clip-five); transform: translate(calc(var(--shimmy-distance) * -1%), 0); }
+            35%, 45% { clip-path: var(--clip-six); transform: translate(calc(var(--shimmy-distance) * -1%)); }
+            40% { clip-path: var(--clip-six); transform: translate(calc(var(--shimmy-distance) * 1%)); }
+            50% { clip-path: var(--clip-six); transform: translate(0, 0); }
+            55% { clip-path: var(--clip-seven); transform: translate(calc(var(--shimmy-distance) * 1%), 0); }
+            60% { clip-path: var(--clip-seven); transform: translate(0, 0); }
+            31%, 61%, 100% { clip-path: var(--clip-four); }
+        }
+
+        .diff-btn {
+            --primary: #1abc9c;
+            --shadow-primary: #00F2DA;
+            --shadow-primary-hue: 180;
+            --clip: polygon(11% 0, 95% 0, 100% 25%, 90% 90%, 95% 90%, 85% 90%, 85% 100%, 7% 100%, 0 80%);
+            --shimmy-distance: 5;
+            letter-spacing: 3px;
+        }
+
+        .difficulty-wrapper .diff-input {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            cursor: pointer;
+            z-index: 10;
+            opacity: 0;
+        }
+
+        .diff-btn {
+            --primary: #1abc9c;
+            --shadow-primary: #00F2DA;
+            --color: #000000;
+            --font-size: 13px;
+            --shadow-primary-hue: 180;
+            --shadow-secondary-hue: 60;
+            --shadow-secondary: hsl(var(--shadow-secondary-hue), 90%, 60%);
+            --clip: polygon(11% 0, 95% 0, 100% 25%, 90% 90%, 95% 90%, 85% 90%, 85% 100%, 7% 100%, 0 80%);
+            --border: 5px;
+            --shimmy-distance: 5;
+            --clip-one: polygon(0 2%, 100% 2%, 100% 95%, 95% 95%, 95% 90%, 85% 90%, 85% 95%, 8% 95%, 0 70%);
+            --clip-two: polygon(0 78%, 100% 78%, 100% 100%, 95% 100%, 95% 90%, 85% 90%, 85% 100%, 8% 100%, 0 78%);
+            --clip-three: polygon(0 44%, 100% 44%, 100% 54%, 95% 54%, 95% 54%, 85% 54%, 85% 54%, 8% 54%, 0 54%);
+            --clip-four: polygon(0 0, 100% 0, 100% 0, 95% 0, 95% 0, 85% 0, 85% 0, 8% 0, 0 0);
+            --clip-five: polygon(0 0, 100% 0, 100% 0, 95% 0, 95% 0, 85% 0, 85% 0, 8% 0, 0 0);
+            --clip-six: polygon(0 40%, 100% 40%, 100% 85%, 95% 85%, 95% 85%, 85% 85%, 85% 85%, 8% 85%, 0 70%);
+            --clip-seven: polygon(0 63%, 100% 63%, 100% 80%, 95% 80%, 95% 80%, 85% 80%, 85% 80%, 8% 80%, 0 70%);
+            background: var(--primary);
+            color: var(--color);
+            text-transform: uppercase;
+            font-size: var(--font-size);
+            letter-spacing: 3px;
+            position: relative;
+            font-weight: 900;
+            width: 100%;
+            height: 100%;
+            line-height: 42px;
+            text-align: center;
+            transition: background 0.2s, 0.3s;
+            text-shadow: 0 0 4px rgba(255, 255, 255, 0.3);
+        }
+
+        .difficulty-wrapper:nth-child(1) .diff-btn {
+            --primary: #1E9630;
+            --shadow-primary: #2EBB50;
+        }
+
+        .difficulty-wrapper:nth-child(2) .diff-btn {
+            --primary: #f39c12;
+            --shadow-primary: #FFD700;
+        }
+
+        .difficulty-wrapper:nth-child(3) .diff-btn {
+            --primary: #FF0018;
+            --shadow-primary: #FF5555;
+        }
+
+        .diff-input:checked + .diff-btn {
+            --primary: #F20091;
+            --shadow-primary: #FF00D9;
+        }
+
+        .difficulty-wrapper:nth-child(2) .diff-input:checked + .diff-btn {
+            --primary: #F20091;
+            --shadow-primary: #FF00D9;
+        }
+
+        .difficulty-wrapper:nth-child(3) .diff-input:checked + .diff-btn {
+            --primary: #F20091;
+            --shadow-primary: #FF00D9;
+        }
+
+        .diff-input:hover + .diff-btn {
+            --font-size: 11px;
+        }
+
+        .diff-btn:after, .diff-btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            clip-path: var(--clip);
+            z-index: -1;
+        }
+
+        .diff-btn:before {
+            background: var(--shadow-primary);
+            transform: translate(var(--border), 0);
+        }
+
+        .diff-btn:after {
+            background: var(--primary);
+        }
+
+        .diff-glitch {
+            position: absolute;
+            top: calc(var(--border) * -1);
+            left: calc(var(--border) * -1);
+            right: calc(var(--border) * -1);
+            bottom: calc(var(--border) * -1);
+            background: var(--shadow-primary);
+            text-shadow: 2px 2px var(--shadow-primary), -2px -2px var(--shadow-secondary);
+            clip-path: var(--clip);
+            animation: glitch-diff 2s infinite;
+            display: none;
+        }
+
+        .diff-input:hover + .diff-btn .diff-glitch {
+            display: block;
+        }
+
+        .diff-input:checked + .diff-btn .diff-glitch {
+            display: block;
+            animation: glitch-diff 5s infinite;
+        }
+
+        .diff-glitch:before {
+            content: '';
+            position: absolute;
+            top: calc(var(--border) * 1);
+            right: calc(var(--border) * 1);
+            bottom: calc(var(--border) * 1);
+            left: calc(var(--border) * 1);
+            clip-path: var(--clip);
+            background: var(--primary);
+            z-index: -1;
+        }
+
+        @keyframes glitch-diff {
+            0% { clip-path: var(--clip-one); }
+            2%, 8% { clip-path: var(--clip-two); transform: translate(calc(var(--shimmy-distance) * -1%), 0); }
+            6% { clip-path: var(--clip-two); transform: translate(calc(var(--shimmy-distance) * 1%), 0); }
+            9% { clip-path: var(--clip-two); transform: translate(0, 0); }
+            10% { clip-path: var(--clip-three); transform: translate(calc(var(--shimmy-distance) * 1%), 0); }
+            13% { clip-path: var(--clip-three); transform: translate(0, 0); }
+            14%, 21% { clip-path: var(--clip-four); transform: translate(calc(var(--shimmy-distance) * 1%), 0); }
+            25% { clip-path: var(--clip-five); transform: translate(calc(var(--shimmy-distance) * 1%), 0); }
+            30% { clip-path: var(--clip-five); transform: translate(calc(var(--shimmy-distance) * -1%), 0); }
+            35%, 45% { clip-path: var(--clip-six); transform: translate(calc(var(--shimmy-distance) * -1%)); }
+            40% { clip-path: var(--clip-six); transform: translate(calc(var(--shimmy-distance) * 1%)); }
+            50% { clip-path: var(--clip-six); transform: translate(0, 0); }
+            55% { clip-path: var(--clip-seven); transform: translate(calc(var(--shimmy-distance) * 1%), 0); }
+            60% { clip-path: var(--clip-seven); transform: translate(0, 0); }
+            31%, 61%, 100% { clip-path: var(--clip-four); }
+        }
+
+        .questions-container {
+            margin-top: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+            padding: 16px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 98, 214, 0.12);
+        }
+
+        .question-item {
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(255, 98, 214, 0.08);
+        }
+
+        .question-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .question-number {
+            font-weight: 700;
+            color: #ff88ee;
+            font-size: 0.95rem;
+            margin-bottom: 6px;
+        }
+
+        .question-text {
+            color: #ffd8f2;
+            line-height: 1.5;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .question-options {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-left: 12px;
+        }
+
+        .option-item {
+            color: #d8b6f5;
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        .option-item.correct {
+            color: #00ff88;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <audio id="btnSyntaxSfx" src="musics/Button2.m4a"></audio>
+    <audio id="btnCompilerSfx" src="musics/Button2.m4a"></audio>
+    <audio id="btnOverclockSfx" src="musics/Button2.m4a"></audio>
+    <audio id="bgMusic" src="Language_Page_Music.mp3" loop preload="auto"></audio>
+    <audio id="mainMenuSfx" src="musics/main_menu.mp3" preload="auto"></audio>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var bgMusic = document.getElementById('bgMusic');
+            if (!bgMusic) return;
+            bgMusic.volume = 0.5;
+
+            var events = ['click', 'keydown', 'touchstart'];
+
+            function stopListening() {
+                events.forEach(function (evt) {
+                    document.removeEventListener(evt, unlockOnGesture);
+                });
+            }
+
+            function startMusic() {
+                var playPromise = bgMusic.play();
+                if (playPromise && typeof playPromise.then === 'function') {
+                    playPromise.then(stopListening).catch(function (err) {
+                        console.warn('QuBeat: background music blocked, waiting for interaction.', err);
+                    });
+                }
+            }
+
+            function unlockOnGesture() {
+                startMusic();
+            }
+
+            startMusic();
+            events.forEach(function (evt) {
+                document.addEventListener(evt, unlockOnGesture);
+            });
+        });
+    </script>
+    <div class="page-shell">
+        <aside class="sidebar">
+            <div class="comic-brutal-button-container">
+                <button class="comic-brutal-button" type="button" onclick="(function(btn){ var sfx=document.getElementById('mainMenuSfx'); if(sfx){ sfx.currentTime=0; sfx.play().catch(function(){}); } setTimeout(function(){ window.location.href='Qubeat.html'; }, 150); })(this)" aria-label="Back to home">
+                    <div class="button-inner">
+                        <span class="button-text">Back</span>
+                        <div class="halftone-overlay"></div>
+                        <div class="ink-splatter"></div>
+                    </div>
+                    <div class="button-shadow"></div>
+                    <div class="button-frame"></div>
+                </button>
+            </div>
+            <h2 style="margin:0; font-family: 'Creepster', cursive; font-size: 1.8rem; color: #ff80dc; letter-spacing: 0.14em;">TIP:</h2>
+            <p>Before entering the battle, choose a programming language to learn. Master its basics first to prepare for coding challenges, earn victories, and build your programming skills as you progress through the game.</p>
+        </aside>
+
+        <section class="menu-shell">
+            <div class="topbar">
+                <h1 class="glitch" data-text="Language Lab" style="font-family: 'Bitcount Grid Double', sans-serif;">Language Lab</h1>
+                <p>Pick a language from the selection grid. After clicking a language, choose either Play or Learn More below.</p>
+            </div>
+
+            <div class="selection-grid" id="languageGrid"></div>
+
+        </section>
+    </div>
+
+    <div class="modal-overlay" id="languageModalOverlay" aria-hidden="true">
+        <div class="language-modal" role="dialog" aria-modal="true" aria-labelledby="selectedLanguage">
+            <div class="modal-header">
+                <h2 id="selectedLanguage" style="font-family: 'Creepster', sans-serif; letter-spacing: 6px;">HTML</h2>
+                <div class="comic-brutal-button-container" style="margin:0; padding:0;">
+                    <button class="comic-brutal-button comic-brutal-button--small" id="closeModalBtn" type="button" aria-label="Close">
+                        <div class="button-inner">
+                            <span class="button-text">Close</span>
+                            <div class="halftone-overlay"></div>
+                            <div class="ink-splatter"></div>
+                        </div>
+                        <div class="button-shadow"></div>
+                        <div class="button-frame"></div>
+                    </button>
+                </div>
+            </div>
+            <p id="selectedSummary">HTML is the structure of the web. It organizes content into headings, paragraphs, links, and forms.</p>
+            <p style="text-align: center; margin: 16px 0; font-size: 1.1em; color: #f8efff; font-weight: 600;">Choose Your Difficulty</p>
+            <div class="difficulty-selector" id="difficultySelector">
+                <div class="difficulty-wrapper">
+                    <input class="diff-input" name="difficulty" id="diff-easy" type="radio" value="easy" checked>
+                    <div class="diff-btn">
+                        Syntax
+                        <span class="diff-glitch" aria-hidden=""></span>
+                    </div>
+                </div>
+                <div class="difficulty-wrapper">
+                    <input class="diff-input" name="difficulty" id="diff-medium" type="radio" value="medium">
+                    <div class="diff-btn">
+                        Compiler
+                        <span class="diff-glitch" aria-hidden=""></span>
+                    </div>
+                </div>
+                <div class="difficulty-wrapper">
+                    <input class="diff-input" name="difficulty" id="diff-hard" type="radio" value="hard">
+                    <div class="diff-btn">
+                        OVERCLOCK
+                        <span class="diff-glitch" aria-hidden=""></span>
+                    </div>
+                </div>
+            </div>
+            <div class="actions">
+                <button class="action-btn primary cta" id="playLanguageBtn" type="button">
+                    <span class="span">Begin</span>
+                    <span class="second">
+                        <svg width="50px" height="20px" viewBox="0 0 66 43" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g id="arrow" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <path class="one" d="M40.1543933,3.89485454 L43.9763149,0.139296592 C44.1708311,-0.0518420739 44.4826329,-0.0518571125 44.6771675,0.139262789 L65.6916134,20.7848311 C66.0855801,21.1718824 66.0911863,21.8050225 65.704135,22.1989893 C65.7000188,22.2031791 65.6958657,22.2073326 65.6916762,22.2114492 L44.677098,42.8607841 C44.4825957,43.0519059 44.1708242,43.0519358 43.9762853,42.8608513 L40.1545186,39.1069479 C39.9575152,38.9134427 39.9546793,38.5968729 40.1481845,38.3998695 C40.1502893,38.3977268 40.1524132,38.395603 40.1545562,38.3934985 L56.9937789,21.8567812 C57.1908028,21.6632968 57.193672,21.3467273 57.0001876,21.1497035 C56.9980647,21.1475418 56.9959223,21.1453995 56.9937605,21.1432767 L40.1545208,4.60825197 C39.9574869,4.41477773 39.9546013,4.09820839 40.1480756,3.90117456 C40.1501626,3.89904911 40.1522686,3.89694235 40.1543933,3.89485454 Z" fill="#FFFFFF"></path>
+                                <path class="two" d="M20.1543933,3.89485454 L23.9763149,0.139296592 C24.1708311,-0.0518420739 24.4826329,-0.0518571125 24.6771675,0.139262789 L45.6916134,20.7848311 C46.0855801,21.1718824 46.0911863,21.8050225 45.704135,22.1989893 C45.7000188,22.2031791 45.6958657,22.2073326 45.6916762,22.2114492 L24.677098,42.8607841 C24.4825957,43.0519059 24.1708242,43.0519358 23.9762853,42.8608513 L20.1545186,39.1069479 C19.9575152,38.9134427 19.9546793,38.5968729 20.1481845,38.3998695 C20.1502893,38.3977268 20.1524132,38.395603 20.1545562,38.3934985 L36.9937789,21.8567812 C37.1908028,21.6632968 37.193672,21.3467273 37.0001876,21.1497035 C36.9980647,21.1475418 36.9959223,21.1453995 36.9937605,21.1432767 L20.1545208,4.60825197 C19.9574869,4.41477773 19.9546013,4.09820839 20.1480756,3.90117456 C20.1501626,3.89904911 20.1522686,3.89694235 20.1543933,3.89485454 Z" fill="#FFFFFF"></path>
+                                <path class="three" d="M0.154393339,3.89485454 L3.97631488,0.139296592 C4.17083111,-0.0518420739 4.48263286,-0.0518571125 4.67716753,0.139262789 L25.6916134,20.7848311 C26.0855801,21.1718824 26.0911863,21.8050225 25.704135,22.1989893 C25.7000188,22.2031791 25.6958657,22.2073326 25.6916762,22.2114492 L4.67709797,42.8607841 C4.48259567,43.0519059 4.17082418,43.0519358 3.97628526,42.8608513 L0.154518591,39.1069479 C-0.0424848215,38.9134427 -0.0453206733,38.5968729 0.148184538,38.3998695 C0.150289256,38.3977268 0.152413239,38.395603 0.154556228,38.3934985 L16.9937789,21.8567812 C17.1908028,21.6632968 17.193672,21.3467273 17.0001876,21.1497035 C16.9980647,21.1475418 16.9959223,21.1453995 16.9937605,21.1432767 L0.15452076,4.60825197 C-0.0425130651,4.41477773 -0.0453986756,4.09820839 0.148075568,3.90117456 C0.150162624,3.89904911 0.152268631,3.89694235 0.154393339,3.89485454 Z" fill="#FFFFFF"></path>
+                            </g>
+                        </svg>
+                    </span>
+                </button>
+                <a class="action-btn secondary slice" id="learnLanguageBtn" href="#" target="_blank"><span class="text">Syntax Guide</span></a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const questionsByLanguage = {
+            'HTML': {
+                easy: [
+                    {q: 'What is the correct HTML markup for the document type declaration?', options: ['<!DOCTYPE html>', 'DOCTYPE html;', '--DOCTYPE html', 'Class DOCTYPE {'], correct: 0},
+                    {q: 'What is the standard markup language for creating web pages?', options: ['Java', 'CSS', 'JavaScript', 'HTML'], correct: 3},
+                    {q: 'Which of the following is the correct syntax for using an HTML attribute?', options: ['<img src=\'img_girl.jpg\'>', '<img src(\'img_girl.jpg\')>', '<img src:\'img_girl.jpg\'>', 'img src: "img_girl.jpg";'], correct: 0},
+                    {q: 'Which of the following is the largest HTML heading?', options: ['<h6>', '<h7>', '<h8>', '<h1>'], correct: 0},
+                    {q: 'Which of the following correctly adds a background color to an HTML document?', options: ['<body style=\'background-color:pink;\'>', '<body background-color=\'pink;\'>', '<body style=\'bgcolor:pink;\'>', '<style=\'bgcolor:pink;\'>'], correct: 0},
+                    {q: 'Which two HTML elements make text appear bold?', options: ['<em> and <b>', '<strong> and <b>', '<big> and <b>', '<mark> and <b>'], correct: 1},
+                    {q: 'Which of the following is NOT a valid HTML quotation element?', options: ['<q>', '<quote>', '<blockquote>', '<cite>'], correct: 1},
+                    {q: 'What is the correct syntax for adding a comment in HTML?', options: ['<-- This is a comment -->', '<## This is a comment ##>', '<--> This is a comment </--->','<!-- This is a comment -->'], correct: 3},
+                    {q: 'Which of the following is a valid HTML color name?', options: ['Apple', 'Banana', 'Tomato', 'WaterMelon'], correct: 2},
+                    {q: 'Which of the following is the correct HTML element for adding an image?', options: ['<image>', '<img>', '<media>', '<style>'], correct: 1}
+                ],
+                medium: [
+                    {q: 'Which HTML element creates a hyperlink?', options: ['<link>', '<a>', '<href>', '<url>'], correct: 1},
+                    {q: 'Which HTML element is used for an unordered list?', options: ['<ul>', '<ol>', '<list>', '<li>'], correct: 0},
+                    {q: 'Which HTML element creates a numbered list?', options: ['<ul>', '<ol>', '<li>', '<list>'], correct: 1},
+                    {q: 'Which attribute specifies an image\'s alternative text?', options: ['title', 'alt', 'src', 'href'], correct: 1},
+                    {q: 'Which HTML element inserts a line break?', options: ['<break>', '<br>', '<lb>', '<newline>'], correct: 1},
+                    {q: 'Which element creates a table row?', options: ['<td>', '<tr>', '<th>', '<table>'], correct: 1},
+                    {q: 'Which element is used for table data?', options: ['<td>', '<tr>', '<th>', '<table>'], correct: 0},
+                    {q: 'Which tag is used to create a form?', options: ['<input>', '<form>', '<submit>', '<fieldset>'], correct: 1},
+                    {q: 'Which attribute makes an input required?', options: ['required', 'validate', 'mandatory', 'needed'], correct: 0},
+                    {q: 'Which HTML tag is used to play a video?', options: ['<movie>', '<media>', '<video>', '<play>'], correct: 2}
+                ],
+                hard: [
+                    {q: 'Which tag defines the document\'s title?', options: ['<head>', '<title>', '<meta>', '<header>'], correct: 1},
+                    {q: 'Which HTML tag contains page metadata?', options: ['<head>', '<body>', '<main>', '<footer>'], correct: 0},
+                    {q: 'Which attribute opens a link in a new tab?', options: ['open="_blank"', 'target="_blank"', 'href="_blank"', 'newtab="true"'], correct: 1},
+                    {q: 'Which tag represents the largest heading?', options: ['<h1>', '<h6>', '<header>', '<heading>'], correct: 0},
+                    {q: 'Which HTML element is semantic?', options: ['<div>', '<article>', '<span>', '<font>'], correct: 1},
+                    {q: 'Which tag defines navigation links?', options: ['<menu>', '<nav>', '<links>', '<navigation>'], correct: 1},
+                    {q: 'Which tag is used for emphasized text?', options: ['<em>', '<i>', '<bold>', '<mark>'], correct: 0},
+                    {q: 'Which HTML element defines important text?', options: ['<strong>', '<bold>', '<important>', '<b>'], correct: 0},
+                    {q: 'Which HTML element embeds audio?', options: ['<sound>', '<music>', '<audio>', '<mp3>'], correct: 2},
+                    {q: 'Which HTML element is used for inline containers?', options: ['<div>', '<span>', '<section>', '<article>'], correct: 1}
+                ]
+            },
+            "CSS": {
+                easy: [
+                    {"q": "What does CSS stand for?", "options": ["Creative Style Sheets", "Computer Style Sheets", "Cascading Style Sheets", "Colorful Style Sheets"], "correct": 2},
+                    {"q": "Which HTML element is used to link an external CSS file?", "options": ["<style>", "<link>", "<css>", "<script>"], "correct": 1},
+                    {"q": "Which CSS property changes the text color?", "options": ["text-color", "color", "font-color", "text"], "correct": 1},
+                    {"q": "Which CSS property changes the background color of an element?", "options": ["color", "bg-color", "background-color", "background"], "correct": 2},
+                    {"q": "Which CSS property changes the size of text?", "options": ["text-size", "font-style", "font-size", "size"], "correct": 2},
+                    {"q": "Which CSS property makes text bold?", "options": ["text-weight", "font-weight", "bold", "text-style"], "correct": 1},
+                    {"q": "Which CSS property changes the font of text?", "options": ["font-family", "font-name", "text-family", "font-style"], "correct": 0},
+                    {"q": "Which symbol is used to select a class in CSS?", "options": ["#", ".", "*", "$"], "correct": 1},
+                    {"q": "Which symbol is used to select an ID in CSS?", "options": ["#", ".", "*", "%"], "correct": 0},
+                    {"q": "Which CSS property is used to center text?", "options": ["align", "text-align", "center", "text-center"], "correct": 1},
+                    {"q": "What is the language we use to style a Web page?", "options": ["JavaScript", "CSS", "HTML", "C++"], "correct": 1}
+                ],
+                medium: [
+                    {"q": "Which CSS property adds space inside an element's border?", "options": ["margin", "padding", "spacing", "border-space"], "correct": 1},
+                    {"q": "Which CSS property adds space outside an element's border?", "options": ["margin", "padding", "spacing", "border-padding"], "correct": 0},
+                    {"q": "Which CSS selector targets all elements?", "options": ["#", ".", "*", "all"], "correct": 2},
+                    {"q": "Which CSS property changes the style of text (italic)?", "options": ["font-family", "font-style", "text-style", "font-weight"], "correct": 1},
+                    {"q": "Which CSS property adds a border around an element?", "options": ["outline", "border", "frame", "box"], "correct": 1},
+                    {"q": "Which CSS property changes the transparency of an element?", "options": ["transparent", "visibility", "opacity", "alpha"], "correct": 2},
+                    {"q": "Which CSS property controls the order of overlapping elements?", "options": ["layer", "order", "depth", "z-index"], "correct": 3},
+                    {"q": "Which CSS property rounds the corners of an element?", "options": ["corner-radius", "round", "border-radius", "radius"], "correct": 2},
+                    {"q": "Which CSS property adds a shadow to text?", "options": ["font-shadow", "shadow", "text-shadow", "box-shadow"], "correct": 2},
+                    {"q": "Which CSS property removes the underline from a link?", "options": ["underline", "font-decoration", "text-decoration", "text-style"], "correct": 2}
+                ],
+                hard: [
+                    {"q": "Which CSS property changes how an element is displayed?", "options": ["position", "display", "layout", "visibility"], "correct": 1},
+                    {"q": "Which value hides an element but still keeps its space?", "options": ["display: none;", "visibility: hidden;", "opacity: 0;", "hidden: true;"], "correct": 1},
+                    {"q": "Which CSS property positions an element relative to its normal position?", "options": ["absolute", "position", "display", "float"], "correct": 1},
+                    {"q": "Which value makes an element use Flexbox?", "options": ["display: block;", "display: grid;", "display: flex;", "position: flex;"], "correct": 2},
+                    {"q": "Which CSS property changes the stacking order of elements?", "options": ["layer", "order", "z-index", "index"], "correct": 2},
+                    {"q": "Which CSS property controls the distance between lines of text?", "options": ["letter-spacing", "word-spacing", "line-height", "text-spacing"], "correct": 2},
+                    {"q": "Which CSS property changes the mouse cursor?", "options": ["pointer", "mouse", "hover", "cursor"], "correct": 3},
+                    {"q": "Which CSS property changes the spacing between letters?", "options": ["word-spacing", "letter-spacing", "line-height", "text-indent"], "correct": 1},
+                    {"q": "Which CSS property changes the spacing between words?", "options": ["letter-spacing", "line-height", "word-spacing", "text-indent"], "correct": 2},
+                    {"q": "Which CSS property determines whether an element is visible?", "options": ["display", "visibility", "opacity", "hidden"], "correct": 1}
+                ]
+            },
+            "Java": {
+                easy: [
+                    {"q": "What type of programming language is Java?", "options": ["Markup Language", "Styling Language", "Programming Language", "Database Language"], "correct": 2},
+                    {"q": "Which company originally developed Java?", "options": ["Microsoft", "Sun Microsystems", "Apple", "Google"], "correct": 1},
+                    {"q": "Which keyword is used to define a class in Java?", "options": ["object", "new", "class", "create"], "correct": 2},
+                    {"q": "Which method is the entry point of a Java program?", "options": ["start()", "run()", "init()", "main()"], "correct": 3},
+                    {"q": "Which keyword is used to create a new object in Java?", "options": ["object", "class", "new", "create"], "correct": 2},
+                    {"q": "Which symbol is used to end a statement in Java?", "options": [":", ",", ".", ";"], "correct": 3},
+                    {"q": "Which keyword is used to declare a constant in Java?", "options": ["static", "const", "fixed", "final"], "correct": 3},
+                    {"q": "Which data type stores whole numbers?", "options": ["String", "boolean", "double", "int"], "correct": 3},
+                    {"q": "Which data type stores true or false values?", "options": ["String", "int", "char", "boolean"], "correct": 3},
+                    {"q": "Which keyword is used to define a method that does not return a value?", "options": ["null", "return", "static", "void"], "correct": 3}
+                ],
+                medium: [
+                    {"q": "Which keyword is used to inherit a class in Java?", "options": ["inherits", "implements", "extends", "super"], "correct": 2},
+                    {"q": "Which keyword is used to create a subclass constructor call?", "options": ["this", "extends", "new", "super"], "correct": 3},
+                    {"q": "Which loop is guaranteed to execute at least once?", "options": ["for", "while", "do-while", "foreach"], "correct": 2},
+                    {"q": "Which keyword is used to stop a loop immediately?", "options": ["continue", "break", "exit", "stop"], "correct": 1},
+                    {"q": "Which keyword skips the current loop iteration?", "options": ["break", "return", "exit", "continue"], "correct": 3},
+                    {"q": "Which class is used to get user input from the keyboard?", "options": ["Input", "Reader", "Scanner", "ConsoleReader"], "correct": 2},
+                    {"q": "Which package contains the Scanner class?", "options": ["java.io", "java.util", "java.lang", "java.awt"], "correct": 1},
+                    {"q": "Which keyword is used to define a method that belongs to the class instead of an object?", "options": ["final", "public", "void", "static"], "correct": 3},
+                    {"q": "Which operator is used to compare two values for equality?", "options": ["=", "==", "===", "!="], "correct": 1},
+                    {"q": "Which keyword exits a method and optionally returns a value?", "options": ["break", "continue", "void", "return"], "correct": 3}
+                ],
+                hard: [
+                    {"q": "Which keyword is used to implement an interface?", "options": ["extends", "implements", "interface", "inherit"], "correct": 1},
+                    {"q": "Which keyword prevents a class from being inherited?", "options": ["static", "private", "final", "abstract"], "correct": 2},
+                    {"q": "Which keyword is used to define an abstract class?", "options": ["virtual", "interface", "extends", "abstract"], "correct": 3},
+                    {"q": "Which collection stores unique elements only?", "options": ["List", "ArrayList", "Set", "Queue"], "correct": 2},
+                    {"q": "Which exception is thrown when dividing an integer by zero?", "options": ["NullPointerException", "IOException", "ArithmeticException", "NumberFormatException"], "correct": 2},
+                    {"q": "Which keyword refers to the current object?", "options": ["super", "self", "object", "this"], "correct": 3},
+                    {"q": "Which access modifier makes a member accessible only within its own class?", "options": ["public", "protected", "default", "private"], "correct": 3},
+                    {"q": "Which access modifier allows access from any class?", "options": ["public", "private", "protected", "default"], "correct": 0},
+                    {"q": "Which collection allows duplicate elements?", "options": ["Set", "List", "Map", "Queue"], "correct": 1},
+                    {"q": "Which principle of OOP allows one method to have multiple implementations?", "options": ["Encapsulation", "Inheritance", "Polymorphism", "Abstraction"], "correct": 2}
+                ]
+            },
+            "JavaScript": {
+                easy: [
+                    {"q": "What type of language is JavaScript?", "options": ["Markup Language", "Styling Language", "Programming Language", "Database Language"], "correct": 2},
+                    {"q": "Which keyword is used to declare a variable in modern JavaScript?", "options": ["int", "var", "const", "let"], "correct": 3},
+                    {"q": "Which symbol is used to end a JavaScript statement?", "options": [":", ",", ".", ";"], "correct": 3},
+                    {"q": "Which function displays a message in a popup box?", "options": ["print()", "console.log()", "alert()", "message()"], "correct": 2},
+                    {"q": "Which function writes a message to the browser console?", "options": ["print()", "console.log()", "alert()", "write()"], "correct": 1},
+                    {"q": "Which keyword is used to declare a constant?", "options": ["let", "var", "const", "static"], "correct": 2},
+                    {"q": "Which keyword is used to create a function?", "options": ["method", "def", "function", "func"], "correct": 2},
+                    {"q": "Which data type represents true or false values?", "options": ["String", "Number", "Null", "Boolean"], "correct": 3},
+                    {"q": "Which operator is used to assign a value to a variable?", "options": ["=", "==", "===", "!="], "correct": 0},
+                    {"q": "Which keyword is used to return a value from a function?", "options": ["break", "continue", "yield", "return"], "correct": 3}
+                ],
+                medium: [
+                    {"q": "Which operator checks both value and data type?", "options": ["==", "=", "!=", "==="], "correct": 3},
+                    {"q": "Which keyword declares a block-scoped variable?", "options": ["var", "static", "let", "public"], "correct": 2},
+                    {"q": "Which loop is commonly used to iterate through an array?", "options": ["while", "do-while", "for", "switch"], "correct": 2},
+                    {"q": "Which method adds an element to the end of an array?", "options": ["pop()", "shift()", "push()", "unshift()"], "correct": 2},
+                    {"q": "Which method removes the last element of an array?", "options": ["shift()", "delete()", "remove()", "pop()"], "correct": 3},
+                    {"q": "Which statement is used to make decisions?", "options": ["loop", "for", "repeat", "if"], "correct": 3},
+                    {"q": "Which keyword skips the current loop iteration?", "options": ["break", "return", "exit", "continue"], "correct": 3},
+                    {"q": "Which keyword stops a loop immediately?", "options": ["return", "continue", "break", "stop"], "correct": 2},
+                    {"q": "Which method converts a JSON string into a JavaScript object?", "options": ["JSON.stringify()", "JSON.parse()", "JSON.object()", "JSON.convert()"], "correct": 1},
+                    {"q": "Which method converts a JavaScript object into a JSON string?", "options": ["JSON.parse()", "JSON.object()", "JSON.convert()", "JSON.stringify()"], "correct": 3}
+                ],
+                hard: [
+                    {"q": "Which keyword is used to create a class in JavaScript?", "options": ["object", "prototype", "class", "constructor"], "correct": 2},
+                    {"q": "Which keyword refers to the current object?", "options": ["super", "self", "object", "this"], "correct": 3},
+                    {"q": "Which keyword is used to inherit from another class?", "options": ["inherit", "implements", "extends", "prototype"], "correct": 2},
+                    {"q": "Which keyword calls the parent class constructor?", "options": ["this", "parent", "base", "super"], "correct": 3},
+                    {"q": "Which value represents the intentional absence of a value?", "options": ["undefined", "false", "null", "empty"], "correct": 2},
+                    {"q": "Which value indicates that a variable has been declared but not assigned?", "options": ["null", "false", "empty", "undefined"], "correct": 3},
+                    {"q": "Which method removes the first element of an array?", "options": ["pop()", "shift()", "push()", "slice()"], "correct": 1},
+                    {"q": "Which method adds an element to the beginning of an array?", "options": ["push()", "shift()", "pop()", "unshift()"], "correct": 3},
+                    {"q": "Which keyword is used for asynchronous error handling?", "options": ["await", "throw", "promise", "try"], "correct": 3},
+                    {"q": "Which keyword catches an exception?", "options": ["throw", "finally", "error", "catch"], "correct": 3}
+                ]
+            },
+            "C": {
+                easy: [
+                    {"q": "What type of programming language is C?", "options": ["Markup Language", "Styling Language", "Programming Language", "Database Language"], "correct": 2},
+                    {"q": "Which function is the starting point of a C program?", "options": ["start()", "run()", "main()", "begin()"], "correct": 2},
+                    {"q": "Which symbol is used to end a statement in C?", "options": [":", ".", ",", ";"], "correct": 3},
+                    {"q": "Which header file is commonly used for input and output functions?", "options": ["math.h", "string.h", "stdio.h", "input.h"], "correct": 2},
+                    {"q": "Which function is used to display output in C?", "options": ["print()", "printf()", "output()", "display()"], "correct": 1},
+                    {"q": "Which function is used to get input from the user?", "options": ["input()", "scan()", "scanf()", "get()"], "correct": 2},
+                    {"q": "Which data type stores whole numbers in C?", "options": ["float", "char", "int", "string"], "correct": 2},
+                    {"q": "Which data type stores a single character?", "options": ["text", "string", "int", "char"], "correct": 3},
+                    {"q": "Which keyword is used to create a constant value?", "options": ["fixed", "constant", "const", "final"], "correct": 2},
+                    {"q": "Which symbol is used for a single-line comment in C?", "options": ["//", "#", "<!-- -->", "**"], "correct": 0}
+                ],
+                medium: [
+                    {"q": "Which loop is used when the number of repetitions is known?", "options": ["while loop", "do-while loop", "for loop", "repeat loop"], "correct": 2},
+                    {"q": "Which keyword is used to return a value from a function?", "options": ["break", "exit", "stop", "return"], "correct": 3},
+                    {"q": "Which symbol is used to access the address of a variable?", "options": ["*", "&", "#", "@"], "correct": 1},
+                    {"q": "Which symbol is used to access the value stored at an address?", "options": ["&", "%", "*", "#"], "correct": 2},
+                    {"q": "Which data type stores decimal numbers?", "options": ["int", "char", "float", "void"], "correct": 2},
+                    {"q": "Which keyword is used to create a function in C?", "options": ["function", "method", "define", "No keyword is required"], "correct": 3},
+                    {"q": "Which statement is used to make decisions in C?", "options": ["choose", "switch", "if", "decide"], "correct": 2},
+                    {"q": "Which keyword stops a loop immediately?", "options": ["stop", "exit", "break", "end"], "correct": 2},
+                    {"q": "Which keyword skips the current loop iteration?", "options": ["skip", "pass", "jump", "continue"], "correct": 3},
+                    {"q": "Which header file is used for string functions?", "options": ["stdio.h", "math.h", "string.h", "string.c"], "correct": 2}
+                ],
+                hard: [
+                    {"q": "Which concept allows a variable to store a memory address?", "options": ["Array", "Function", "Pointer", "Structure"], "correct": 2},
+                    {"q": "Which symbol declares a pointer variable?", "options": ["&", "%", "*", "#"], "correct": 2},
+                    {"q": "Which function is used to allocate memory dynamically?", "options": ["alloc()", "create()", "malloc()", "memory()"], "correct": 2},
+                    {"q": "Which function releases dynamically allocated memory?", "options": ["delete()", "remove()", "clear()", "free()"], "correct": 3},
+                    {"q": "Which keyword creates a custom data structure?", "options": ["class", "object", "struct", "create"], "correct": 2},
+                    {"q": "Which memory area stores local variables?", "options": ["Heap", "Global memory", "Stack", "Cache"], "correct": 2},
+                    {"q": "Which operator is used to access a structure member through a pointer?", "options": [".", "::", "->", "#"], "correct": 2},
+                    {"q": "Which function calls itself?", "options": ["Loop function", "Main function", "Nested function", "Recursive function"], "correct": 3},
+                    {"q": "Which file extension is commonly used for C source files?", "options": [".java", ".cpp", ".c", ".html"], "correct": 2},
+                    {"q": "What does NULL represent in C?", "options": ["A random value", "A zero character", "An empty string", "A pointer with no valid address"], "correct": 3}
+                ]
+            },
+            "C#": {
+                easy: [
+                    {"q": "What type of programming language is C#?", "options": ["Markup Language", "Styling Language", "Programming Language", "Database Language"], "correct": 2},
+                    {"q": "Which company developed C#?", "options": ["Apple", "Google", "Microsoft", "Sun Microsystems"], "correct": 2},
+                    {"q": "Which method is the starting point of a C# program?", "options": ["start()", "run()", "begin()", "Main()"], "correct": 3},
+                    {"q": "Which keyword is used to create a class in C#?", "options": ["object", "create", "class", "define"], "correct": 2},
+                    {"q": "Which symbol is used to end a statement in C#?", "options": [":", ".", ",", ";"], "correct": 3},
+                    {"q": "Which data type stores whole numbers?", "options": ["float", "string", "int", "bool"], "correct": 2},
+                    {"q": "Which data type stores true or false values?", "options": ["int", "char", "string", "bool"], "correct": 3},
+                    {"q": "Which keyword creates a new object in C#?", "options": ["create", "object", "make", "new"], "correct": 3},
+                    {"q": "Which keyword is used to return a value from a method?", "options": ["break", "exit", "stop", "return"], "correct": 3},
+                    {"q": "Which command is commonly used to display output in C#?", "options": ["print()", "display()", "Console.WriteLine()", "output()"], "correct": 2}
+                ],
+                medium: [
+                    {"q": "Which keyword is used to inherit a class in C#?", "options": ["inherits", "implements", ":", "extends"], "correct": 2},
+                    {"q": "Which keyword is used to define a method that belongs to the class instead of an object?", "options": ["public", "class", "void", "static"], "correct": 3},
+                    {"q": "Which loop is best used when the number of repetitions is known?", "options": ["while", "do-while", "for", "repeat"], "correct": 2},
+                    {"q": "Which collection stores multiple values of the same type?", "options": ["object", "class", "array", "method"], "correct": 2},
+                    {"q": "Which keyword is used to create an exception?", "options": ["error", "catch", "throw", "exception"], "correct": 2},
+                    {"q": "Which block handles exceptions in C#?", "options": ["handle", "error", "exception", "catch"], "correct": 3},
+                    {"q": "Which keyword prevents a class from being inherited?", "options": ["private", "static", "sealed", "final"], "correct": 2},
+                    {"q": "Which access modifier allows access from any class?", "options": ["public", "private", "protected", "internal"], "correct": 0},
+                    {"q": "Which keyword refers to the current object?", "options": ["self", "object", "current", "this"], "correct": 3},
+                    {"q": "Which namespace contains basic C# features like Console?", "options": ["System.IO", "Microsoft", "System", "Console"], "correct": 2}
+                ],
+                hard: [
+                    {"q": "Which concept allows one method to have multiple forms?", "options": ["Encapsulation", "Inheritance", "Polymorphism", "Compilation"], "correct": 2},
+                    {"q": "Which keyword is used to implement an interface?", "options": ["extends", ":", "implements", "interface"], "correct": 1},
+                    {"q": "Which keyword creates an interface in C#?", "options": ["class", "object", "abstract", "interface"], "correct": 3},
+                    {"q": "Which keyword is used for a class that cannot be created directly?", "options": ["sealed", "static", "abstract", "private"], "correct": 2},
+                    {"q": "Which C# feature automatically manages memory?", "options": ["Pointer", "Garbage Collector", "Manual Memory", "Garbage Collection"], "correct": 3},
+                    {"q": "Which keyword allows a method to be overridden?", "options": ["override", "virtual", "replace", "change"], "correct": 0},
+                    {"q": "Which keyword allows a derived class to replace a base class method?", "options": ["replace", "virtual", "overload", "override"], "correct": 3},
+                    {"q": "Which type stores a collection of key-value pairs?", "options": ["Array", "List", "Dictionary", "Stack"], "correct": 2},
+                    {"q": "Which feature allows multiple methods with the same name but different parameters?", "options": ["Overriding", "Inheritance", "Overloading", "Encapsulation"], "correct": 2},
+                    {"q": "Which principle hides internal details and only shows necessary information?", "options": ["Polymorphism", "Inheritance", "Abstraction", "Encapsulation"], "correct": 3}
+                ]
+            },
+            "C++": {
+                easy: [
+                    {"q": "What type of programming language is C++?", "options": ["Markup Language", "Styling Language", "Programming Language", "Database Language"], "correct": 2},
+                    {"q": "Which header file is commonly used for input and output in C++?", "options": ["input.h", "stdlib.h", "iostream", "console.h"], "correct": 2},
+                    {"q": "Which function is the starting point of a C++ program?", "options": ["start()", "run()", "main()", "begin()"], "correct": 2},
+                    {"q": "Which symbol is used to end a statement in C++?", "options": [":", ".", ",", ";"], "correct": 3},
+                    {"q": "Which keyword is used to create a class in C++?", "options": ["object", "define", "class", "create"], "correct": 2},
+                    {"q": "Which data type stores whole numbers?", "options": ["float", "char", "int", "string"], "correct": 2},
+                    {"q": "Which object is used to display output in C++?", "options": ["print", "output", "console", "cout"], "correct": 3},
+                    {"q": "Which object is used to receive input from the user?", "options": ["cin", "input", "scan", "get"], "correct": 0},
+                    {"q": "Which symbol is used for single-line comments in C++?", "options": ["#", "<!-- -->", "//", "**"], "correct": 2},
+                    {"q": "Which keyword creates a new object in C++?", "options": ["create", "object", "make", "new"], "correct": 3}
+                ],
+                medium: [
+                    {"q": "Which concept allows a class to inherit from another class?", "options": ["Encapsulation", "Polymorphism", "Inheritance", "Compilation"], "correct": 2},
+                    {"q": "Which symbol is used to access a member of an object?", "options": ["->", "::", ".", "#"], "correct": 2},
+                    {"q": "Which symbol is used to access a member through a pointer?", "options": [".", "::", "->", "&"], "correct": 2},
+                    {"q": "Which keyword is used to return a value from a function?", "options": ["exit", "break", "stop", "return"], "correct": 3},
+                    {"q": "Which C++ feature allows multiple functions with the same name?", "options": ["Overriding", "Function overloading", "Inheritance", "Encapsulation"], "correct": 1},
+                    {"q": "Which library provides common data structures like vectors?", "options": ["iostream", "stdio", "STL", "math"], "correct": 2},
+                    {"q": "Which container stores elements dynamically?", "options": ["int", "string", "vector", "char"], "correct": 2},
+                    {"q": "Which keyword refers to the current object?", "options": ["self", "current", "object", "this"], "correct": 3},
+                    {"q": "Which loop checks the condition before running?", "options": ["do-while", "repeat", "while", "loop"], "correct": 2},
+                    {"q": "Which access modifier makes members accessible only inside the class?", "options": ["public", "protected", "global", "private"], "correct": 3}
+                ],
+                hard: [
+                    {"q": "Which feature allows a function to behave differently depending on the object?", "options": ["Encapsulation", "Inheritance", "Polymorphism", "Compilation"], "correct": 2},
+                    {"q": "Which concept allows direct memory access?", "options": ["Classes", "Arrays", "Pointers", "Loops"], "correct": 2},
+                    {"q": "Which symbol represents a reference variable?", "options": ["*", "&", "#", "%"], "correct": 1},
+                    {"q": "Which operator is used to allocate memory dynamically?", "options": ["malloc", "create", "new", "alloc"], "correct": 2},
+                    {"q": "Which operator releases dynamically allocated memory?", "options": ["remove", "delete()", "free()", "delete"], "correct": 3},
+                    {"q": "Which C++ feature allows writing code that works with different data types?", "options": ["Inheritance", "Encapsulation", "Templates", "Classes"], "correct": 2},
+                    {"q": "Which keyword prevents a class from being inherited in modern C++?", "options": ["private", "sealed", "protected", "final"], "correct": 3},
+                    {"q": "Which container follows a last-in, first-out structure?", "options": ["Queue", "Vector", "Stack", "Array"], "correct": 2},
+                    {"q": "Which concept hides data and protects it from direct access?", "options": ["Polymorphism", "Inheritance", "Abstraction", "Encapsulation"], "correct": 3},
+                    {"q": "Which problem happens when a program accesses invalid memory?", "options": ["Syntax error", "Logic error", "Segmentation fault", "Compile warning"], "correct": 2}
+                ]
+            },
+            "Python": {
+                easy: [
+                    {"q": "What type of programming language is Python?", "options": ["Markup Language", "Styling Language", "Programming Language", "Database Language"], "correct": 2},
+                    {"q": "Which function displays output in Python?", "options": ["display()", "printText()", "print()", "output()"], "correct": 2},
+                    {"q": "Which symbol is used to create a comment in Python?", "options": ["//", "<!-- -->", "#", "**"], "correct": 2},
+                    {"q": "Which keyword is used to create a function in Python?", "options": ["func", "define", "def", "function"], "correct": 2},
+                    {"q": "Which data type stores text in Python?", "options": ["int", "float", "bool", "str"], "correct": 3},
+                    {"q": "Which data type stores whole numbers?", "options": ["number", "float", "int", "integer"], "correct": 2},
+                    {"q": "Which keyword is used to create a condition?", "options": ["when", "condition", "if", "check"], "correct": 2},
+                    {"q": "Which keyword creates a loop over a sequence?", "options": ["loop", "repeat", "iterate", "for"], "correct": 3},
+                    {"q": "Which value represents a true or false condition?", "options": ["int", "str", "float", "bool"], "correct": 3},
+                    {"q": "Which function gets input from a user?", "options": ["get()", "scan()", "input()", "read()"], "correct": 2}
+                ],
+                medium: [
+                    {"q": "Which data structure stores multiple values in order?", "options": ["Set", "Dictionary", "List", "Tuple"], "correct": 2},
+                    {"q": "Which symbol is used to create a list?", "options": ["{}", "()", "[]", "<>"], "correct": 2},
+                    {"q": "Which keyword is used to create a class in Python?", "options": ["object", "create", "class", "define"], "correct": 2},
+                    {"q": "Which function returns the length of an object?", "options": ["size()", "count()", "length()", "len()"], "correct": 3},
+                    {"q": "Which keyword is used to handle errors?", "options": ["error", "catch", "handle", "try"], "correct": 3},
+                    {"q": "Which keyword is used to catch an exception?", "options": ["error", "except", "except", "catch"], "correct": 2},
+                    {"q": "Which keyword imports a module?", "options": ["include", "using", "import", "require"], "correct": 2},
+                    {"q": "Which loop continues while a condition is true?", "options": ["for", "repeat", "while", "loop"], "correct": 2},
+                    {"q": "Which list method adds an item to the end?", "options": ["add()", "append()", "push()", "insert()"], "correct": 1},
+                    {"q": "Which operator is used for exponentiation?", "options": ["^", "**", "//", "%"], "correct": 1}
+                ],
+                hard: [
+                    {"q": "Which concept allows a class to inherit another class?", "options": ["Encapsulation", "Abstraction", "Inheritance", "Compilation"], "correct": 2},
+                    {"q": "Which method runs automatically when an object is created?", "options": ["start()", "create()", "init()", "init()"], "correct": 3},
+                    {"q": "Which keyword creates an anonymous function?", "options": ["anonymous", "lambda", "function", "def"], "correct": 1},
+                    {"q": "Which Python feature allows code to run when entering or leaving a block?", "options": ["Loop", "Generator", "Context manager", "Class"], "correct": 2},
+                    {"q": "Which collection stores key-value pairs?", "options": ["List", "Tuple", "Set", "Dictionary"], "correct": 3},
+                    {"q": "Which keyword creates a generator?", "options": ["yield", "return", "generate", "create"], "correct": 0},
+                    {"q": "Which decorator is commonly used to define a static method?", "options": ["@class", "@static", "@staticmethod", "@method"], "correct": 2},
+                    {"q": "Which concept hides internal details of an object?", "options": ["Inheritance", "Polymorphism", "Compilation", "Encapsulation"], "correct": 3},
+                    {"q": "Which Python library is commonly used for numerical computing?", "options": ["Flask", "Django", "NumPy", "Tkinter"], "correct": 2},
+                    {"q": "Which keyword is used to remove a variable or object reference?", "options": ["delete", "remove", "clear", "del"], "correct": 3}
+                ]
+            },
+            "PHP": {
+                easy: [
+                    {"q": "What does PHP originally stand for?", "options": ["Personal Home Page", "Private Home Program", "PHP: Hypertext Preprocessor", "Personal Hypertext Processor"], "correct": 2},
+                    {"q": "What type of language is PHP?", "options": ["Styling Language", "Markup Language", "Server-side Programming Language", "Database Language"], "correct": 2},
+                    {"q": "Which symbol is used to start a PHP variable?", "options": ["#", "&", "$", "%"], "correct": 2},
+                    {"q": "Which keyword is used to output text in PHP?", "options": ["printText()", "display()", "echo", "output()"], "correct": 2},
+                    {"q": "Which tag starts a PHP script?", "options": ["<php>", "<script php>", "<?php", "<PHP>"], "correct": 2},
+                    {"q": "Which symbol ends a PHP statement?", "options": [":", ".", ",", ";"], "correct": 3},
+                    {"q": "Which function displays information about a variable?", "options": ["show()", "display()", "var_dump()", "info()"], "correct": 2},
+                    {"q": "Which data type stores text in PHP?", "options": ["int", "bool", "string", "char"], "correct": 2},
+                    {"q": "Which operator is used to concatenate strings in PHP?", "options": ["+", "&", ".", "*"], "correct": 2},
+                    {"q": "Which function is used to get the length of a string?", "options": ["length()", "count()", "strlen()", "size()"], "correct": 2}
+                ],
+                medium: [
+                    {"q": "Which superglobal contains form data sent using POST?", "options": ["$_GET", "$_POST", "$_FORM", "$_DATA"], "correct": 1},
+                    {"q": "Which symbol is used to access an array value?", "options": ["()", "{}", "[]", "<>"], "correct": 2},
+                    {"q": "Which keyword is used to create a function in PHP?", "options": ["func", "method", "function", "define"], "correct": 2},
+                    {"q": "Which keyword is used to create a class in PHP?", "options": ["object", "create", "class", "struct"], "correct": 2},
+                    {"q": "Which function starts a PHP session?", "options": ["start_session()", "begin()", "session_start()", "session_begin()"], "correct": 2},
+                    {"q": "Which statement is used for decision making?", "options": ["choose", "decide", "if", "check"], "correct": 2},
+                    {"q": "Which loop repeats while a condition is true?", "options": ["repeat", "for", "while", "loop"], "correct": 2},
+                    {"q": "Which function counts the number of items in an array?", "options": ["size()", "length()", "count()", "total()"], "correct": 2},
+                    {"q": "Which keyword is used to inherit a class in PHP?", "options": ["extends", "inherits", "implements", "extends"], "correct": 3},
+                    {"q": "Which database language is commonly used with PHP?", "options": ["HTML", "CSS", "JavaScript", "SQL"], "correct": 3}
+                ],
+                hard: [
+                    {"q": "Which PHP feature stores information across multiple pages?", "options": ["Cookies", "Variables", "Sessions", "Functions"], "correct": 2},
+                    {"q": "Which keyword is used to access a parent class method?", "options": ["parent", "base", "super", "this"], "correct": 0},
+                    {"q": "Which PHP concept allows a class to inherit another class?", "options": ["Encapsulation", "Polymorphism", "Inheritance", "Compilation"], "correct": 2},
+                    {"q": "Which function connects PHP to a MySQL database using MySQLi?", "options": ["mysql_connect()", "connect()", "mysqli_connect()", "database()"], "correct": 2},
+                    {"q": "Which PHP function prevents SQL injection when using MySQLi?", "options": ["escape()", "secure()", "protect()", "mysqli_real_escape_string()"], "correct": 3},
+                    {"q": "Which keyword is used to define a constant in PHP?", "options": ["fixed", "const", "constant", "define"], "correct": 1},
+                    {"q": "Which OOP principle hides internal details?", "options": ["Inheritance", "Polymorphism", "Abstraction", "Encapsulation"], "correct": 3},
+                    {"q": "Which keyword is used to create an interface in PHP?", "options": ["class", "abstract", "interface", "implements"], "correct": 2},
+                    {"q": "Which symbol is used to access object properties in PHP?", "options": ["::", "->", ".", "#"], "correct": 1},
+                    {"q": "Which PHP method is automatically called when an object is created?", "options": ["start()", "create()", "constructor()", "__construct()"], "correct": 3}
+                ]
+            },
+            "Ruby": {
+                easy: [
+                    {"q": "What type of programming language is Ruby?", "options": ["Markup Language", "Styling Language", "Programming Language", "Database Language"], "correct": 2},
+                    {"q": "Who created Ruby?", "options": ["Guido van Rossum", "James Gosling", "Yukihiro Matsumoto", "Dennis Ritchie"], "correct": 2},
+                    {"q": "Which command displays output in Ruby?", "options": ["printText()", "echo", "puts", "display()"], "correct": 2},
+                    {"q": "Which symbol is used to create a comment in Ruby?", "options": ["//", "<!-- -->", "#", "**"], "correct": 2},
+                    {"q": "Which keyword is used to define a method in Ruby?", "options": ["function", "def", "method", "define"], "correct": 1},
+                    {"q": "Which symbol is commonly used before instance variables in Ruby?", "options": ["#", "$", "@", "%"], "correct": 2},
+                    {"q": "Which keyword is used to create a class in Ruby?", "options": ["object", "create", "class", "define"], "correct": 2},
+                    {"q": "Which data type stores text in Ruby?", "options": ["String", "Text", "Char", "TextValue"], "correct": 0},
+                    {"q": "Which keyword is used to create a loop over a collection?", "options": ["loop", "repeat", "each", "iterate"], "correct": 2},
+                    {"q": "Which file extension is used for Ruby files?", "options": [".rb", ".ruby", ".rby", ".rubycode"], "correct": 0}
+                ],
+                medium: [
+                    {"q": "Which data structure stores key-value pairs in Ruby?", "options": ["Array", "List", "Hash", "Tuple"], "correct": 2},
+                    {"q": "Which symbol creates a symbol in Ruby?", "options": ["$", "@", "#", ":"], "correct": 3},
+                    {"q": "Which keyword is used for conditional statements?", "options": ["when", "check", "if", "condition"], "correct": 2},
+                    {"q": "Which keyword defines a block of code in Ruby?", "options": ["block", "begin", "code", "do"], "correct": 3},
+                    {"q": "Which method adds an item to an array?", "options": ["add()", "insert()", "push()", "append()"], "correct": 2},
+                    {"q": "Which keyword creates an object from a class?", "options": ["create", "object", "new", "make"], "correct": 2},
+                    {"q": "Which method returns the number of elements in an array?", "options": ["count()", "length()", "size()", "all of these"], "correct": 3},
+                    {"q": "Which keyword is used to inherit a class in Ruby?", "options": ["extends", "inherits", "include", "<"], "correct": 3},
+                    {"q": "Which keyword handles exceptions in Ruby?", "options": ["catch", "error", "rescue", "except"], "correct": 2},
+                    {"q": "Which framework made Ruby popular for web development?", "options": ["Django", "Laravel", "Ruby on Rails", "React"], "correct": 2}
+                ],
+                hard: [
+                    {"q": "Which concept allows a class to inherit behavior from another class?", "options": ["Encapsulation", "Abstraction", "Inheritance", "Compilation"], "correct": 2},
+                    {"q": "Which keyword creates a module in Ruby?", "options": ["package", "namespace", "module", "library"], "correct": 2},
+                    {"q": "Which method is automatically called when creating an object?", "options": ["start", "create", "initialize", "new"], "correct": 2},
+                    {"q": "Which Ruby feature allows adding methods to existing classes?", "options": ["Overloading", "Monkey patching", "Inheritance", "Compilation"], "correct": 1},
+                    {"q": "Which concept hides unnecessary details from users?", "options": ["Inheritance", "Polymorphism", "Encapsulation", "Compilation"], "correct": 2},
+                    {"q": "Which symbol represents a Ruby symbol value?", "options": ["$", "@", ":", "#"], "correct": 2},
+                    {"q": "Which Ruby feature allows passing a block of code to a method?", "options": ["Classes", "Blocks", "Modules", "Variables"], "correct": 1},
+                    {"q": "Which keyword is used to include a module inside a class?", "options": ["extends", "import", "include", "require"], "correct": 2},
+                    {"q": "Which Ruby concept allows the same method name to behave differently?", "options": ["Polymorphism", "Encapsulation", "Compilation", "Execution"], "correct": 0},
+                    {"q": "Which method converts an object into a string representation?", "options": ["convert()", "to_string()", "stringify()", "to_s"], "correct": 3}
+                ]
+            },
+            "TypeScript": {
+                easy: [
+                    {"q": "What is TypeScript based on?", "options": ["Python", "Java", "JavaScript", "C++"], "correct": 2},
+                    {"q": "What type of language is TypeScript?", "options": ["Styling Language", "Markup Language", "Programming Language", "Database Language"], "correct": 2},
+                    {"q": "Which symbol is used to specify a variable's type?", "options": ["#", "$", "->", ":"], "correct": 3},
+                    {"q": "Which keyword declares a variable in TypeScript?", "options": ["int", "var only", "let", "define"], "correct": 2},
+                    {"q": "Which keyword creates a constant variable?", "options": ["fixed", "static", "const", "constant"], "correct": 2},
+                    {"q": "Which type stores text in TypeScript?", "options": ["text", "stringText", "string", "char"], "correct": 2},
+                    {"q": "Which type stores whole numbers in TypeScript?", "options": ["integer", "number", "int", "whole"], "correct": 1},
+                    {"q": "Which keyword creates a class in TypeScript?", "options": ["object", "create", "class", "define"], "correct": 2},
+                    {"q": "Which file extension is used for TypeScript files?", "options": [".js", ".java", ".ts", ".type"], "correct": 2},
+                    {"q": "TypeScript code is converted into which language before running?", "options": ["Java", "C++", "Python", "JavaScript"], "correct": 3}
+                ],
+                medium: [
+                    {"q": "Which feature allows you to define the structure of an object?", "options": ["Class", "Type", "Interface", "Variable"], "correct": 2},
+                    {"q": "Which keyword is used to define an interface?", "options": ["class", "type", "interface", "object"], "correct": 2},
+                    {"q": "Which TypeScript type accepts any value?", "options": ["unknown", "any", "all", "object"], "correct": 1},
+                    {"q": "Which keyword is used to inherit a class?", "options": ["implements", "inherit", "extends", "include"], "correct": 2},
+                    {"q": "Which keyword is used when a class follows an interface?", "options": ["extends", "uses", "follows", "implements"], "correct": 3},
+                    {"q": "Which symbol is used for optional properties?", "options": ["!", "#", "?", "&"], "correct": 2},
+                    {"q": "Which type represents true or false values?", "options": ["bool", "boolean", "truth", "logical"], "correct": 1},
+                    {"q": "Which feature allows a variable to hold multiple possible types?", "options": ["Multiple", "Union Type", "Mixed", "Combination"], "correct": 1},
+                    {"q": "Which command compiles TypeScript into JavaScript?", "options": ["node", "npm", "tsc", "ts-run"], "correct": 2},
+                    {"q": "Which TypeScript feature improves code organization?", "options": ["Interfaces", "Comments", "Variables", "Loops"], "correct": 0}
+                ],
+                hard: [
+                    {"q": "Which feature allows creating reusable components with different types?", "options": ["Classes", "Generics", "Interfaces", "Modules"], "correct": 1},
+                    {"q": "Which symbol represents a union type?", "options": ["&", "|", ":", "?"], "correct": 1},
+                    {"q": "Which TypeScript type is safer than \"any\" because it requires checking before use?", "options": ["string", "number", "unknown", "object"], "correct": 2},
+                    {"q": "Which keyword creates a custom type definition?", "options": ["type", "define", "custom", "interface"], "correct": 0},
+                    {"q": "Which concept allows multiple types to be combined?", "options": ["Union", "Loop", "Class", "Function"], "correct": 0},
+                    {"q": "Which TypeScript feature checks code before execution?", "options": ["Compiler", "Browser", "Interpreter", "Server"], "correct": 0},
+                    {"q": "Which access modifier makes a class member accessible only inside the class?", "options": ["public", "private", "protected", "internal"], "correct": 1},
+                    {"q": "Which keyword allows a property to be read but not changed?", "options": ["readonly", "constant", "fixed", "locked"], "correct": 0},
+                    {"q": "Which feature allows a class to inherit from another class?", "options": ["Interface", "Generic", "Inheritance", "Type"], "correct": 2},
+                    {"q": "Which TypeScript concept combines JavaScript flexibility with type checking?", "options": ["Runtime", "Static Typing", "Dynamic Typing", "Compilation"], "correct": 1}
+                ]
+            },
+            "Tailwind": {
+                easy: [
+                    {"q": "What is Tailwind CSS?", "options": ["A programming language", "A database system", "A CSS framework", "A JavaScript engine"], "correct": 2},
+                    {"q": "What type of CSS framework is Tailwind?", "options": ["Component-based", "Utility-first", "Server-based", "Object-oriented"], "correct": 1},
+                    {"q": "Which languages are commonly used with Tailwind CSS?", "options": ["Java and C++", "Python and Ruby", "HTML and CSS", "SQL and PHP"], "correct": 2},
+                    {"q": "What does Tailwind use to style elements?", "options": ["Functions", "Variables", "Utility classes", "Databases"], "correct": 2},
+                    {"q": "Which file is commonly used to configure Tailwind?", "options": ["index.html", "style.css", "tailwind.config.js", "app.java"], "correct": 2},
+                    {"q": "Which Tailwind class changes text color?", "options": ["color-blue", "font-blue", "text-blue-500", "blue-text"], "correct": 2},
+                    {"q": "Which Tailwind class changes background color?", "options": ["bg-blue-500", "background-blue", "color-bg", "blue-background"], "correct": 0},
+                    {"q": "Which Tailwind class adds padding?", "options": ["margin", "space", "p-4", "padding-4"], "correct": 2},
+                    {"q": "Which Tailwind class controls text size?", "options": ["text-size", "font-size", "text-xl", "size-text"], "correct": 2},
+                    {"q": "Tailwind CSS is mainly used for what purpose?", "options": ["Creating databases", "Running servers", "Designing user interfaces", "Writing algorithms"], "correct": 2}
+                ],
+                medium: [
+                    {"q": "Which Tailwind class creates a flex container?", "options": ["flex-box", "display-flex", "flex", "container-flex"], "correct": 2},
+                    {"q": "Which class controls the direction of flex items?", "options": ["flex-direction", "direction-flex", "flex-row", "row-flex"], "correct": 2},
+                    {"q": "Which class centers items horizontally in flexbox?", "options": ["center", "justify-center", "items-center", "align-center"], "correct": 1},
+                    {"q": "Which class controls the width of an element?", "options": ["size", "w-*", "width", "element-width"], "correct": 1},
+                    {"q": "Which class controls the height of an element?", "options": ["h-*", "height", "size-height", "element-height"], "correct": 0},
+                    {"q": "What does the \"hover:\" prefix do?", "options": ["Creates animation", "Changes color permanently", "Applies styles when hovered", "Creates a button"], "correct": 2},
+                    {"q": "What does \"md:\" represent in Tailwind?", "options": ["A color", "A font", "A responsive breakpoint", "A spacing unit"], "correct": 2},
+                    {"q": "Which class makes text bold?", "options": ["text-bold", "weight-bold", "font-bold", "bold-text"], "correct": 2},
+                    {"q": "Which class rounds the corners of an element?", "options": ["corner-round", "radius", "rounded", "border-round"], "correct": 2},
+                    {"q": "Which Tailwind feature allows custom styling values?", "options": ["Plugins only", "Variables", "Arbitrary values", "Functions"], "correct": 2}
+                ],
+                hard: [
+                    {"q": "Which Tailwind concept avoids writing custom CSS for common styles?", "options": ["Object programming", "Server rendering", "Utility classes", "Database queries"], "correct": 2},
+                    {"q": "Which file is used to customize Tailwind settings?", "options": ["package.json", "index.js", "tailwind.config.js", "main.css"], "correct": 2},
+                    {"q": "Which Tailwind feature allows styles at different screen sizes?", "options": ["Animation", "Components", "Responsive design", "Variables"], "correct": 2},
+                    {"q": "Which prefix applies a style only on dark mode?", "options": ["night:", "black:", "dark:", "mode:"], "correct": 2},
+                    {"q": "Which command generates a production CSS file?", "options": ["tailwind start", "tailwind build", "npm run css", "npx tailwindcss build"], "correct": 3},
+                    {"q": "What does the JIT compiler improve in Tailwind?", "options": ["Database speed", "JavaScript execution", "CSS generation speed", "Server memory"], "correct": 2},
+                    {"q": "Which Tailwind feature allows creating reusable styles?", "options": ["Classes", "Components", "Plugins", "All of these"], "correct": 3},
+                    {"q": "What is the purpose of Tailwind plugins?", "options": ["Run JavaScript", "Create databases", "Add extra Tailwind features", "Replace HTML"], "correct": 2},
+                    {"q": "Which concept allows Tailwind classes to adapt to different devices?", "options": ["Inheritance", "Compilation", "Responsive breakpoints", "Encapsulation"], "correct": 2},
+                    {"q": "What is Tailwind's main advantage over traditional CSS?", "options": ["It replaces HTML", "It removes the need for browsers", "It automatically writes JavaScript", "It speeds up styling by using utility classes"], "correct": 3}
+                ]
+            },
+            "SQL": {
+                "easy": [
+                    {"q": "What does SQL stand for?", "options": ["Structured Query Language", "Simple Query Language", "Structured Question Language", "Sequential Query Language"], "correct": 0},
+                    {"q": "Which keyword retrieves data from a database?", "options": ["GET", "FETCH", "SELECT", "PULL"], "correct": 2},
+                    {"q": "Which clause filters rows before grouping?", "options": ["HAVING", "WHERE", "GROUP BY", "ORDER BY"], "correct": 1},
+                    {"q": "Which command adds new rows to a table?", "options": ["INSERT", "ADD", "APPEND", "CREATE"], "correct": 0},
+                    {"q": "Which command removes a table entirely?", "options": ["DELETE TABLE", "REMOVE TABLE", "DROP TABLE", "CLEAR TABLE"], "correct": 2},
+                    {"q": "Which clause sorts query results?", "options": ["SORT BY", "ORDER BY", "GROUP BY", "ARRANGE BY"], "correct": 1},
+                    {"q": "Which symbol is used for a wildcard in a LIKE clause?", "options": ["*", "%", "#", "?"], "correct": 1},
+                    {"q": "Which keyword combines rows from two tables?", "options": ["MERGE", "JOIN", "LINK", "UNION ALL"], "correct": 1},
+                    {"q": "Which command changes existing rows in a table?", "options": ["UPDATE", "CHANGE", "MODIFY", "SET"], "correct": 0},
+                    {"q": "Which data type stores whole numbers?", "options": ["VARCHAR", "INT", "DATE", "BOOLEAN"], "correct": 1}
+                ],
+                "medium": [
+                    {"q": "Which clause filters groups after GROUP BY?", "options": ["WHERE", "HAVING", "FILTER", "ON"], "correct": 1},
+                    {"q": "Which JOIN returns only matching rows from both tables?", "options": ["LEFT JOIN", "RIGHT JOIN", "INNER JOIN", "FULL JOIN"], "correct": 2},
+                    {"q": "Which function counts the number of rows?", "options": ["SUM()", "COUNT()", "TOTAL()", "LEN()"], "correct": 1},
+                    {"q": "Which constraint ensures a column's values are unique?", "options": ["PRIMARY KEY", "UNIQUE", "CHECK", "INDEX"], "correct": 1},
+                    {"q": "Which keyword removes duplicate rows from results?", "options": ["UNIQUE", "DISTINCT", "ONLY", "FILTER"], "correct": 1},
+                    {"q": "What does a FOREIGN KEY enforce?", "options": ["Uniqueness", "A link to another table's key", "Sort order", "Data type"], "correct": 1},
+                    {"q": "Which statement creates a reusable virtual table from a query?", "options": ["CREATE VIEW", "CREATE TABLE", "CREATE INDEX", "CREATE QUERY"], "correct": 0},
+                    {"q": "Which SQL feature prevents SQL injection?", "options": ["String concatenation", "Parameterized queries", "Stored comments", "Uppercase keywords"], "correct": 1},
+                    {"q": "Which command grants database access to a user?", "options": ["ALLOW", "GRANT", "PERMIT", "ENABLE"], "correct": 1},
+                    {"q": "Which clause limits the number of returned rows?", "options": ["TOP", "LIMIT", "ROWNUM", "It depends on the database, but LIMIT is common (e.g. MySQL/PostgreSQL)"], "correct": 3}
+                ],
+                "hard": [
+                    {"q": "What does a Common Table Expression (CTE) use?", "options": ["WITH clause", "JOIN clause", "OVER clause", "CASE clause"], "correct": 0},
+                    {"q": "Which function assigns a rank to each row without gaps for ties?", "options": ["RANK()", "ROW_NUMBER()", "DENSE_RANK()", "NTILE()"], "correct": 1},
+                    {"q": "What is a database index primarily used for?", "options": ["Storing backups", "Speeding up data retrieval", "Enforcing data types", "Encrypting data"], "correct": 1},
+                    {"q": "What does ACID stand for in database transactions?", "options": ["Atomicity, Consistency, Isolation, Durability", "Access, Control, Integrity, Data", "Atomic, Complete, Indexed, Distributed", "Aggregate, Cache, Index, Data"], "correct": 0},
+                    {"q": "Which isolation level allows the most concurrency but risks dirty reads?", "options": ["SERIALIZABLE", "READ UNCOMMITTED", "REPEATABLE READ", "READ COMMITTED"], "correct": 1},
+                    {"q": "What is database normalization mainly used to reduce?", "options": ["Query speed", "Data redundancy", "Number of tables", "Index size"], "correct": 1},
+                    {"q": "Which SQL feature lets a query reference itself to walk a hierarchy?", "options": ["Recursive CTE", "Subquery", "Trigger", "View"], "correct": 0},
+                    {"q": "What does EXPLAIN (or EXPLAIN ANALYZE) show?", "options": ["The table schema", "The query execution plan", "The stored data", "User permissions"], "correct": 1},
+                    {"q": "Which type of JOIN keeps all rows from the left table even without a match?", "options": ["INNER JOIN", "LEFT JOIN", "CROSS JOIN", "RIGHT JOIN"], "correct": 1},
+                    {"q": "What is a database trigger?", "options": ["A scheduled backup job", "Code that runs automatically on a table event like INSERT/UPDATE", "A type of index", "A connection pool setting"], "correct": 1}
+                ]
+            },
+            "Swift": {
+                "easy": [
+                    {"q": "Who created Swift?", "options": ["James Gosling", "Chris Lattner", "Guido van Rossum", "Anders Hejlsberg"], "correct": 1},
+                    {"q": "Which company develops Swift?", "options": ["Google", "Microsoft", "Apple", "Meta"], "correct": 2},
+                    {"q": "Which keyword declares a constant in Swift?", "options": ["var", "let", "const", "final"], "correct": 1},
+                    {"q": "Which keyword declares a mutable variable?", "options": ["let", "var", "mutable", "def"], "correct": 1},
+                    {"q": "Which function prints text to the console?", "options": ["echo()", "console.log()", "print()", "System.out()"], "correct": 2},
+                    {"q": "What symbol marks a type as Optional?", "options": ["!", "?", "*", "&"], "correct": 1},
+                    {"q": "Which keyword defines a function?", "options": ["func", "function", "def", "fun"], "correct": 0},
+                    {"q": "Which framework is used for building declarative UIs in Swift?", "options": ["UIKit", "SwiftUI", "React Native", "Jetpack Compose"], "correct": 1},
+                    {"q": "What file extension do Swift source files use?", "options": [".sw", ".swift", ".sf", ".s"], "correct": 1},
+                    {"q": "Which keyword defines a value-type structure?", "options": ["class", "struct", "enum", "object"], "correct": 1}
+                ],
+                "medium": [
+                    {"q": "What is the key difference between a struct and a class in Swift?", "options": ["Structs can't have methods", "Structs are value types, classes are reference types", "Classes can't be inherited", "There is no difference"], "correct": 1},
+                    {"q": "What does ARC stand for in Swift memory management?", "options": ["Automatic Reference Counting", "Advanced Runtime Compiler", "Async Resource Control", "Array Reference Class"], "correct": 0},
+                    {"q": "Which keyword safely unwraps an optional or exits the current scope?", "options": ["if let", "guard let", "try!", "as!"], "correct": 1},
+                    {"q": "Which operator provides a default value for a nil optional?", "options": ["?:", "??", "!!", "->"], "correct": 1},
+                    {"q": "Which keyword marks a function that can throw an error?", "options": ["throws", "raises", "catch", "error"], "correct": 0},
+                    {"q": "What manages Swift package dependencies?", "options": ["CocoaPods only", "Swift Package Manager (SPM)", "npm", "Gradle"], "correct": 1},
+                    {"q": "Which access modifier restricts visibility to the defining file only?", "options": ["private", "internal", "fileprivate", "public"], "correct": 2},
+                    {"q": "What keyword extends functionality of an existing type?", "options": ["extension", "extend", "append", "inherit"], "correct": 0},
+                    {"q": "Which construct provides Objective-C-style dynamic message passing pattern matching in Swift?", "options": ["if/else", "switch with pattern matching", "guard", "for-in"], "correct": 1},
+                    {"q": "What replaces callback-based async code since Swift 5.5?", "options": ["Combine only", "async/await", "GCD only", "NSOperation"], "correct": 1}
+                ],
+                "hard": [
+                    {"q": "What causes a retain cycle in Swift?", "options": ["Using structs", "Two objects holding strong references to each other", "Declaring a variable with let", "Using enums"], "correct": 1},
+                    {"q": "How do you break a retain cycle in a closure capturing self?", "options": ["Use [weak self] or [unowned self]", "Use var instead of let", "Avoid closures entirely", "Use structs only"], "correct": 0},
+                    {"q": "What does Swift 6's strict concurrency checking primarily catch at compile time?", "options": ["Syntax errors", "Data races", "Memory leaks", "Type mismatches"], "correct": 1},
+                    {"q": "What is a protocol with associated types used for?", "options": ["Defining a generic requirement without specifying the concrete type upfront", "Creating global variables", "Managing memory", "Handling errors"], "correct": 0},
+                    {"q": "What is 'protocol-oriented programming'?", "options": ["Only using protocols instead of classes", "Designing APIs around protocols and extensions rather than class inheritance", "A deprecated Swift feature", "A networking pattern"], "correct": 1},
+                    {"q": "What does @MainActor guarantee?", "options": ["Code always runs on the main (UI) thread", "Code runs fastest possible", "Code runs only once", "Code is memory-safe"], "correct": 0},
+                    {"q": "What is a Swift 'macro' (introduced recently)?", "options": ["A runtime configuration file", "Compile-time code generation attached to declarations", "A type of closure", "A build script"], "correct": 1},
+                    {"q": "Which type-checking keyword safely attempts a downcast?", "options": ["as!", "as?", "is", "as"], "correct": 1},
+                    {"q": "What is the purpose of the `Codable` protocol?", "options": ["Encrypting data", "Converting types to/from external representations like JSON", "Managing memory", "Handling concurrency"], "correct": 1},
+                    {"q": "What is Swift's ABI stability (since Swift 5) primarily meant to guarantee?", "options": ["Apps compiled with different Swift versions can share a system runtime", "Faster compile times", "Smaller binary size", "Better syntax highlighting"], "correct": 0}
+                ]
+            },
+            "Kotlin": {
+                "easy": [
+                    {"q": "Which company created Kotlin?", "options": ["Google", "JetBrains", "Oracle", "Microsoft"], "correct": 1},
+                    {"q": "Which keyword declares a read-only variable in Kotlin?", "options": ["var", "val", "let", "const"], "correct": 1},
+                    {"q": "Which keyword declares a mutable variable?", "options": ["val", "var", "mutable", "def"], "correct": 1},
+                    {"q": "Which function prints a line to the console?", "options": ["print()", "println()", "console.log()", "echo()"], "correct": 1},
+                    {"q": "Which platform does Kotlin primarily target alongside the JVM?", "options": ["Android", ".NET", "Ruby on Rails", "PHP"], "correct": 0},
+                    {"q": "What symbol marks a type as nullable in Kotlin?", "options": ["!", "?", "*", "&"], "correct": 1},
+                    {"q": "Which keyword defines a function in Kotlin?", "options": ["func", "def", "fun", "function"], "correct": 2},
+                    {"q": "What is the file extension for Kotlin source files?", "options": [".kt", ".kn", ".ktl", ".k"], "correct": 0},
+                    {"q": "Which keyword defines a class that auto-generates equals/hashCode/toString?", "options": ["class", "data class", "value class", "object"], "correct": 1},
+                    {"q": "Which keyword replaces Java's switch statement in Kotlin?", "options": ["switch", "case", "when", "match"], "correct": 2}
+                ],
+                "medium": [
+                    {"q": "What does the safe call operator (?.) do?", "options": ["Forces a crash on null", "Returns null instead of crashing if the receiver is null", "Converts null to zero", "Declares a nullable variable"], "correct": 1},
+                    {"q": "What does the Elvis operator (?:) do?", "options": ["Provides a default value when the left side is null", "Declares a constant", "Loops over a collection", "Casts a type"], "correct": 0},
+                    {"q": "What does the `!!` operator do?", "options": ["Safely unwraps a nullable value", "Force-unwraps a nullable, crashing if it's null", "Declares a variable", "Comments out code"], "correct": 1},
+                    {"q": "What is a Kotlin coroutine used for?", "options": ["Styling UI", "Lightweight, suspendable concurrent code", "Database schema design", "Compiling code faster"], "correct": 1},
+                    {"q": "Which keyword declares a Kotlin singleton directly?", "options": ["class", "object", "companion", "static"], "correct": 1},
+                    {"q": "What build tool is standard for Kotlin/Android projects?", "options": ["Maven only", "Gradle", "Make", "npm"], "correct": 1},
+                    {"q": "What is a Kotlin extension function?", "options": ["A function that modifies the JVM", "A function added to an existing class without inheriting it", "A private helper only usable in one file", "A deprecated feature"], "correct": 1},
+                    {"q": "Which Kotlin feature lets Java and Kotlin code call each other freely in the same project?", "options": ["Interop", "Bridging", "Transpiling", "Wrapping"], "correct": 0},
+                    {"q": "What keyword marks a function parameter that can accept a variable number of arguments?", "options": ["varargs", "vararg", "params", "multi"], "correct": 1},
+                    {"q": "What UI toolkit is Google's modern declarative choice for Kotlin-based Android apps?", "options": ["XML Layouts", "Jetpack Compose", "SwiftUI", "React Native"], "correct": 1}
+                ],
+                "hard": [
+                    {"q": "What is Kotlin's K2 compiler primarily meant to improve?", "options": ["Runtime performance only", "Compilation speed and IDE analysis accuracy", "App icon rendering", "Network requests"], "correct": 1},
+                    {"q": "What does `suspend` mark in Kotlin?", "options": ["A function that can be paused/resumed without blocking a thread", "A deprecated function", "A private class", "A synchronized block"], "correct": 0},
+                    {"q": "What is a sealed class used for?", "options": ["Preventing all subclassing anywhere", "Restricting a class hierarchy to a known, fixed set of subclasses (great for exhaustive `when`)", "Encrypting class data", "Marking a class as final only"], "correct": 1},
+                    {"q": "What is the purpose of Kotlin Multiplatform (KMP)?", "options": ["Running Kotlin only on iOS", "Sharing business logic code across Android, iOS, web, and backend", "Replacing Gradle", "Compiling to Objective-C only"], "correct": 1},
+                    {"q": "What is a `companion object` used for?", "options": ["Defining members tied to a class itself rather than its instances (similar to static members)", "Creating a nullable type", "Managing coroutines", "Declaring extension functions"], "correct": 0},
+                    {"q": "What does `Result<T>` in Kotlin represent?", "options": ["A network response", "A type that encapsulates either success or failure without throwing", "A UI component", "A coroutine scope"], "correct": 1},
+                    {"q": "What is 'smart casting' in Kotlin?", "options": ["Automatic casting to a checked type within the scope of an `is` or null check", "Casting between unrelated types silently", "A runtime error", "A Gradle plugin"], "correct": 0},
+                    {"q": "What is the risk of overusing the `!!` operator?", "options": ["Slower compilation", "Runtime NullPointerExceptions", "Larger APK size", "Memory leaks"], "correct": 1},
+                    {"q": "What is a `Flow` in Kotlin coroutines used for?", "options": ["Emitting a stream of asynchronous values over time", "Declaring immutable variables", "Managing UI layout", "Compiling native code"], "correct": 0},
+                    {"q": "What replaced the older 'platform types' friction when calling Java from Kotlin?", "options": ["Explicit nullability annotations and Kotlin's null-safety checks at the Java boundary", "Removing Java interop entirely", "Auto-converting all Java code to Kotlin", "Disabling null checks"], "correct": 0}
+                ]
+            },
+            "Go": {
+                "easy": [
+                    {"q": "Which company designed Go?", "options": ["Google", "Microsoft", "Apple", "Amazon"], "correct": 0},
+                    {"q": "What is Go's common nickname?", "options": ["Golang", "GoLang++", "GoScript", "GoJS"], "correct": 0},
+                    {"q": "Which keyword declares a package's entry point function?", "options": ["main", "start", "init", "run"], "correct": 0},
+                    {"q": "Which keyword declares a variable with type inference?", "options": [":=", "var", "let", "const"], "correct": 0},
+                    {"q": "Which package prints output to the console?", "options": ["fmt", "print", "console", "io"], "correct": 0},
+                    {"q": "Which keyword defines a function in Go?", "options": ["func", "def", "fun", "function"], "correct": 0},
+                    {"q": "What is Go's built-in concurrency unit called?", "options": ["thread", "goroutine", "worker", "task"], "correct": 1},
+                    {"q": "What do goroutines communicate through?", "options": ["Sockets", "Channels", "Files", "Global variables only"], "correct": 1},
+                    {"q": "What file extension do Go source files use?", "options": [".go", ".gol", ".g", ".golang"], "correct": 0},
+                    {"q": "Which loop keyword does Go use for all its loop forms?", "options": ["while", "loop", "for", "repeat"], "correct": 2}
+                ],
+                "medium": [
+                    {"q": "How does Go typically handle errors?", "options": ["Try/catch exceptions", "Returning an explicit error value alongside the result", "Silent failure", "Global error flags"], "correct": 1},
+                    {"q": "What tool automatically formats Go code to a standard style?", "options": ["golint", "gofmt", "go build", "go vet"], "correct": 1},
+                    {"q": "What file declares a Go module and its dependencies?", "options": ["go.mod", "package.json", "Gemfile", "requirements.txt"], "correct": 0},
+                    {"q": "What does the `defer` keyword do?", "options": ["Delays a function call until the surrounding function returns", "Declares a constant", "Starts a goroutine", "Imports a package"], "correct": 0},
+                    {"q": "How many values can a Go function return?", "options": ["Only one", "Multiple values at once", "Zero only", "Only via a struct"], "correct": 1},
+                    {"q": "What keyword starts a new goroutine?", "options": ["go", "async", "spawn", "thread"], "correct": 0},
+                    {"q": "What is Go's mechanism for interfaces?", "options": ["Explicit `implements` keyword", "Implicit — a type satisfies an interface just by implementing its methods", "Interfaces don't exist in Go", "Only through inheritance"], "correct": 1},
+                    {"q": "What manages dependency versions since Go 1.11?", "options": ["GOPATH only", "Go Modules", "npm", "vendor folders only"], "correct": 1},
+                    {"q": "What does Go use instead of classical class inheritance?", "options": ["Multiple inheritance", "Composition via struct embedding", "Abstract classes", "Mixins"], "correct": 1},
+                    {"q": "Which command checks Go code for suspicious constructs?", "options": ["go fmt", "go vet", "go run", "go get"], "correct": 1}
+                ],
+                "hard": [
+                    {"q": "What determines whether a Go value is allocated on the stack or heap?", "options": ["The programmer must specify it manually", "Escape analysis performed by the compiler", "Random allocation", "Always the heap"], "correct": 1},
+                    {"q": "What problem do unbuffered channels help prevent?", "options": ["Memory leaks only", "Race conditions, by synchronizing goroutines at the point of send/receive", "Slow compilation", "Large binary size"], "correct": 1},
+                    {"q": "What was added to Go in version 1.18 that developers had long requested?", "options": ["Garbage collection", "Generics", "Goroutines", "Package management"], "correct": 1},
+                    {"q": "What is a common cause of a goroutine leak?", "options": ["Using too many structs", "A goroutine blocked forever on a channel that's never written to or closed", "Declaring too many variables", "Using gofmt"], "correct": 1},
+                    {"q": "What does `context.Context` primarily provide in Go services?", "options": ["Styling", "Deadlines, cancellation signals, and request-scoped values across API boundaries", "Database connections", "Memory management"], "correct": 1},
+                    {"q": "What is the 'functional options' pattern used for in Go?", "options": ["Replacing structs entirely", "Configuring structs flexibly via variadic option functions instead of long constructors", "Handling errors", "Managing goroutines"], "correct": 1},
+                    {"q": "Why does Go avoid operator overloading?", "options": ["It's technically impossible in compiled languages", "A deliberate design choice to keep code simple and predictable", "It was removed after Go 1.0", "It conflicts with garbage collection"], "correct": 1},
+                    {"q": "What is the purpose of Go's `sync.WaitGroup`?", "options": ["Waiting for a collection of goroutines to finish", "Managing HTTP requests", "Formatting code", "Handling errors"], "correct": 0},
+                    {"q": "What does 'the zero value' refer to in Go?", "options": ["A runtime error", "The default value a variable gets when declared without explicit initialization", "A null pointer exception", "A deprecated keyword"], "correct": 1},
+                    {"q": "How does Go typically achieve cross-platform builds?", "options": ["Requires a separate compiler install per OS", "Built-in cross-compilation via GOOS/GOARCH environment variables", "Only runs on Linux", "Uses a virtual machine like the JVM"], "correct": 1}
+                ]
+            },
+            "AndroidStudio": {
+                "easy": [
+                    {"q": "What is Android Studio?", "options": ["A programming language", "The official IDE for Android app development", "A mobile operating system", "A cloud hosting service"], "correct": 1},
+                    {"q": "Which company develops Android Studio?", "options": ["Google", "Apple", "Microsoft", "JetBrains"], "correct": 0},
+                    {"q": "What platform is Android Studio built on?", "options": ["Eclipse", "IntelliJ IDEA", "Visual Studio", "Xcode"], "correct": 1},
+                    {"q": "Which tool did Android Studio officially replace in 2014?", "options": ["Xcode", "Eclipse ADT plugin", "Visual Studio Code", "NetBeans"], "correct": 1},
+                    {"q": "Which two languages does Android Studio primarily support for app logic?", "options": ["Swift and Objective-C", "Kotlin and Java", "Python and Ruby", "C# and F#"], "correct": 1},
+                    {"q": "What tool displays real-time app logs in Android Studio?", "options": ["Layout Editor", "Logcat", "Gradle Sync", "Device Manager"], "correct": 1},
+                    {"q": "Which tool lets you visually design an app's UI with drag-and-drop?", "options": ["Logcat", "Layout Editor", "Profiler", "APK Analyzer"], "correct": 1},
+                    {"q": "What build system does Android Studio use?", "options": ["Maven", "Gradle", "Make", "Ant"], "correct": 1},
+                    {"q": "What lets you test an app without a physical device?", "options": ["Logcat", "Android Emulator", "Gradle Sync", "Lint"], "correct": 1},
+                    {"q": "What file describes an Android app's permissions and components?", "options": ["build.gradle", "AndroidManifest.xml", "settings.json", "app.config"], "correct": 1}
+                ],
+                "medium": [
+                    {"q": "What does the Gradle build system do in Android Studio?", "options": ["Only formats code", "Compiles code, packages resources, and manages dependencies", "Only runs the emulator", "Only handles version control"], "correct": 1},
+                    {"q": "What are 'build variants' in Android Studio?", "options": ["A design pattern", "Combinations of build types and product flavors that produce different app versions", "A type of UI widget", "A debugging tool"], "correct": 1},
+                    {"q": "Which official Jetpack components does Android Studio encourage for architecture?", "options": ["Retrofit and Room only", "ViewModel, LiveData, Room, and Navigation", "Only XML layouts", "Only Activities"], "correct": 1},
+                    {"q": "What does the APK Analyzer help you inspect?", "options": ["Network requests", "The contents and size breakdown of a built APK", "Source control history", "Emulator settings"], "correct": 1},
+                    {"q": "What does the Layout Inspector let you do?", "options": ["Edit Gradle scripts", "Examine an app's live UI hierarchy at runtime", "Manage emulators", "Write unit tests"], "correct": 1},
+                    {"q": "What is Jetpack Compose?", "options": ["A testing framework", "Android's modern declarative UI toolkit built with Kotlin", "A network library", "A version control tool"], "correct": 1},
+                    {"q": "What does the Build Analyzer help diagnose?", "options": ["Memory leaks", "Slow Gradle build times", "UI accessibility issues", "Network latency"], "correct": 1},
+                    {"q": "What does R8/ProGuard do in a release build?", "options": ["Speeds up the emulator", "Shrinks and obfuscates code", "Formats source code", "Manages permissions"], "correct": 1},
+                    {"q": "What is the Device Manager used for?", "options": ["Managing Gradle dependencies", "Creating and managing virtual devices (emulators)", "Editing layout files", "Writing Kotlin code"], "correct": 1},
+                    {"q": "Which recommended architecture pattern does Android Studio's Jetpack tooling directly support?", "options": ["MVC", "MVVM", "MVP only", "No pattern is recommended"], "correct": 1}
+                ],
+                "hard": [
+                    {"q": "What does the CPU Profiler in Android Studio help identify?", "options": ["Layout XML errors", "Performance bottlenecks and thread activity during app execution", "Missing string resources", "Manifest permission issues"], "correct": 1},
+                    {"q": "What is the purpose of a Baseline Profile in Android Studio?", "options": ["Setting a minimum SDK version", "Pre-compiling critical code paths to speed up app startup and reduce jank", "Managing app signing keys", "Formatting Kotlin code"], "correct": 1},
+                    {"q": "Why might a Gradle sync fail after adding a new dependency?", "options": ["The emulator is closed", "A version conflict or unreachable repository in the dependency configuration", "The Layout Editor is open", "Logcat is filtering messages"], "correct": 1},
+                    {"q": "What does the Macrobenchmark library measure?", "options": ["Code style violations", "Real-world performance metrics like startup time and jank on actual devices", "UI color contrast", "Manifest merger conflicts"], "correct": 1},
+                    {"q": "What is the main advantage of Gradle's configuration cache?", "options": ["Smaller APK size", "Faster subsequent builds by reusing prior build configuration", "Better UI previews", "Improved emulator graphics"], "correct": 1},
+                    {"q": "What does the Memory Profiler help detect?", "options": ["Slow network calls", "Memory leaks and excessive object allocation", "Missing translations", "Broken navigation graphs"], "correct": 1},
+                    {"q": "Why does Android Studio recommend version catalogs?", "options": ["To replace Kotlin with Java", "To manage dependency versions consistently across modules in one place", "To disable Gradle caching", "To remove the need for a manifest file"], "correct": 1},
+                    {"q": "What is the role of the Accessibility Scanner integration?", "options": ["Testing network security", "Flagging missing content descriptions, low contrast, and small touch targets", "Optimizing Gradle builds", "Managing signing certificates"], "correct": 1},
+                    {"q": "What is a key benefit of Android Studio's Kotlin Multiplatform tooling support?", "options": ["It removes the need for Gradle", "It lets teams share business logic between Android, iOS, and other targets from one codebase", "It replaces the emulator", "It disables Java interop"], "correct": 1},
+                    {"q": "What does the Motion Editor (added in Android Studio 4.0) help build?", "options": ["Database schemas", "Complex motion and widget animations declaratively", "Gradle build scripts", "Unit test suites"], "correct": 1}
+                ]
+            },
+        };
+
+        const languages = [
+            { key: 'HTML', title: 'HTML', summary: 'HTML is the structure of the web. It organizes content into headings, paragraphs, links, and forms.', file: 'HTML.html' },
+            { key: 'CSS', title: 'CSS', summary: 'CSS styles the web. It controls colors, layout, spacing, and responsive design.', file: 'CSS.html' },
+            { key: 'Java', title: 'Java', summary: 'Java is a powerful object-oriented language used in enterprise apps, Android, and backend systems.', file: 'Java.html' },
+            { key: 'JavaScript', title: 'JavaScript', summary: 'JavaScript is the language of the web, powering interactive websites, apps, and browser features.', file: 'JavaScript.html' },
+            { key: 'C', title: 'C', summary: 'C is a foundational systems programming language that powers operating systems, embedded devices, and performance-critical software.', file: 'C.html' },
+            { key: 'C#', title: 'C#', summary: 'C# is a modern object-oriented language commonly used for games, desktop apps, and backend services.', file: 'CSharp.html' },
+            { key: 'C++', title: 'C++', summary: 'C++ is a fast, low-level language used for games, systems, and performance-critical applications.', file: 'CPP.html' },
+            { key: 'Python', title: 'Python', summary: 'Python is beginner-friendly and widely used in AI, automation, scripting, and web applications.', file: 'Python.html' },
+            { key: 'PHP', title: 'PHP', summary: 'PHP powers many websites and server-side applications for dynamic content and forms.', file: 'PHP.html' },
+            { key: 'Ruby', title: 'Ruby', summary: 'Ruby is elegant and developer-friendly, especially for web applications and scripting.', file: 'Ruby.html' },
+            { key: 'TypeScript', title: 'TypeScript', summary: 'TypeScript adds static typing to JavaScript for safer, more scalable applications.', file: 'TypeScript.html' },
+            { key: 'Tailwind', title: 'Tailwind', summary: 'Tailwind is a utility-first CSS framework that speeds up modern UI development.', file: 'Tailwind.html' },
+            { key: 'SQL', title: 'SQL', summary: 'SQL is the language of relational databases — query, insert, update, and manage structured data.', file: 'SQL.html' },
+            { key: 'Swift', title: 'Swift', summary: "Swift is Apple's modern, safe, and fast language for building iOS, macOS, watchOS, and tvOS apps.", file: 'Swift.html' },
+            { key: 'AndroidStudio', title: 'Java (Android Studio)', summary: "Explore Android Studio — Google's official IDE for building Android apps, its components, and its tools.", file: 'AndroidStudio.html' },
+            { key: 'Kotlin', title: 'Kotlin', summary: "Kotlin is a modern, concise, null-safe language and Google's preferred choice for Android development.", file: 'Kotlin.html' },
+            { key: 'Go', title: 'Go', summary: "Go is Google's simple, statically typed language built for speed, concurrency, and cloud-native services.", file: 'Go.html' }
+        ];
+
+        const grid = document.getElementById('languageGrid');
+        const selectedLanguage = document.getElementById('selectedLanguage');
+        const selectedSummary = document.getElementById('selectedSummary');
+        const playLanguageBtn = document.getElementById('playLanguageBtn');
+        const learnLanguageBtn = document.getElementById('learnLanguageBtn');
+        learnLanguageBtn.addEventListener('click', () => {
+            try{ new Audio('musics/syntaxguidebro.mp3').play().catch(()=>{}); }catch(e){}
+        });
+        const modalOverlay = document.getElementById('languageModalOverlay');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+
+        let activeLanguage = null;
+        let activeButton = null;
+        let activeDifficulty = 'easy';
+        // Read inbound mode/pacing from previous screen (Qubeat.html)
+        const _params = new URLSearchParams(window.location.search);
+        // Try URL params first, then localStorage fallback (set by Qubeat.html on navigation)
+        const storedMode = (function(){ try{ return localStorage.getItem('qubeat.mode'); }catch(e){ return null; } })();
+        const storedPacing = (function(){ try{ return localStorage.getItem('qubeat.pacing'); }catch(e){ return null; } })();
+        const incomingMode = _params.get('mode') || storedMode || 'arcade';
+        const incomingPacing = _params.get('pacing') || storedPacing || 'whole-note';
+        if(!_params.get('mode') && storedMode){
+            console.log('QubeatLanguage: using stored mode/pacing fallback', {mode: incomingMode, pacing: incomingPacing});
+            try{ localStorage.removeItem('qubeat.mode'); localStorage.removeItem('qubeat.pacing'); }catch(e){}
+        } else {
+            console.log('QubeatLanguage: received params', {mode: _params.get('mode'), pacing: _params.get('pacing')});
+        }
+
+        function displayQuestions(difficulty) {
+            const container = document.getElementById('questionsContainer');
+            if (!activeLanguage || !questionsByLanguage[activeLanguage.key]) {
+                container.innerHTML = '';
+                return;
+            }
+            const questions = questionsByLanguage[activeLanguage.key][difficulty] || [];
+            container.innerHTML = questions.map((q, idx) => `
+                <div class="question-item">
+                    <div class="question-number">${idx + 1}. ${q.q}</div>
+                    <div class="question-options">
+                        ${q.options.map((opt, oIdx) => `
+                            <div class="option-item ${oIdx === q.correct ? 'correct' : ''}">${String.fromCharCode(65 + oIdx)}. ${opt} ${oIdx === q.correct ? '✅' : ''}</div>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function slugify(name) {
+            return name.toLowerCase().replace(/\+/g, 'plus').replace(/#/g, 'sharp').replace(/\s+/g, '-');
+        }
+
+        function renderLanguageButtons() {
+            grid.innerHTML = '';
+            languages.forEach((lang) => {
+                const button = document.createElement('button');
+                button.type = 'button';
+                button.className = 'language-button';
+                button.innerHTML = `
+                    <span class="label">Language</span>
+                    <span class="name">${lang.title}</span>
+                    <p class="detail">${lang.summary}</p>
+                `;
+                button.addEventListener('click', () => selectLanguage(lang, button, true));
+                grid.appendChild(button);
+            });
+        }
+
+        function updateSelection(lang, button) {
+            activeLanguage = lang;
+            if (activeButton) activeButton.classList.remove('active');
+            activeButton = button;
+            if (button) button.classList.add('active');
+
+            selectedLanguage.textContent = lang.title;
+            selectedSummary.textContent = lang.summary;
+            activeDifficulty = 'easy';
+            document.getElementById('diff-easy').checked = true;
+            playLanguageBtn.onclick = () => {
+                const diffLabel = activeDifficulty === 'easy' ? 'syntax' : activeDifficulty === 'medium' ? 'compiler' : 'overclock';
+                const modeParam = encodeURIComponent(incomingMode);
+                const pacingParam = encodeURIComponent(incomingPacing);
+                try{
+                    localStorage.setItem('qubeat.diff', diffLabel);
+                    localStorage.setItem('qubeat.lang', slugify(lang.key));
+                }catch(e){}
+                const destination = `QubeatGameStart.html?mode=${modeParam}&pacing=${pacingParam}&diff=${diffLabel}&lang=${slugify(lang.key)}`;
+                let navigated = false;
+                const goToGame = () => { if (navigated) return; navigated = true; window.location.href = destination; };
+                try{ new Audio('musics/starting.mp3').play().catch(()=>{}); }catch(e){}
+                setTimeout(goToGame, 1000);
+            };
+            learnLanguageBtn.href = lang.file;
+            learnLanguageBtn.setAttribute('aria-label', `Syntax Guide for ${lang.title}`);
+        }
+
+        function selectLanguage(lang, button, openPopup = false) {
+            updateSelection(lang, button);
+            if (openPopup) {
+                modalOverlay.classList.add('visible');
+                modalOverlay.setAttribute('aria-hidden', 'false');
+            }
+        }
+
+        function closeModal() {
+            modalOverlay.classList.remove('visible');
+            modalOverlay.setAttribute('aria-hidden', 'true');
+        }
+
+        renderLanguageButtons();
+        updateSelection(languages[0], grid.querySelector('.language-button'));
+
+        // Difficulty selector listeners - track selection without showing questions
+        const difficultySfxMap = { easy: 'btnSyntaxSfx', medium: 'btnCompilerSfx', hard: 'btnOverclockSfx' };
+        Object.values(difficultySfxMap).forEach((id) => {
+            const el = document.getElementById(id);
+            if (el) el.addEventListener('error', () => console.warn(id + ' failed to load — check the file path:', el.src));
+        });
+        document.querySelectorAll('input[name="difficulty"]').forEach(input => {
+            input.addEventListener('change', (e) => {
+                activeDifficulty = e.target.value;
+                const sfx = document.getElementById(difficultySfxMap[e.target.value]);
+                if (sfx) {
+                    sfx.currentTime = 0;
+                    sfx.play().catch((err) => console.warn('Could not play ' + sfx.id + ':', err));
+                }
+            });
+        });
+
+        closeModalBtn.addEventListener('click', () => {
+            const sfx = document.getElementById('mainMenuSfx');
+            if (sfx) { sfx.currentTime = 0; sfx.play().catch(() => {}); }
+            closeModal();
+        });
+        modalOverlay.addEventListener('click', (event) => {
+            if (event.target === modalOverlay) closeModal();
+        });
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') closeModal();
+        });
+    </script>
+</body>
+</html>

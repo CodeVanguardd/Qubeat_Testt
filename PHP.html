@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PHP — The Complete Master Guide</title>
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800;900&family=Rajdhani:wght@600;700&family=Sora:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#07030d;
+  --panel:#120a1f;
+  --panel2:#1a0f2e;
+  --line:#3a1f5c;
+  --ink:#f3e9ff;
+  --muted:#b39cd0;
+  --pink:#ff2fb0;
+  --pink2:#ff7ad9;
+  --blue:#00e5ff;
+  --blue2:#7df9ff;
+  --danger:#ff5c7a;
+  --good:#39ffb0;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; color:var(--ink);
+  font-family:'Sora',ui-sans-serif,system-ui,-apple-system,Arial,sans-serif;
+  line-height:1.65;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(255,47,176,0.16), transparent 45%),
+    radial-gradient(circle at 85% 10%, rgba(0,229,255,0.16), transparent 40%),
+    radial-gradient(circle at 50% 90%, rgba(255,47,176,0.12), transparent 50%),
+    linear-gradient(0deg, transparent 24%, rgba(0,229,255,0.05) 25%, rgba(0,229,255,0.05) 26%, transparent 27%, transparent 74%, rgba(255,47,176,0.05) 75%, rgba(255,47,176,0.05) 76%, transparent 77%),
+    var(--bg);
+  background-size:auto, auto, auto, 60px 60px, auto;
+  position:relative;
+  overflow-x:hidden;
+}
+body::before{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+  background:linear-gradient(90deg, transparent 49%, rgba(0,229,255,0.4) 50%, transparent 51%);
+  opacity:0; mix-blend-mode:screen;
+  animation:strike 7s infinite;
+}
+body::after{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+  background:linear-gradient(180deg, transparent 60%, rgba(255,47,176,0.35) 61%, transparent 63%);
+  opacity:0; mix-blend-mode:screen;
+  animation:strike2 11s infinite;
+}
+@keyframes strike{
+  0%,93%,100%{opacity:0} 93.2%{opacity:.9} 93.4%{opacity:0} 93.6%{opacity:.5} 93.9%{opacity:0}
+}
+@keyframes strike2{
+  0%,88%,100%{opacity:0} 88.2%{opacity:.7} 88.5%{opacity:0} 88.8%{opacity:.4} 89.1%{opacity:0}
+}
+a{color:var(--blue)}
+.layout{display:grid; grid-template-columns:280px 1fr; min-height:100vh; position:relative; z-index:1;}
+nav.side{
+  position:sticky; top:0; height:100vh; overflow-y:auto;
+  background:rgba(18,10,31,0.85); backdrop-filter:blur(6px);
+  border-right:1px solid var(--line); padding:20px 14px;
+}
+nav.side h2{
+  font-size:12.5px; text-transform:uppercase; letter-spacing:.2em; font-family:'Rajdhani',sans-serif;
+  color:var(--blue2); margin:18px 6px 8px; font-weight:700;
+}
+nav.side h2:first-child{margin-top:0}
+nav.side a{
+  display:block; padding:6px 8px; border-radius:8px;
+  color:var(--muted); text-decoration:none; font-size:13.5px;
+}
+nav.side a:hover{background:var(--panel2); color:var(--pink2); text-shadow:0 0 8px var(--pink)}
+.brand{padding:6px 8px 18px; border-bottom:1px solid var(--line); margin-bottom:6px;}
+.brand .logo{font-family:'Orbitron',sans-serif; letter-spacing:0;
+  display:inline-flex; align-items:center; justify-content:center;
+  width:40px; height:40px; font-weight:900; font-size:16px;
+  border-radius:10px; color:#07030d;
+  background:linear-gradient(135deg,var(--pink),var(--blue));
+  box-shadow:0 0 18px rgba(255,47,176,.5), 0 0 30px rgba(0,229,255,.25);
+}
+.brand h1{font-size:18px; margin:10px 0 2px; font-family:'Orbitron',sans-serif; background:linear-gradient(90deg,var(--pink2),var(--blue2)); -webkit-background-clip:text; background-clip:text; color:transparent;}
+.brand p{font-size:12px; color:var(--muted); margin:0}
+main{padding:48px 56px; max-width:980px; position:relative; z-index:1;}
+.hero{
+  border:1px solid var(--line);
+  background:linear-gradient(135deg, rgba(255,47,176,0.08), rgba(0,229,255,0.08)), var(--panel);
+  border-radius:22px; padding:38px; margin-bottom:44px; position:relative; overflow:hidden;
+  box-shadow:0 0 40px rgba(255,47,176,.08), inset 0 0 60px rgba(0,229,255,.04);
+}
+.hero .kicker{color:var(--blue2); font-family:'Rajdhani',sans-serif; font-weight:700; letter-spacing:.22em; font-size:13px; text-transform:uppercase;}
+.hero h1{font-size:42px; margin:10px 0; font-family:'Orbitron',sans-serif; letter-spacing:.02em; background:linear-gradient(90deg,var(--pink2),var(--blue2)); -webkit-background-clip:text; background-clip:text; color:transparent; text-shadow:0 0 20px rgba(255,47,176,.45), 0 0 40px rgba(5,230,255,.2);}
+.hero p{color:var(--muted); max-width:640px; font-size:15.5px;}
+section{margin-bottom:56px; scroll-margin-top:24px;}
+section h2{
+  font-size:24px; display:flex; align-items:center; gap:12px; margin-bottom:6px;
+  font-family:'Rajdhani',sans-serif; font-weight:700; letter-spacing:.01em;
+  padding-bottom:10px; border-bottom:1px solid var(--line); color:var(--ink);
+}
+section h2 .num{
+  color:#07030d; background:linear-gradient(135deg,var(--pink),var(--blue)); font-size:13px; font-weight:800;
+  width:30px; height:30px; border-radius:8px; display:flex; align-items:center; justify-content:center;
+  flex:none; box-shadow:0 0 12px rgba(255,47,176,.4);
+}
+section h3{font-size:15px; color:var(--blue2); font-family:'Rajdhani',sans-serif; font-weight:600; margin:22px 0 8px; text-transform:uppercase; letter-spacing:.06em;}
+p{color:#d8c9f0; font-size:15px;}
+ul,ol{color:#d8c9f0; font-size:15px; padding-left:20px;}
+li{margin-bottom:6px;}
+.card{background:rgba(18,10,31,0.7); border:1px solid var(--line); border-radius:14px; padding:20px; margin:14px 0;}
+.grid2{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+.grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
+@media (max-width:900px){.grid2,.grid3{grid-template-columns:1fr} .layout{grid-template-columns:1fr} nav.side{position:relative; height:auto;}}
+table{width:100%; border-collapse:collapse; font-size:14px; margin:12px 0;}
+th,td{border:1px solid var(--line); padding:8px 10px; text-align:left; color:#d8c9f0;}
+th{background:var(--panel2); color:var(--pink2); font-family:'Rajdhani',sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:.04em; font-size:13px;}
+pre{
+  background:#0a0512; border:1px solid var(--line); border-radius:12px;
+  padding:16px 18px; overflow-x:auto; font-size:13.5px; margin:10px 0;
+  box-shadow:inset 0 0 20px rgba(0,229,255,.05);
+}
+code{font-family:'JetBrains Mono','Fira Code',Consolas,'Courier New',monospace;}
+.kw{color:var(--pink2)}.str{color:var(--good)}.com{color:#7a6a99;font-style:italic}.fn{color:var(--blue2)}.num2{color:#ffb86c}
+.expl{border-left:3px solid var(--pink); padding:6px 0 6px 14px; margin:8px 0; color:var(--muted); font-size:13.5px;}
+.expl li{margin-bottom:4px;}
+.pill-row{display:flex; gap:8px; flex-wrap:wrap; margin:10px 0;}
+.pill{background:var(--panel2); border:1px solid var(--line); border-radius:8px; padding:6px 12px; font-size:13px; color:#d8c9f0; font-family:'Rajdhani',sans-serif; font-weight:600; letter-spacing:.02em;}
+.good{color:var(--good)}.bad{color:var(--danger)}
+.qa{background:rgba(18,10,31,0.7); border:1px solid var(--line); border-radius:12px; padding:14px 18px; margin:10px 0;}
+.qa .q{color:var(--pink2); font-family:'Rajdhani',sans-serif; font-weight:700; font-size:15.5px; letter-spacing:.01em;}
+.qa .a{color:#d8c9f0; font-size:14px; margin-top:6px;}
+
+/* ===== Back button — select another language ===== */
+.back-wrap{ margin-bottom:22px; }
+.back-btn{
+  background-color:#852564;
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: inline-block;
+  text-align: center;
+  font-weight: bold;
+  padding: 0.7em 2em;
+  border: 3px solid #FF0072;
+  border-radius: 2px;
+  position: relative;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.1);
+  color: #07EBDA;
+  text-decoration: none;
+  transition: 0.3s ease all;
+  z-index: 1;
+  cursor:pointer;
+  font-family:inherit;
+}
+.back-btn:before {
+  transition: 0.5s all ease;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  right: 50%;
+  bottom: 0;
+  opacity: 0;
+  content: '';
+  background-color: #FF0072;
+  z-index: -1;
+}
+.back-btn:hover, .back-btn:focus {
+  color: #07EBDA;
+}
+.back-btn:hover:before, .back-btn:focus:before {
+  transition: 0.5s all ease;
+  left: 0;
+  right: 0;
+  opacity: 1;
+}
+.back-btn:active {
+  transform: scale(0.9);
+}
+
+</style>
+</head>
+<body>
+<div class="layout">
+<nav class="side">
+<div class="brand">
+<span class="logo">PHP</span>
+<h1>PHP</h1>
+<p>Complete Master Guide</p>
+</div>
+<h2>Foundations</h2>
+<a href="#intro">1. Introduction</a>
+<a href="#history">2. History</a>
+<a href="#versions">3. Versions</a>
+<a href="#filestructure">4. File Structure</a>
+<a href="#syntax">5. Syntax</a>
+<a href="#keywords">6. Keywords</a>
+<a href="#datatypes">7. Data Types</a>
+<a href="#variables">8. Variables</a>
+<a href="#operators">9. Operators</a>
+<a href="#controlflow">10. Control Flow</a>
+<h2>Core Language</h2>
+<a href="#functions">11. Functions</a>
+<a href="#classes">12. Classes</a>
+<a href="#objects">13. Objects</a>
+<a href="#oop">14. OOP Concepts</a>
+<a href="#modules">15. Modules</a>
+<a href="#libraries">16. Libraries</a>
+<a href="#apis">17. APIs</a>
+<a href="#errors">18. Error Handling</a>
+<a href="#memory">19. Memory Management</a>
+<a href="#performance">20. Performance</a>
+<h2>Craft</h2>
+<a href="#bestpractices">21. Best Practices</a>
+<a href="#security">22. Security</a>
+<a href="#accessibility">23. Accessibility</a>
+<a href="#codestyle">24. Code Style</a>
+<a href="#patterns">25. Design Patterns</a>
+<a href="#projectstructure">26. Project Structure</a>
+<a href="#mistakes">27. Common Mistakes</a>
+<h2>Practice & Career</h2>
+<a href="#interview">28. Interview Questions</a>
+<a href="#problems">29. Practice Problems</a>
+<a href="#realprojects">30. Real Projects</a>
+<a href="#cheatsheet">31. Cheat Sheet</a>
+<a href="#faq">32. FAQ</a>
+<a href="#proscons">33. Pros and Cons</a>
+<a href="#comparison">34. Comparison</a>
+<a href="#latest">35. Latest Features</a>
+<a href="#future">36. Future</a>
+</nav>
+<main>
+  <div class="back-wrap">
+    <button class="back-btn" onclick="window.location.href='QubeatLanguage.html'">select another language</button>
+  </div>
+<div class="hero">
+    <div class="kicker">Master Guide · 36 Sections</div>
+    <h1>PHP</h1>
+    <p>A server-side scripting language purpose-built for the web — powering CMS platforms, e-commerce backends, and APIs across the internet.</p>
+  </div>
+
+<section id="intro"><h2><span class="num">1</span> Introduction</h2>
+<p>PHP is a server-side scripting language purpose-built for the web. Code runs on the server and outputs HTML, JSON, or other content back to the browser — making it the engine behind a huge share of the web, including WordPress, and platforms like Facebook's early stack.</p>
+<p>PHP is easy to embed directly inside HTML, has a low barrier to entry, and comes with built-in support for common web tasks: sessions, forms, file uploads, and database access.</p>
+<div class="grid3">
+  <div class="card"><strong style="color:var(--pink2)">Type</strong><br/>Interpreted, dynamically typed</div>
+  <div class="card"><strong style="color:var(--pink2)">Runs on</strong><br/>Web servers (Apache, Nginx + PHP-FPM)</div>
+  <div class="card"><strong style="color:var(--pink2)">Paradigms</strong><br/>Procedural, OOP</div>
+</div>
+<pre><code>&lt;?php
+<span class="fn">echo</span> <span class="str">"Hello, PHP!"</span>;
+?&gt;</code></pre>
+<div class="expl">
+  <li><code>&lt;?php ... ?&gt;</code> marks a block of PHP code inside a file.</li>
+  <li><code>echo</code> outputs text to the response.</li>
+</div>
+</section>
+
+<section id="history"><h2><span class="num">2</span> History</h2>
+<p>PHP was created by <strong>Rasmus Lerdorf</strong> in 1994, originally as a set of Common Gateway Interface (CGI) scripts. The name stood for "Personal Home Page Tools" before becoming the recursive "PHP: Hypertext Preprocessor."</p>
+<table><tr><th>Year</th><th>Milestone</th></tr>
+<tr><td>1994</td><td>Created by Rasmus Lerdorf</td></tr>
+<tr><td>1995</td><td>PHP/FI released publicly</td></tr>
+<tr><td>2004</td><td>PHP 5 — full OOP support</td></tr>
+<tr><td>2015</td><td>PHP 7 — major performance rewrite (Zend Engine 3)</td></tr>
+<tr><td>2020</td><td>PHP 8 — JIT compiler, union types, attributes</td></tr></table>
+</section>
+
+<section id="versions"><h2><span class="num">3</span> Versions</h2>
+<table><tr><th>Version</th><th>Key Additions</th></tr>
+<tr><td>PHP 5.6</td><td>Variadic functions, constant expressions</td></tr>
+<tr><td>PHP 7.x</td><td>~2x performance boost, scalar type hints, null coalescing <code>??</code></td></tr>
+<tr><td>PHP 8.0</td><td>JIT compiler, union types, match expression, attributes</td></tr>
+<tr><td>PHP 8.1–8.3</td><td>Enums, readonly properties, fibers</td></tr></table>
+</section>
+
+<section id="filestructure"><h2><span class="num">4</span> File Structure</h2>
+<p>PHP files use the <code>.php</code> extension. Apps typically live in a <code>public/</code> web root with <code>src/</code> for reusable code.</p>
+<pre><code><span class="com">&lt;?php
+// index.php — typical structure</span>
+<span class="kw">require</span> <span class="str">'vendor/autoload.php'</span>;  <span class="com">// 1. dependencies</span>
+$appName = <span class="str">'Demo'</span>;                <span class="com">// 2. config</span>
+
+<span class="kw">function</span> <span class="fn">init</span>() {                 <span class="com">// 3. logic</span>
+    <span class="kw">echo</span> <span class="str">"Started"</span>;
+}
+<span class="fn">init</span>();                            <span class="com">// 4. run</span>
+?&gt;</code></pre>
+</section>
+
+<section id="syntax"><h2><span class="num">5</span> Syntax</h2>
+<div class="grid2">
+<div class="card"><h3>Example 1 — Variables & echo</h3><pre><code>&lt;?php
+$score = <span class="num2">42</span>;
+<span class="kw">echo</span> <span class="str">"Score: $score"</span>;   <span class="com">// string interpolation</span>
+?&gt;</code></pre></div>
+<div class="card"><h3>Example 2 — Typed function</h3><pre><code>&lt;?php
+<span class="kw">function</span> <span class="fn">greet</span>(<span class="kw">string</span> $name): <span class="kw">string</span> {
+    <span class="kw">return</span> <span class="str">"Hello, $name"</span>;
+}
+?&gt;</code></pre></div>
+</div>
+</section>
+
+<section id="keywords"><h2><span class="num">6</span> Keywords</h2>
+<div class="pill-row">
+<span class="pill">function</span><span class="pill">class</span><span class="pill">public / private / protected</span><span class="pill">namespace</span>
+<span class="pill">use</span><span class="pill">if / else / elseif</span><span class="pill">foreach</span><span class="pill">return</span>
+<span class="pill">try / catch / finally</span><span class="pill">interface</span><span class="pill">trait</span><span class="pill">static</span>
+</div>
+</section>
+
+<section id="datatypes"><h2><span class="num">7</span> Data Types</h2>
+<table><tr><th>Type</th><th>Example</th></tr>
+<tr><td>int</td><td><code>42</code></td></tr>
+<tr><td>float</td><td><code>3.14</code></td></tr>
+<tr><td>string</td><td><code>"hi"</code></td></tr>
+<tr><td>bool</td><td><code>true / false</code></td></tr>
+<tr><td>array</td><td><code>[1, 2, 3]</code></td></tr>
+<tr><td>object</td><td>Instance of a class</td></tr>
+<tr><td>null</td><td><code>null</code></td></tr>
+<tr><td>mixed</td><td>Any type (PHP 8+)</td></tr></table>
+</section>
+
+<section id="variables"><h2><span class="num">8</span> Variables</h2>
+<div class="grid2">
+<div class="card"><h3>Example 1</h3><pre><code>$age = <span class="num2">25</span>;              <span class="com">// starts with $</span>
+$name = <span class="str">"Ana"</span>;</code></pre></div>
+<div class="card"><h3>Example 2 — Typed property</h3><pre><code><span class="kw">class</span> User {
+    <span class="kw">public</span> <span class="kw">int</span> $age = <span class="num2">0</span>;
+}</code></pre></div>
+</div>
+</section>
+
+<section id="operators"><h2><span class="num">9</span> Operators</h2>
+<table><tr><th>Category</th><th>Operators</th></tr>
+<tr><td>Arithmetic</td><td><code>+ - * / % **</code></td></tr>
+<tr><td>Concatenation</td><td><code>.</code> and <code>.=</code></td></tr>
+<tr><td>Comparison</td><td><code>== === != !==</code></td></tr>
+<tr><td>Null coalescing</td><td><code>?? ??=</code></td></tr>
+<tr><td>Nullsafe</td><td><code>?-&gt;</code></td></tr></table>
+</section>
+
+<section id="controlflow"><h2><span class="num">10</span> Control Flow</h2>
+<div class="grid2">
+<div class="card"><h3>Example 1 — match (PHP 8)</h3><pre><code>$label = <span class="kw">match</span>($day) {
+    <span class="num2">1</span> =&gt; <span class="str">'Mon'</span>,
+    <span class="kw">default</span> =&gt; <span class="str">'?'</span>,
+};</code></pre></div>
+<div class="card"><h3>Example 2 — foreach</h3><pre><code><span class="kw">foreach</span> ($items <span class="kw">as</span> $item) {
+    <span class="kw">echo</span> $item;
+}</code></pre></div>
+</div>
+</section>
+
+<section id="functions"><h2><span class="num">11</span> Functions</h2>
+<div class="grid2">
+<div class="card"><h3>Example 1 — Declaration</h3><pre><code><span class="kw">function</span> <span class="fn">add</span>(<span class="kw">int</span> $a, <span class="kw">int</span> $b): <span class="kw">int</span> {
+    <span class="kw">return</span> $a + $b;
+}
+<span class="fn">add</span>(<span class="num2">2</span>, <span class="num2">3</span>); <span class="com">// 5</span></code></pre></div>
+<div class="card"><h3>Example 2 — Arrow function</h3><pre><code>$square = <span class="kw">fn</span>($x) =&gt; $x ** <span class="num2">2</span>;
+$square(<span class="num2">4</span>); <span class="com">// 16</span></code></pre></div>
+</div>
+</section>
+
+<section id="classes"><h2><span class="num">12</span> Classes</h2>
+<pre><code><span class="kw">class</span> Animal {
+    <span class="kw">public</span> <span class="kw">function</span> <span class="fn">__construct</span>(<span class="kw">protected</span> <span class="kw">string</span> $name) {}
+    <span class="kw">public</span> <span class="kw">function</span> <span class="fn">speak</span>(): <span class="kw">string</span> {
+        <span class="kw">return</span> <span class="str">"{$this->name} makes a sound"</span>;
+    }
+}
+<span class="kw">class</span> Dog <span class="kw">extends</span> Animal {         <span class="com">// inheritance</span>
+    <span class="kw">public</span> <span class="kw">function</span> <span class="fn">speak</span>(): <span class="kw">string</span> {
+        <span class="kw">return</span> <span class="str">"{$this->name} barks"</span>;  <span class="com">// override</span>
+    }
+}
+$d = <span class="kw">new</span> Dog(<span class="str">"Rex"</span>);
+$d-&gt;<span class="fn">speak</span>(); <span class="com">// "Rex barks"</span></code></pre>
+<div class="expl"><li><code>__construct</code> is the constructor.</li><li>Constructor property promotion (<code>protected string $name</code>) declares and assigns in one step.</li><li><code>extends</code> sets up inheritance.</li></div>
+</section>
+
+<section id="objects"><h2><span class="num">13</span> Objects</h2>
+<div class="grid2">
+<div class="card"><h3>Example 1 — Instantiation</h3><pre><code>$car = <span class="kw">new</span> stdClass();
+$car-&gt;brand = <span class="str">"Toyota"</span>;</code></pre></div>
+<div class="card"><h3>Example 2 — Readonly (8.1+)</h3><pre><code><span class="kw">class</span> Point {
+    <span class="kw">public</span> <span class="kw">readonly</span> <span class="kw">int</span> $x;
+}</code></pre></div>
+</div>
+</section>
+
+<section id="oop"><h2><span class="num">14</span> OOP Concepts</h2>
+<div class="grid2">
+<div class="card"><strong style="color:var(--pink2)">Encapsulation</strong><p>Visibility modifiers (<code>public</code>, <code>protected</code>, <code>private</code>) control access.</p></div>
+<div class="card"><strong style="color:var(--pink2)">Inheritance</strong><p><code>extends</code> lets a subclass reuse parent behavior.</p></div>
+<div class="card"><strong style="color:var(--pink2)">Polymorphism</strong><p>Overriding methods lets subclasses respond differently to the same call.</p></div>
+<div class="card"><strong style="color:var(--pink2)">Traits</strong><p>Reusable method bundles that classes can "mix in" without inheritance.</p></div>
+</div>
+</section>
+
+<section id="modules"><h2><span class="num">15</span> Modules</h2>
+<pre><code><span class="com">// User.php</span>
+<span class="kw">namespace</span> App\Models;
+<span class="kw">class</span> User {}
+
+<span class="com">// app.php</span>
+<span class="kw">use</span> App\Models\User;
+$u = <span class="kw">new</span> User();</code></pre>
+</section>
+
+<section id="libraries"><h2><span class="num">16</span> Libraries</h2>
+<div class="pill-row">
+<span class="pill">Laravel — full framework</span><span class="pill">Symfony — components/framework</span>
+<span class="pill">Composer — dependency manager</span><span class="pill">Guzzle — HTTP client</span><span class="pill">PHPUnit — testing</span>
+</div>
+</section>
+
+<section id="apis"><h2><span class="num">17</span> APIs</h2>
+<div class="grid2">
+<div class="card"><h3>Example 1 — PDO (database)</h3><pre><code>$pdo = <span class="kw">new</span> PDO($dsn, $user, $pass);
+$stmt = $pdo-&gt;<span class="fn">query</span>(<span class="str">"SELECT * FROM users"</span>);</code></pre></div>
+<div class="card"><h3>Example 2 — REST endpoint</h3><pre><code>header(<span class="str">'Content-Type: application/json'</span>);
+<span class="kw">echo</span> json_encode([<span class="str">'status'</span> =&gt; <span class="str">'ok'</span>]);</code></pre></div>
+</div>
+</section>
+
+<section id="errors"><h2><span class="num">18</span> Error Handling</h2>
+<pre><code><span class="kw">try</span> {
+    $data = <span class="fn">json_decode</span>($json, <span class="kw">flags</span>: JSON_THROW_ON_ERROR); <span class="com">// may throw</span>
+} <span class="kw">catch</span> (JsonException $e) {
+    <span class="kw">echo</span> <span class="str">"Failed: "</span> . $e-&gt;getMessage();   <span class="com">// handle</span>
+} <span class="kw">finally</span> {
+    <span class="kw">echo</span> <span class="str">"Done"</span>;                       <span class="com">// always runs</span>
+}</code></pre>
+</section>
+
+<section id="memory"><h2><span class="num">19</span> Memory Management</h2>
+<p>PHP uses automatic reference counting plus a cycle collector, similar in spirit to Python. Memory for a request is typically freed entirely at the end of that request's lifecycle under PHP-FPM.</p>
+</section>
+
+<section id="performance"><h2><span class="num">20</span> Performance</h2>
+<ul>
+<li>Enable OPcache to avoid re-parsing scripts on every request.</li>
+<li>Use the JIT compiler (PHP 8+) for CPU-heavy workloads.</li>
+<li>Avoid N+1 database queries — eager-load relationships.</li>
+</ul>
+</section>
+
+<section id="bestpractices"><h2><span class="num">21</span> Best Practices</h2>
+<ul>
+<li>Use Composer for dependency management.</li>
+<li>Follow PSR coding standards (PSR-12).</li>
+<li>Separate concerns — avoid mixing heavy logic directly into HTML templates.</li>
+<li>Use type declarations for parameters and return types.</li>
+</ul>
+</section>
+
+<section id="security"><h2><span class="num">22</span> Security</h2>
+<ul>
+<li>Use prepared statements (PDO) to prevent SQL injection.</li>
+<li>Escape output with <code>htmlspecialchars()</code> to prevent XSS.</li>
+<li>Never trust <code>$_GET</code>/<code>$_POST</code> without validation.</li>
+<li>Keep PHP and dependencies patched.</li>
+</ul>
+<pre><code><span class="com">// Bad</span>
+$q = <span class="str">"SELECT * FROM users WHERE id=$id"</span>;
+<span class="com">// Better</span>
+$stmt = $pdo-&gt;<span class="fn">prepare</span>(<span class="str">"SELECT * FROM users WHERE id=?"</span>);
+$stmt-&gt;<span class="fn">execute</span>([$id]);</code></pre>
+</section>
+
+<section id="accessibility"><h2><span class="num">23</span> Accessibility</h2>
+<p>Accessibility comes from the HTML PHP generates, not PHP itself — use semantic markup, labels, and ARIA attributes in your templates.</p>
+</section>
+
+<section id="codestyle"><h2><span class="num">24</span> Code Style</h2>
+<ul>
+<li>Follow PSR-12: 4-space indentation, braces on new lines for classes/functions.</li>
+<li>camelCase for methods/variables, PascalCase for classes.</li>
+<li>Use PHP-CS-Fixer or PHP_CodeSniffer to enforce style.</li>
+</ul>
+</section>
+
+<section id="patterns"><h2><span class="num">25</span> Design Patterns</h2>
+<div class="grid2">
+<div class="card"><h3>Repository Pattern</h3><pre><code><span class="kw">class</span> UserRepository {
+    <span class="kw">public</span> <span class="kw">function</span> <span class="fn">find</span>(<span class="kw">int</span> $id): ?User { <span class="kw">...</span> }
+}</code></pre></div>
+<div class="card"><h3>Dependency Injection</h3><pre><code><span class="kw">class</span> UserService {
+    <span class="kw">public</span> <span class="kw">function</span> <span class="fn">__construct</span>(<span class="kw">private</span> UserRepository $repo) {}
+}</code></pre></div>
+</div>
+</section>
+
+<section id="projectstructure"><h2><span class="num">26</span> Project Structure</h2>
+<pre><code>my-app/
+├── public/
+│   └── index.php
+├── src/
+│   ├── Controllers/
+│   └── Models/
+├── vendor/
+└── composer.json</code></pre>
+</section>
+
+<section id="mistakes"><h2><span class="num">27</span> Common Mistakes</h2>
+<ul>
+<li>Mixing PHP and HTML too heavily, making templates hard to maintain.</li>
+<li>Trusting user input directly in SQL queries or shell commands.</li>
+<li>Using <code>==</code> instead of <code>===</code>, causing loose-comparison bugs.</li>
+<li>Not handling exceptions from external calls (DB, HTTP).</li>
+</ul>
+</section>
+
+<section id="interview"><h2><span class="num">28</span> Interview Questions</h2>
+<div class="qa"><div class="q">Q: Difference between <code>==</code> and <code>===</code>?</div><div class="a">A: <code>==</code> compares values with type coercion; <code>===</code> compares both value and type.</div></div>
+<div class="qa"><div class="q">Q: What is Composer?</div><div class="a">A: PHP's dependency manager — it installs packages and generates an autoloader for your project.</div></div>
+<div class="qa"><div class="q">Q: What are traits?</div><div class="a">A: Reusable blocks of methods that can be mixed into multiple classes, working around PHP's single-inheritance limit.</div></div>
+</section>
+
+<section id="problems"><h2><span class="num">29</span> Practice Problems</h2>
+<ol>
+<li>Build a simple session-based login form.</li>
+<li>Write a function to validate an email address.</li>
+<li>Create a JSON API endpoint that returns a list of items.</li>
+<li>Implement pagination for a database query.</li>
+</ol>
+</section>
+
+<section id="realprojects"><h2><span class="num">30</span> Real Projects</h2>
+<div class="grid3">
+<div class="card">CMS-driven website</div>
+<div class="card">E-commerce backend</div>
+<div class="card">REST API for a mobile app</div>
+</div>
+</section>
+
+<section id="cheatsheet"><h2><span class="num">31</span> Cheat Sheet</h2>
+<pre><code>Array: array_map array_filter array_reduce
+String: strlen str_replace explode implode
+Superglobals: $_GET $_POST $_SESSION $_SERVER
+DB: PDO prepare execute fetch</code></pre>
+</section>
+
+<section id="faq"><h2><span class="num">32</span> FAQ</h2>
+<div class="qa"><div class="q">Include vs require?</div><div class="a">Both import a file; <code>require</code> fatally errors if the file is missing, <code>include</code> only warns.</div></div>
+<div class="qa"><div class="q">Session vs cookie?</div><div class="a">Sessions store data server-side keyed by a cookie ID; cookies store data directly in the browser.</div></div>
+</section>
+
+<section id="proscons"><h2><span class="num">33</span> Pros and Cons</h2>
+<div class="grid2">
+<div class="card"><strong class="good">Pros</strong><ul><li>Easy to deploy, huge hosting support</li><li>Mature frameworks (Laravel, Symfony)</li><li>Great for rapid web development</li></ul></div>
+<div class="card"><strong class="bad">Cons</strong><ul><li>Inconsistent standard library naming (legacy)</li><li>Historically prone to insecure code without discipline</li></ul></div>
+</div>
+</section>
+
+<section id="comparison"><h2><span class="num">34</span> Comparison with Other Languages</h2>
+<table><tr><th>Feature</th><th>PHP</th><th>Node.js</th><th>Python</th></tr>
+<tr><td>Model</td><td>Request-per-process (FPM)</td><td>Event loop</td><td>WSGI/ASGI</td></tr>
+<tr><td>Primary use</td><td>Web backends</td><td>Web/APIs</td><td>Web/Data/Scripting</td></tr></table>
+</section>
+
+<section id="latest"><h2><span class="num">35</span> Latest Features</h2>
+<ul>
+<li>Enums (PHP 8.1)</li>
+<li>Readonly properties and first-class callable syntax</li>
+<li>Fibers for lightweight cooperative concurrency</li>
+</ul>
+</section>
+
+<section id="future"><h2><span class="num">36</span> Future of the Language</h2>
+<p>PHP continues investing in performance (JIT improvements) and stronger typing, closing the gap with statically typed languages while keeping its fast, pragmatic web-development workflow. It remains foundational to a huge share of the web.</p>
+</section>
+</main>
+</div>
+</body>
+</html>

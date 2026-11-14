@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QuBeat | Paced Rhythm Game</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="stylesheet" href="QuebeatMain.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double:wght@100..900&display=swap" rel="stylesheet">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double:wght@100..900&family=Rubik+Maze&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double:wght@100..900&family=Germania+One&family=Rubik+Maze&display=swap" rel="stylesheet">
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double:wght@100..900&family=Germania+One&family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rubik+Maze&display=swap" rel="stylesheet"> 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Saira:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=New+Tegomin&family=Saira:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Segoe UI", Arial, sans-serif;
+            color: #f8f9ff;
+            background-image: url(background.gif);
+            background-size: cover;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .menu-shell {
+            width: min(100%, 960px);
+            background: rgba(7, 10, 26, 0.92);
+            border: 1px solid rgba(102, 46, 246, 0.35);
+            border-radius: 26px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+            overflow: hidden;
+            position: relative;
+            padding: 30px 28px 34px;
+             
+        }
+
+        .menu-shell::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            height: 4px;
+            background: linear-gradient(90deg, rgba(255, 40, 135, 0.8), rgba(70, 205, 255, 0.8));
+ 
+        }
+
+        .topbar {
+            text-align: center;
+            margin-bottom: 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .topbar .eyebrow {
+            letter-spacing: 0.35em;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            color: #8b8df5;
+            margin-bottom: 10px;
+        }
+
+        .topbar .glitch {
+            font-size: clamp(3rem, 6vw, 5.8rem);
+            margin: 0;
+            line-height: 0.95;
+            color: #ff62d6;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            animation: glitch 1.6s infinite linear alternate-reverse;
+        }
+
+        .topbar .glitch::before,
+        .topbar .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            right: 0;
+            opacity: 0.75;
+        }
+
+        .topbar .glitch::before {
+            text-shadow: -2px 0 #55d8ff;
+            clip-path: inset(0 0 60% 0);
+            animation: glitchTop 1.8s infinite linear alternate-reverse;
+        }
+
+        .topbar .glitch::after {
+            text-shadow: 2px 0 #ff3abe;
+            clip-path: inset(50% 0 0 0);
+            animation: glitchBottom 1.5s infinite linear alternate-reverse;
+        }
+
+        .topbar .sub {
+            max-width: 640px;
+            margin: 14px auto 0;
+            color: #c4d2ff;
+        }
+
+        .menu-actions {
+            display: grid;
+            gap: 16px;
+            justify-items: center;
+            margin: 0 auto 24px;
+            width: min(100%, 520px);
+        }
+
+        .menu-actions.bottom-actions {
+            width: min(100%, 720px);
+            margin: 0 auto 24px;
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        .menu-actions.bottom-actions a,
+        .menu-actions.bottom-actions button {
+            width: min(240px, 100%);
+            padding: 18px 24px;
+            border-radius: 18px;
+            border: 2px solid rgba(255, 255, 255, 0.16);
+            background: rgba(14, 19, 42, 0.82);
+            color: #f8f9ff;
+            font-size: 1rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease, color 0.16s ease, border-color 0.16s ease;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .menu-actions.bottom-actions a:nth-child(1) {
+            background: linear-gradient(90deg, #4de7ff, #ff62d6);
+            color: #040414;
+            border-color: rgba(255, 255, 255, 0.28);
+        }
+
+        .menu-actions.bottom-actions a:nth-child(n+2) {
+            background: #ff62d6;
+            color: #040414;
+            border-color: rgba(255, 255, 255, 0.28);
+        }
+
+        .menu-actions a:hover,
+        .menu-actions button:hover,
+        .menu-actions.bottom-actions a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 24px rgba(255, 84, 163, 0.32), 0 0 42px rgba(77, 211, 255, 0.18);
+            background: rgba(47, 27, 80, 0.95);
+            color: #ff62d6;
+            border-color: rgba(255, 98, 214, 0.85);
+        }
+
+        .menu-actions .primary {
+            background: linear-gradient(90deg, #ea4cff, #54f1ff);
+            border-color: rgba(255, 255, 255, 0.28);
+            color: #040414;
+        }
+
+        .menu-actions .secondary {
+            background: rgba(15, 30, 84, 0.92);
+            border-color: rgba(120, 186, 255, 0.28);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+            margin-bottom: 24px;
+        }
+
+        .menu-card {
+            background: linear-gradient(180deg, rgba(20, 12, 46, 0.96), rgba(7, 10, 26, 0.88));
+            border: 1px solid rgba(255, 98, 214, 0.18);
+            border-radius: 22px;
+            padding: 28px 24px;
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: inset 0 0 45px rgba(255, 98, 214, 0.08), 0 10px 40px rgba(0, 0, 0, 0.25);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top left, rgba(255, 98, 214, 0.08), transparent 35%), radial-gradient(circle at bottom right, rgba(84, 241, 255, 0.08), transparent 28%);
+            pointer-events: none;
+        }
+
+        .menu-card h3 {
+            margin: 0 0 12px;
+            font-size: 1.25rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #ff62d6;
+            position: relative;
+            text-shadow: 0 0 10px rgba(255, 98, 214, 0.45);
+        }
+
+        .menu-card h3::before,
+        .menu-card h3::after {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            opacity: 0.4;
+            clip-path: inset(0 0 60% 0);
+        }
+
+        .menu-card h3::after {
+            color: #8ae2ff;
+            left: -1.5px;
+            top: 1px;
+            clip-path: inset(55% 0 0 0);
+        }
+
+        .menu-card p {
+            margin: 0;
+            line-height: 1.75;
+            color: #d4d8ff;
+            font-size: 0.98rem;
+        }
+
+        .difficulty-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .difficulty-grid a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            padding: 14px 18px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(15, 22, 55, 0.92);
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            transition: transform 0.16s ease, background 0.16s ease, border-color 0.16s ease;
+        }
+
+        .difficulty-grid a:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 98, 214, 0.14);
+            border-color: rgba(255, 98, 214, 0.4);
+        }
+
+        .menu-section {
+            margin-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 20px;
+        }
+
+        .menu-section h3 {
+            margin-bottom: 10px;
+        }
+
+        .menu-section p {
+            margin: 0 0 10px;
+            line-height: 1.7;
+            color: #c6d1ff;
+        }
+
+        @media (max-width: 760px) {
+            .menu-shell {
+                padding: 22px;
+            }
+            .topbar .glitch {
+                font-size: 4rem;
+            }
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+            .menu-actions {
+                width: 100%;
+            }
+        }
+
+        @keyframes glitch {
+            0% { transform: translate(0, 0); }
+            10% { transform: translate(-2px, -1px); }
+            20% { transform: translate(2px, 1px); }
+            30% { transform: translate(-1px, 2px); }
+            40% { transform: translate(2px, -2px); }
+            50% { transform: translate(-2px, 1px); }
+            60% { transform: translate(2px, 2px); }
+            70% { transform: translate(-1px, -2px); }
+            80% { transform: translate(1px, 1px); }
+            100% { transform: translate(0, 0); }
+        }
+
+        @keyframes glitchTop {
+            0% { transform: translate(-2px, -2px); }
+            50% { transform: translate(2px, 2px); }
+            100% { transform: translate(-2px, -2px); }
+        }
+
+        @keyframes glitchBottom {
+            0% { transform: translate(2px, 2px); }
+            50% { transform: translate(-2px, -2px); }
+            100% { transform: translate(2px, 2px); }
+        }
+
+        /* Welcome / entry overlay */
+        .welcome-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 18px;
+            background: radial-gradient(circle at 50% 40%, rgba(40, 14, 66, 0.96), rgba(4, 4, 20, 0.98)), url(background.gif);
+            background-size: cover;
+            background-position: center;
+            cursor: pointer;
+            opacity: 0;
+            animation: overlayFadeIn 1.1s ease forwards;
+        }
+
+        .welcome-overlay.fade-out {
+            animation: overlayFadeOut 0.9s ease forwards;
+            pointer-events: none;
+        }
+
+        @keyframes overlayFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes overlayFadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+
+        .welcome-overlay .welcome-eyebrow {
+            letter-spacing: 0.35em;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            color: #8b8df5;
+            font-family: 'Prompt', sans-serif;
+        }
+
+        .welcome-overlay .welcome-title {
+            font-size: clamp(2.4rem, 7vw, 5.2rem);
+            margin: 0;
+            line-height: 0.95;
+            color: #ff62d6;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            font-family: 'Rubik Maze', sans-serif;
+            animation: glitch 1.6s infinite linear alternate-reverse;
+        }
+
+        .welcome-overlay .welcome-title::before,
+        .welcome-overlay .welcome-title::after {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            right: 0;
+            opacity: 0.75;
+        }
+
+        .welcome-overlay .welcome-title::before {
+            text-shadow: -2px 0 #55d8ff;
+            clip-path: inset(0 0 60% 0);
+            animation: glitchTop 1.8s infinite linear alternate-reverse;
+        }
+
+        .welcome-overlay .welcome-title::after {
+            text-shadow: 2px 0 #ff3abe;
+            clip-path: inset(50% 0 0 0);
+            animation: glitchBottom 1.5s infinite linear alternate-reverse;
+        }
+
+        .welcome-overlay .enter-prompt {
+            margin-top: 10px;
+            padding: 14px 30px;
+            border-radius: 999px;
+            border: 2px solid rgba(255, 98, 214, 0.4);
+            color: #f8f9ff;
+            font-family: 'Bitcount Grid Double', sans-serif;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            font-size: 0.95rem;
+            animation: enterPulse 1.6s ease-in-out infinite;
+        }
+
+        @keyframes enterPulse {
+            0%, 100% { box-shadow: 0 0 0 rgba(255, 98, 214, 0.0); border-color: rgba(255, 98, 214, 0.4); }
+            50% { box-shadow: 0 0 26px rgba(255, 98, 214, 0.55); border-color: rgba(255, 98, 214, 0.9); }
+        }
+
+        /* Main menu content — hidden until the welcome overlay fades out */
+        #mainContent {
+            opacity: 0;
+            transition: opacity 1.1s ease;
+        }
+
+        #mainContent.content-visible {
+            opacity: 1;
+        }
+
+        /* Loading overlay — shown when Start Game is clicked, before
+           navigating to Qubeat.html */
+        .loading-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at 50% 45%, rgba(40, 14, 66, 0.97), rgba(4, 4, 20, 0.99));
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .loading-overlay.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .loading-overlay.hide {
+            opacity: 0;
+        }
+
+        /* From Uiverse.io by KSAplay */
+        .loader {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .loading-text {
+            color: white;
+            font-size: 14pt;
+            font-weight: 600;
+            margin-left: 10px;
+            font-family: 'Saira', sans-serif;
+        }
+        .dot {
+            margin-left: 3px;
+            color: #ff62d6;
+            animation: blink 1.5s infinite;
+        }
+        .dot:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+        .dot:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+        .loading-bar-background {
+            --height: 30px;
+            display: flex;
+            align-items: center;
+            box-sizing: border-box;
+            padding: 5px;
+            width: 200px;
+            height: var(--height);
+            background-color: #150819;
+            box-shadow: #0c0c0c -2px 2px 4px 0px inset, 0 0 18px rgba(255, 98, 214, 0.18);
+            border: 1px solid rgba(255, 98, 214, 0.28);
+            border-radius: calc(var(--height) / 2);
+        }
+        .loading-bar {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            --height: 20px;
+            width: 0%;
+            height: var(--height);
+            overflow: hidden;
+            background: linear-gradient(
+                0deg,
+                #c500ff 0%,
+                #ff2ca4 55%,
+                #ff9adf 100%
+            );
+            box-shadow: 0 0 16px rgba(255, 44, 164, 0.55);
+            border-radius: calc(var(--height) / 2);
+        }
+        .loading-overlay.show .loading-bar {
+            animation: loading 1.6s ease-out forwards;
+        }
+        .white-bars-container {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+        .white-bar {
+            background: rgb(255, 255, 255);
+            background: linear-gradient(
+                -45deg,
+                rgba(255, 255, 255, 1) 0%,
+                rgba(255, 255, 255, 0) 70%
+            );
+            width: 10px;
+            height: 45px;
+            opacity: 0.3;
+            rotate: 45deg;
+        }
+        @keyframes loading {
+            0% {
+                width: 0;
+            }
+            80% {
+                width: 100%;
+            }
+            100% {
+                width: 100%;
+            }
+        }
+        @keyframes blink {
+            0%,
+            100% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="welcomeOverlay" class="welcome-overlay" role="button" tabindex="0" aria-label="Click or press any key to enter QuBeat">
+        <p class="welcome-eyebrow">Learn the Web. Rule the Arena</p>
+        <h1 class="welcome-title" data-text="QuBeat">QuBeat</h1>
+        <span class="enter-prompt">Click anywhere to enter</span>
+    </div>
+
+    <audio id="bgMusic" src="Home_Menu_Music.mp3" loop preload="auto"></audio>
+    <audio id="enterSfx" src="musics/wow.mp3" preload="auto"></audio>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var bgMusic = document.getElementById('bgMusic');
+            var overlay = document.getElementById('welcomeOverlay');
+            var mainContent = document.getElementById('mainContent');
+            var enterSfx = document.getElementById('enterSfx');
+            if (!bgMusic || !overlay || !mainContent) return;
+            bgMusic.volume = 0.5;
+
+            var entered = false;
+
+            function enterSite() {
+                if (entered) return;
+                entered = true;
+
+                // Starting playback here happens directly inside a user
+                // gesture (click/tap/keydown), so browsers allow it reliably.
+                if (enterSfx) {
+                    enterSfx.currentTime = 0;
+                    enterSfx.play().catch(function (err) {
+                        console.warn('QuBeat: enter sound could not play.', err, 'src:', enterSfx.currentSrc);
+                    });
+                }
+                bgMusic.play().catch(function (err) {
+                    console.warn('QuBeat: background music could not start.', err);
+                });
+
+                overlay.classList.add('fade-out');
+                mainContent.classList.add('content-visible');
+
+                overlay.addEventListener('animationend', function handleEnd() {
+                    overlay.removeEventListener('animationend', handleEnd);
+                    overlay.style.display = 'none';
+                });
+            }
+
+            overlay.addEventListener('click', enterSite);
+            overlay.addEventListener('touchstart', enterSite, { once: true });
+            overlay.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter' || e.key === ' ') enterSite();
+            });
+        });
+    </script>
+    <div id="mainContent" class="game-shell menu-shell">
+        <header class="topbar">
+            <div>
+                <p class="eyebrow" style="font-family: 'Prompt', sans-serif;">Learn the Web. Rule the Arena</p>
+                <h1 class="glitch" data-text="QuBeat" style="font-family: 'Rubik Maze', sans-serif;">QuBeat</h1>
+               
+            </div>
+        </header> 
+        <br>
+         <br>
+
+        <div class="menu-actions bottom-actions">
+            <a href="Qubeat.html" id="startGameBtn" class="primary" style="font-family: 'Bitcount Grid Double', sans-serif;">Start Game</a>
+            <a href="HowToPlay.html" id="howToPlayBtn" class="primary" style="font-family: 'Bitcount Grid Double', sans-serif;">How to Play</a>
+            <a href="Credits.html" id="creditsBtn" class="primary" style="font-family: 'Bitcount Grid Double', sans-serif;">Credits</a>
+        </div>
+
+        <div class="menu-grid">
+            <div class="menu-card">
+                <h3 class="glitch" data-text="Fast Quiz Combat" style="font-family: 'Sanria', sans-serif;">Fast Quiz Combat</h3>
+                <p style="font-family: 'New Tegomin', sans-serif;">Jump into a rhythm powered coding quiz where every answer sharpens your skills and keeps the rival at bay.</p>
+            </div>
+            <div class="menu-card">
+                <h3 class="glitch" data-text="Choose Your Language" style="font-family: 'Sanria', sans-serif;">Choose Your Language</h3>
+                <p style="font-family: 'New Tegomin', sans-serif;">Pick from web, scripting, and game development languages. Now including JavaScript as a playable option.</p>
+            </div>
+        </div>
+
+     
+            </div>
+        </div>
+    </div>    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loader">
+            <div class="loading-text">
+                Loading<span class="dot">.</span><span class="dot">.</span
+                ><span class="dot">.</span>
+            </div>
+            <div class="loading-bar-background">
+                <div class="loading-bar">
+                    <div class="white-bars-container">
+                        <div class="white-bar"></div>
+                        <div class="white-bar"></div>
+                        <div class="white-bar"></div>
+                        <div class="white-bar"></div>
+                        <div class="white-bar"></div>
+                        <div class="white-bar"></div>
+                        <div class="white-bar"></div>
+                        <div class="white-bar"></div>
+                        <div class="white-bar"></div>
+                        <div class="white-bar"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <audio id="startBtnSfx" src="Button_Start.mp3"></audio>
+    <audio id="howToPlaySfx" src="musics/howtoplay.mp3"></audio>
+    <audio id="creditsSfx" src="musics/howtoplay.mp3"></audio>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var startBtn = document.getElementById('startGameBtn');
+            var loadingOverlay = document.getElementById('loadingOverlay');
+            var startBtnSfx = document.getElementById('startBtnSfx');
+            if (!startBtn || !loadingOverlay) return;
+
+            var LOAD_DURATION = 1800; // matches the loading-bar fill time
+            var FADE_DURATION = 400;  // matches the overlay's opacity transition
+            var navigating = false;
+
+            startBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+                if (navigating) return;
+                navigating = true;
+
+                if (startBtnSfx) {
+                    startBtnSfx.currentTime = 0;
+                    startBtnSfx.play().catch(function () {});
+                }
+
+                var target = startBtn.getAttribute('href');
+                loadingOverlay.classList.add('show');
+
+                setTimeout(function () {
+                    loadingOverlay.classList.remove('show');
+                    loadingOverlay.classList.add('hide');
+                    setTimeout(function () {
+                        window.location.href = target;
+                    }, FADE_DURATION);
+                }, LOAD_DURATION);
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            function playThenGo(btnId, sfxId) {
+                var btn = document.getElementById(btnId);
+                var sfx = document.getElementById(sfxId);
+                if (!btn) return;
+
+                var navigating = false;
+                btn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    if (navigating) return;
+                    navigating = true;
+
+                    var target = btn.getAttribute('href');
+
+                    if (sfx) {
+                        sfx.currentTime = 0;
+                        sfx.play().catch(function () {});
+                    }
+                    setTimeout(function () {
+                        window.location.href = target;
+                    }, 150);
+                });
+            }
+
+            playThenGo('howToPlayBtn', 'howToPlaySfx');
+            playThenGo('creditsBtn', 'creditsSfx');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>C++ — The Complete Master Guide</title>
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800;900&family=Rajdhani:wght@600;700&family=Sora:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#07030d;
+  --panel:#120a1f;
+  --panel2:#1a0f2e;
+  --line:#3a1f5c;
+  --ink:#f3e9ff;
+  --muted:#b39cd0;
+  --pink:#ff2fb0;
+  --pink2:#ff7ad9;
+  --blue:#00e5ff;
+  --blue2:#7df9ff;
+  --danger:#ff5c7a;
+  --good:#39ffb0;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; color:var(--ink);
+  font-family:'Sora',ui-sans-serif,system-ui,-apple-system,Arial,sans-serif;
+  line-height:1.65;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(255,47,176,0.16), transparent 45%),
+    radial-gradient(circle at 85% 10%, rgba(0,229,255,0.16), transparent 40%),
+    radial-gradient(circle at 50% 90%, rgba(255,47,176,0.12), transparent 50%),
+    linear-gradient(0deg, transparent 24%, rgba(0,229,255,0.05) 25%, rgba(0,229,255,0.05) 26%, transparent 27%, transparent 74%, rgba(255,47,176,0.05) 75%, rgba(255,47,176,0.05) 76%, transparent 77%),
+    var(--bg);
+  background-size:auto, auto, auto, 60px 60px, auto;
+  position:relative;
+  overflow-x:hidden;
+}
+body::before{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+  background:linear-gradient(90deg, transparent 49%, rgba(0,229,255,0.4) 50%, transparent 51%);
+  opacity:0; mix-blend-mode:screen;
+  animation:strike 7s infinite;
+}
+body::after{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+  background:linear-gradient(180deg, transparent 60%, rgba(255,47,176,0.35) 61%, transparent 63%);
+  opacity:0; mix-blend-mode:screen;
+  animation:strike2 11s infinite;
+}
+@keyframes strike{
+  0%,93%,100%{opacity:0} 93.2%{opacity:.9} 93.4%{opacity:0} 93.6%{opacity:.5} 93.9%{opacity:0}
+}
+@keyframes strike2{
+  0%,88%,100%{opacity:0} 88.2%{opacity:.7} 88.5%{opacity:0} 88.8%{opacity:.4} 89.1%{opacity:0}
+}
+a{color:var(--blue)}
+.layout{display:grid; grid-template-columns:280px 1fr; min-height:100vh; position:relative; z-index:1;}
+nav.side{
+  position:sticky; top:0; height:100vh; overflow-y:auto;
+  background:rgba(18,10,31,0.85); backdrop-filter:blur(6px);
+  border-right:1px solid var(--line); padding:20px 14px;
+}
+nav.side h2{
+  font-size:12.5px; text-transform:uppercase; letter-spacing:.2em; font-family:'Rajdhani',sans-serif;
+  color:var(--blue2); margin:18px 6px 8px; font-weight:700;
+}
+nav.side h2:first-child{margin-top:0}
+nav.side a{
+  display:block; padding:6px 8px; border-radius:8px;
+  color:var(--muted); text-decoration:none; font-size:13.5px;
+}
+nav.side a:hover{background:var(--panel2); color:var(--pink2); text-shadow:0 0 8px var(--pink)}
+.brand{padding:6px 8px 18px; border-bottom:1px solid var(--line); margin-bottom:6px;}
+.brand .logo{font-family:'Orbitron',sans-serif; letter-spacing:0;
+  display:inline-flex; align-items:center; justify-content:center;
+  width:40px; height:40px; font-weight:900; font-size:16px;
+  border-radius:10px; color:#07030d;
+  background:linear-gradient(135deg,var(--pink),var(--blue));
+  box-shadow:0 0 18px rgba(255,47,176,.5), 0 0 30px rgba(0,229,255,.25);
+}
+.brand h1{font-size:18px; margin:10px 0 2px; font-family:'Orbitron',sans-serif; background:linear-gradient(90deg,var(--pink2),var(--blue2)); -webkit-background-clip:text; background-clip:text; color:transparent;}
+.brand p{font-size:12px; color:var(--muted); margin:0}
+main{padding:48px 56px; max-width:980px; position:relative; z-index:1;}
+.hero{
+  border:1px solid var(--line);
+  background:linear-gradient(135deg, rgba(255,47,176,0.08), rgba(0,229,255,0.08)), var(--panel);
+  border-radius:22px; padding:38px; margin-bottom:44px; position:relative; overflow:hidden;
+  box-shadow:0 0 40px rgba(255,47,176,.08), inset 0 0 60px rgba(0,229,255,.04);
+}
+.hero .kicker{color:var(--blue2); font-family:'Rajdhani',sans-serif; font-weight:700; letter-spacing:.22em; font-size:13px; text-transform:uppercase;}
+.hero h1{font-size:42px; margin:10px 0; font-family:'Orbitron',sans-serif; letter-spacing:.02em; background:linear-gradient(90deg,var(--pink2),var(--blue2)); -webkit-background-clip:text; background-clip:text; color:transparent; text-shadow:0 0 20px rgba(255,47,176,.45), 0 0 40px rgba(5,230,255,.2);}
+.hero p{color:var(--muted); max-width:640px; font-size:15.5px;}
+section{margin-bottom:56px; scroll-margin-top:24px;}
+section h2{
+  font-size:24px; display:flex; align-items:center; gap:12px; margin-bottom:6px;
+  font-family:'Rajdhani',sans-serif; font-weight:700; letter-spacing:.01em;
+  padding-bottom:10px; border-bottom:1px solid var(--line); color:var(--ink);
+}
+section h2 .num{
+  color:#07030d; background:linear-gradient(135deg,var(--pink),var(--blue)); font-size:13px; font-weight:800;
+  width:30px; height:30px; border-radius:8px; display:flex; align-items:center; justify-content:center;
+  flex:none; box-shadow:0 0 12px rgba(255,47,176,.4);
+}
+section h3{font-size:15px; color:var(--blue2); font-family:'Rajdhani',sans-serif; font-weight:600; margin:22px 0 8px; text-transform:uppercase; letter-spacing:.06em;}
+p{color:#d8c9f0; font-size:15px;}
+ul,ol{color:#d8c9f0; font-size:15px; padding-left:20px;}
+li{margin-bottom:6px;}
+.card{background:rgba(18,10,31,0.7); border:1px solid var(--line); border-radius:14px; padding:20px; margin:14px 0;}
+.grid2{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+.grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
+@media (max-width:900px){.grid2,.grid3{grid-template-columns:1fr} .layout{grid-template-columns:1fr} nav.side{position:relative; height:auto;}}
+table{width:100%; border-collapse:collapse; font-size:14px; margin:12px 0;}
+th,td{border:1px solid var(--line); padding:8px 10px; text-align:left; color:#d8c9f0;}
+th{background:var(--panel2); color:var(--pink2); font-family:'Rajdhani',sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:.04em; font-size:13px;}
+pre{
+  background:#0a0512; border:1px solid var(--line); border-radius:12px;
+  padding:16px 18px; overflow-x:auto; font-size:13.5px; margin:10px 0;
+  box-shadow:inset 0 0 20px rgba(0,229,255,.05);
+}
+code{font-family:'JetBrains Mono','Fira Code',Consolas,'Courier New',monospace;}
+.kw{color:var(--pink2)}.str{color:var(--good)}.com{color:#7a6a99;font-style:italic}.fn{color:var(--blue2)}.num2{color:#ffb86c}
+.expl{border-left:3px solid var(--pink); padding:6px 0 6px 14px; margin:8px 0; color:var(--muted); font-size:13.5px;}
+.expl li{margin-bottom:4px;}
+.pill-row{display:flex; gap:8px; flex-wrap:wrap; margin:10px 0;}
+.pill{background:var(--panel2); border:1px solid var(--line); border-radius:8px; padding:6px 12px; font-size:13px; color:#d8c9f0; font-family:'Rajdhani',sans-serif; font-weight:600; letter-spacing:.02em;}
+.good{color:var(--good)}.bad{color:var(--danger)}
+.qa{background:rgba(18,10,31,0.7); border:1px solid var(--line); border-radius:12px; padding:14px 18px; margin:10px 0;}
+.qa .q{color:var(--pink2); font-family:'Rajdhani',sans-serif; font-weight:700; font-size:15.5px; letter-spacing:.01em;}
+.qa .a{color:#d8c9f0; font-size:14px; margin-top:6px;}
+
+/* ===== Back button — select another language ===== */
+.back-wrap{ margin-bottom:22px; }
+.back-btn{
+  background-color:#852564;
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: inline-block;
+  text-align: center;
+  font-weight: bold;
+  padding: 0.7em 2em;
+  border: 3px solid #FF0072;
+  border-radius: 2px;
+  position: relative;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.1);
+  color: #07EBDA;
+  text-decoration: none;
+  transition: 0.3s ease all;
+  z-index: 1;
+  cursor:pointer;
+  font-family:inherit;
+}
+.back-btn:before {
+  transition: 0.5s all ease;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  right: 50%;
+  bottom: 0;
+  opacity: 0;
+  content: '';
+  background-color: #FF0072;
+  z-index: -1;
+}
+.back-btn:hover, .back-btn:focus {
+  color: #07EBDA;
+}
+.back-btn:hover:before, .back-btn:focus:before {
+  transition: 0.5s all ease;
+  left: 0;
+  right: 0;
+  opacity: 1;
+}
+.back-btn:active {
+  transform: scale(0.9);
+}
+
+</style>
+</head>
+<body>
+<div class="layout">
+<nav class="side">
+<div class="brand">
+<span class="logo">C+</span>
+<h1>C++</h1>
+<p>Complete Master Guide</p>
+</div>
+<h2>Foundations</h2>
+<a href="#intro">1. Introduction</a>
+<a href="#history">2. History</a>
+<a href="#versions">3. Versions</a>
+<a href="#filestructure">4. File Structure</a>
+<a href="#syntax">5. Syntax</a>
+<a href="#keywords">6. Keywords</a>
+<a href="#datatypes">7. Data Types</a>
+<a href="#variables">8. Variables</a>
+<a href="#operators">9. Operators</a>
+<a href="#controlflow">10. Control Flow</a>
+<h2>Core Language</h2>
+<a href="#functions">11. Functions</a>
+<a href="#classes">12. Classes</a>
+<a href="#objects">13. Objects</a>
+<a href="#oop">14. OOP Concepts</a>
+<a href="#modules">15. Modules</a>
+<a href="#libraries">16. Libraries</a>
+<a href="#apis">17. APIs</a>
+<a href="#errors">18. Error Handling</a>
+<a href="#memory">19. Memory Management</a>
+<a href="#performance">20. Performance</a>
+<h2>Craft</h2>
+<a href="#bestpractices">21. Best Practices</a>
+<a href="#security">22. Security</a>
+<a href="#accessibility">23. Accessibility</a>
+<a href="#codestyle">24. Code Style</a>
+<a href="#patterns">25. Design Patterns</a>
+<a href="#projectstructure">26. Project Structure</a>
+<a href="#mistakes">27. Common Mistakes</a>
+<h2>Practice & Career</h2>
+<a href="#interview">28. Interview Questions</a>
+<a href="#problems">29. Practice Problems</a>
+<a href="#realprojects">30. Real Projects</a>
+<a href="#cheatsheet">31. Cheat Sheet</a>
+<a href="#faq">32. FAQ</a>
+<a href="#proscons">33. Pros and Cons</a>
+<a href="#comparison">34. Comparison</a>
+<a href="#latest">35. Latest Features</a>
+<a href="#future">36. Future</a>
+</nav>
+<main>
+    <div class="back-wrap">
+    <button class="back-btn" onclick="window.location.href='QubeatLanguage.html'">select another language</button>
+  </div>
+<div class="hero">
+    <div class="kicker">Master Guide · 36 Sections</div>
+    <h1>C++</h1>
+    <p>A high-performance systems language with object-oriented and generic programming built on top of C — the language of game engines and demanding software.</p>
+  </div>
+  <section id="intro"><h2><span class="num">1</span> Introduction</h2>
+<p>C++ is a high-performance, multi-paradigm language that extends C with object-oriented, generic, and (later) functional programming features, while preserving low-level memory control. It's used wherever performance and hardware-level control matter greatly.</p>
+<p>C++ balances raw speed with abstraction, letting developers write both close-to-the-metal code and organized, reusable, object-oriented systems.</p>
+<div class="grid3">
+  <div class="card"><strong style="color:var(--pink2)">Type</strong><br/>Compiled, statically typed, multi-paradigm</div>
+  <div class="card"><strong style="color:var(--pink2)">Runs on</strong><br/>Native machine code, any platform</div>
+  <div class="card"><strong style="color:var(--pink2)">Used for</strong><br/>Game engines, robotics, high-frequency trading</div>
+</div>
+<pre><code><span class="kw">#include</span> &lt;iostream&gt;
+<span class="kw">int</span> <span class="fn">main</span>() {
+  std::cout &lt;&lt; <span class="str">"Hello, C++!"</span>;
+}</code></pre>
+</section>
+<section id="history"><h2><span class="num">2</span> History</h2>
+<p>C++ was created by <strong>Bjarne Stroustrup</strong> at Bell Labs, starting in 1979 as "C with Classes," released as C++ in <strong>1985</strong>.</p>
+<table><tr><th>Year</th><th>Milestone</th></tr>
+<tr><td>1985</td><td>C++ released by Bjarne Stroustrup</td></tr>
+<tr><td>1998</td><td>C++98 — first ISO standard</td></tr>
+<tr><td>2011</td><td>C++11 — auto, lambdas, smart pointers</td></tr>
+<tr><td>2020</td><td>C++20 — concepts, ranges, coroutines</td></tr></table>
+</section>
+<section id="versions"><h2><span class="num">3</span> Versions</h2>
+<table><tr><th>Standard</th><th>Key Additions</th></tr>
+<tr><td>C++11</td><td>auto, lambdas, smart pointers, move semantics</td></tr>
+<tr><td>C++14</td><td>Generic lambdas</td></tr>
+<tr><td>C++17</td><td>Structured bindings, std::optional</td></tr>
+<tr><td>C++20</td><td>Concepts, ranges, coroutines, modules</td></tr></table>
+</section>
+<section id="filestructure"><h2><span class="num">4</span> File Structure</h2>
+<pre><code><span class="com">// main.cpp</span>
+<span class="kw">#include</span> &lt;iostream&gt;   <span class="com">// 1. includes</span>
+<span class="kw">using namespace</span> std; <span class="com">// 2. namespace</span>
+<span class="kw">int</span> <span class="fn">main</span>() {         <span class="com">// 3. entry point</span>
+  cout &lt;&lt; <span class="str">"Hi"</span>;
+  <span class="kw">return</span> <span class="num2">0</span>;
+}</code></pre>
+</section>
+<section id="syntax"><h2><span class="num">5</span> Syntax</h2>
+<div class="grid2">
+<div class="card"><h3>Example 1</h3><pre><code><span class="kw">int</span> x = <span class="num2">5</span>;
+<span class="kw">if</span> (x &gt; <span class="num2">5</span>) std::cout &lt;&lt; x;</code></pre></div>
+<div class="card"><h3>Example 2 — auto</h3><pre><code><span class="kw">auto</span> total = <span class="num2">2</span> + <span class="num2">3</span>; <span class="com">// type inferred</span></code></pre></div>
+</div>
+</section>
+<section id="keywords"><h2><span class="num">6</span> Keywords</h2>
+<div class="pill-row">
+<span class="pill">class</span><span class="pill">struct</span><span class="pill">public / private / protected</span><span class="pill">virtual</span>
+<span class="pill">template</span><span class="pill">namespace</span><span class="pill">new / delete</span><span class="pill">const</span>
+<span class="pill">try / catch / throw</span><span class="pill">this</span><span class="pill">auto</span>
+</div>
+</section>
+<section id="datatypes"><h2><span class="num">7</span> Data Types</h2>
+<table><tr><th>Type</th><th>Example</th></tr>
+<tr><td>int</td><td><code>int x = 5;</code></td></tr>
+<tr><td>double</td><td><code>double d = 3.14;</code></td></tr>
+<tr><td>bool</td><td><code>bool b = true;</code></td></tr>
+<tr><td>std::string</td><td><code>string s = "hi";</code></td></tr>
+<tr><td>std::vector</td><td><code>vector&lt;int&gt; v;</code></td></tr></table>
+</section>
+<section id="variables"><h2><span class="num">8</span> Variables</h2>
+<div class="grid2">
+<div class="card"><h3>Example 1</h3><pre><code><span class="kw">int</span> age = <span class="num2">25</span>;
+<span class="kw">const double</span> PI = <span class="num2">3.14</span>;</code></pre></div>
+<div class="card"><h3>Example 2 — Reference</h3><pre><code><span class="kw">int</span> a = <span class="num2">5</span>;
+<span class="kw">int</span>&amp; ref = a; <span class="com">// alias to a</span></code></pre></div>
+</div>
+</section>
+<section id="operators"><h2><span class="num">9</span> Operators</h2>
+<table><tr><th>Category</th><th>Operators</th></tr>
+<tr><td>Arithmetic</td><td><code>+ - * / %</code></td></tr>
+<tr><td>Reference</td><td><code>&amp; *</code></td></tr>
+<tr><td>Scope</td><td><code>::</code></td></tr></table>
+</section>
+<section id="controlflow"><h2><span class="num">10</span> Control Flow</h2>
+<div class="grid2">
+<div class="card"><h3>Example 1</h3><pre><code><span class="kw">if</span> (score &gt;= <span class="num2">90</span>) grade = <span class="str">'A'</span>;</code></pre></div>
+<div class="card"><h3>Example 2 — Range-for</h3><pre><code><span class="kw">for</span> (<span class="kw">auto</span>&amp; x : vec) { std::cout &lt;&lt; x; }</code></pre></div>
+</div>
+</section>
+<section id="functions"><h2><span class="num">11</span> Functions</h2>
+<div class="grid2">
+<div class="card"><h3>Example 1</h3><pre><code><span class="kw">int</span> <span class="fn">add</span>(<span class="kw">int</span> a, <span class="kw">int</span> b) { <span class="kw">return</span> a + b; }</code></pre></div>
+<div class="card"><h3>Example 2 — Lambda</h3><pre><code><span class="kw">auto</span> square = [](<span class="kw">int</span> n) { <span class="kw">return</span> n * n; };</code></pre></div>
+</div>
+</section>
+<section id="classes"><h2><span class="num">12</span> Classes</h2>
+<pre><code><span class="kw">class</span> Animal {
+<span class="kw">protected</span>:
+  std::string name;
+<span class="kw">public</span>:
+  Animal(std::string n) : name(n) {}
+  <span class="kw">virtual</span> std::string <span class="fn">speak</span>() { <span class="kw">return</span> name + <span class="str">" makes a sound"</span>; }
+};
+<span class="kw">class</span> Dog : <span class="kw">public</span> Animal {
+<span class="kw">public</span>:
+  Dog(std::string n) : Animal(n) {}
+  std::string <span class="fn">speak</span>() <span class="kw">override</span> { <span class="kw">return</span> name + <span class="str">" barks"</span>; }
+};</code></pre>
+</section>
+<section id="objects"><h2><span class="num">13</span> Objects</h2>
+<pre><code>Dog d(<span class="str">"Rex"</span>);
+d.<span class="fn">speak</span>();
+<span class="kw">auto</span> ptr = std::make_unique&lt;Dog&gt;(<span class="str">"Max"</span>); <span class="com">// smart pointer</span></code></pre>
+</section>
+<section id="oop"><h2><span class="num">14</span> OOP Concepts</h2>
+<div class="grid2">
+<div class="card"><strong style="color:var(--pink2)">Encapsulation</strong><p><code>private</code>/<code>protected</code> members.</p></div>
+<div class="card"><strong style="color:var(--pink2)">Inheritance</strong><p><code>class Dog : public Animal</code></p></div>
+<div class="card"><strong style="color:var(--pink2)">Polymorphism</strong><p><code>virtual</code> functions + <code>override</code>.</p></div>
+<div class="card"><strong style="color:var(--pink2)">Abstraction</strong><p>Pure virtual functions define interfaces.</p></div>
+</div>
+</section>
+<section id="modules"><h2><span class="num">15</span> Modules</h2>
+<p>Traditionally header (<code>.h</code>) + source (<code>.cpp</code>) files; C++20 introduces native <code>modules</code>.</p>
+<pre><code><span class="kw">export module</span> math;
+<span class="kw">export int</span> <span class="fn">square</span>(<span class="kw">int</span> n) { <span class="kw">return</span> n*n; }</code></pre>
+</section>
+<section id="libraries"><h2><span class="num">16</span> Libraries</h2>
+<div class="pill-row"><span class="pill">STL</span><span class="pill">Boost</span><span class="pill">Qt</span><span class="pill">Eigen</span><span class="pill">OpenCV</span></div>
+</section>
+<section id="apis"><h2><span class="num">17</span> APIs</h2>
+<pre><code>std::ifstream file(<span class="str">"data.txt"</span>);
+std::string line;
+std::getline(file, line);</code></pre>
+</section>
+<section id="errors"><h2><span class="num">18</span> Error Handling</h2>
+<pre><code><span class="kw">try</span> {
+  <span class="kw">throw</span> std::runtime_error(<span class="str">"failed"</span>);
+} <span class="kw">catch</span> (<span class="kw">const</span> std::exception&amp; e) {
+  std::cout &lt;&lt; e.<span class="fn">what</span>();
+}</code></pre>
+</section>
+<section id="memory"><h2><span class="num">19</span> Memory Management</h2>
+<p>C++ supports manual memory (<code>new</code>/<code>delete</code>) plus <strong>RAII</strong> and smart pointers to automate cleanup safely.</p>
+<pre><code>std::unique_ptr&lt;<span class="kw">int</span>&gt; p = std::make_unique&lt;<span class="kw">int</span>&gt;(<span class="num2">5</span>);
+<span class="com">// auto-freed when p goes out of scope</span></code></pre>
+</section>
+<section id="performance"><h2><span class="num">20</span> Performance</h2>
+<ul><li>Prefer stack allocation over heap when possible.</li><li>Use move semantics (<code>std::move</code>) to avoid unnecessary copies.</li></ul>
+</section>
+<section id="bestpractices"><h2><span class="num">21</span> Best Practices</h2>
+<ul><li>Prefer smart pointers over raw <code>new</code>/<code>delete</code>.</li><li>Follow RAII — tie resource lifetime to object scope.</li></ul>
+</section>
+<section id="security"><h2><span class="num">22</span> Security</h2>
+<ul><li>Avoid buffer overflows — prefer <code>std::vector</code>/<code>std::array</code> over raw arrays.</li><li>Watch for dangling pointers and use-after-free bugs.</li></ul>
+</section>
+<section id="accessibility"><h2><span class="num">23</span> Accessibility</h2>
+<p>Applies mainly in Qt/GUI development — set accessible labels on widgets.</p>
+</section>
+<section id="codestyle"><h2><span class="num">24</span> Code Style</h2>
+<ul><li>PascalCase for classes, camelCase for variables/functions (varies by project).</li><li>Use <code>const</code> wherever a value shouldn't change.</li></ul>
+</section>
+<section id="patterns"><h2><span class="num">25</span> Design Patterns</h2>
+<div class="grid2">
+<div class="card"><h3>RAII</h3><pre><code><span class="kw">class</span> FileGuard { <span class="com">/* closes file in destructor */</span> };</code></pre></div>
+<div class="card"><h3>Factory</h3><pre><code>std::unique_ptr&lt;Shape&gt; <span class="fn">createShape</span>(std::string type);</code></pre></div>
+</div>
+</section>
+<section id="projectstructure"><h2><span class="num">26</span> Project Structure</h2>
+<pre><code>my-app/
+├── src/
+├── include/
+├── CMakeLists.txt
+└── build/</code></pre>
+</section>
+<section id="mistakes"><h2><span class="num">27</span> Common Mistakes</h2>
+<ul><li>Memory leaks from forgetting <code>delete</code> (mitigated by smart pointers).</li><li>Slicing objects when passing by value instead of reference.</li></ul>
+</section>
+<section id="interview"><h2><span class="num">28</span> Interview Questions</h2>
+<div class="qa"><div class="q">Q: What is RAII?</div><div class="a">A: Resource Acquisition Is Initialization — tying resource cleanup to object destruction for automatic, safe release.</div></div>
+<div class="qa"><div class="q">Q: Stack vs heap?</div><div class="a">A: Stack is fast, automatically managed, limited size; heap is manually managed, larger, slower to allocate.</div></div>
+</section>
+<section id="problems"><h2><span class="num">29</span> Practice Problems</h2>
+<ol><li>Implement a template-based generic stack.</li><li>Write a custom smart pointer.</li></ol>
+</section>
+<section id="realprojects"><h2><span class="num">30</span> Real Projects</h2>
+<div class="grid3"><div class="card">2D game engine</div><div class="card">Image processing tool</div><div class="card">Custom memory allocator</div></div>
+</section>
+<section id="cheatsheet"><h2><span class="num">31</span> Cheat Sheet</h2>
+<pre><code>std::vector std::map std::unique_ptr std::shared_ptr
+Algorithms: sort find accumulate</code></pre>
+</section>
+<section id="faq"><h2><span class="num">32</span> FAQ</h2>
+<div class="qa"><div class="q">Is C++ backward compatible with C?</div><div class="a">Mostly yes — C++ was built as a superset of C, though some edge cases differ.</div></div>
+</section>
+<section id="proscons"><h2><span class="num">33</span> Pros and Cons</h2>
+<div class="grid2">
+<div class="card"><strong class="good">Pros</strong><ul><li>Maximum performance and control</li><li>Rich standard library (STL)</li></ul></div>
+<div class="card"><strong class="bad">Cons</strong><ul><li>Steep learning curve</li><li>Manual memory pitfalls</li></ul></div>
+</div>
+</section>
+<section id="comparison"><h2><span class="num">34</span> Comparison with Other Languages</h2>
+<table><tr><th>Feature</th><th>C++</th><th>Rust</th></tr>
+<tr><td>Memory safety</td><td>Manual/RAII</td><td>Enforced by compiler</td></tr>
+<tr><td>OOP</td><td>Yes</td><td>Trait-based</td></tr></table>
+</section>
+<section id="latest"><h2><span class="num">35</span> Latest Features</h2>
+<ul><li>C++20 concepts and ranges</li><li>Coroutines for async code</li><li>Modules replacing headers</li></ul>
+</section>
+<section id="future"><h2><span class="num">36</span> Future of the Language</h2>
+<p>C++ continues evolving with C++23/26 focusing on safety improvements, better tooling, and simplifying common patterns — while retaining the raw performance that keeps it essential for games, systems, and simulation software.</p>
+</section>
+</main>
+</div>
+</body>
+</html>
